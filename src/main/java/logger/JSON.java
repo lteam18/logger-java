@@ -6,7 +6,7 @@ import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
 
-public class GsonUtils {
+public class JSON {
     public static Map<String, String> parse(String json) {
         Gson gson = new Gson();
         Type type = new TypeToken<Map<String, String>>() {}.getType();
