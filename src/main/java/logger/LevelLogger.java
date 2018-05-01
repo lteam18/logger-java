@@ -3,13 +3,13 @@ package logger;
 import java.util.Map;
 
 public class LevelLogger {
-    public LevelLogger(Logger logger, String level, Writer writer) {
+    public LevelLogger(Logger logger, Logger.Level level, Writer writer) {
         this.logger = logger;
         this.level = level;
         this.writer = writer;
     }
 
-    final String level;
+    final Logger.Level level;
     final Logger logger;
     final Writer writer;
 
@@ -38,9 +38,9 @@ public class LevelLogger {
         this.o(Utils.map(), msg);
     }
 
-    protected void addLevelAndTimestamp(Map<String, Object> obj, String level) {
+    protected void addLevelAndTimestamp(Map<String, Object> obj, Logger.Level level) {
         obj.put(Utils.ATTR.TIMESTAMP, System.currentTimeMillis());
-        obj.put(Utils.ATTR.LEVEL, level);
+        obj.put(Utils.ATTR.LEVEL, Integer.valueOf(this.level.ordinal()));
         obj.put(Utils.ATTR.NAME, this.logger.name);
     }
 
