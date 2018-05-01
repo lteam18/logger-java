@@ -18,5 +18,4 @@ public class Logger {
     public LevelLogger warn = new LevelLogger(this, LEVEL.warn, this.writer);
     public LevelLogger error = new LevelLogger(this, LEVEL.error, this.writer);
     public LevelLogger fatal = new LevelLogger(this, LEVEL.fatal, this.writer);
-
 }

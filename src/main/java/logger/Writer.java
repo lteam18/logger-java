@@ -1,6 +1,5 @@
 package logger;
 
-
 import java.util.Map;
 
 public abstract class Writer {

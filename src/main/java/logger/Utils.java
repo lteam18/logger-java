@@ -4,7 +4,6 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.HashMap;
 
-
 public class Utils {
 
     public static HashMap<String, Object> map(Object... values) {
@@ -42,11 +41,11 @@ public class Utils {
         public static String fatal = "FATAL";
     }
 
-    public static void main(){
-        HashMap<String, Object> m = map(
-                "a", 1,
-                "b", 2,
-                "c", 3
-                );
+    public static void main() {
+        HashMap<String, Object> m =
+                map(
+                        "a", 1,
+                        "b", 2,
+                        "c", 3);
     }
 }
