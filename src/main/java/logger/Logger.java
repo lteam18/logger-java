@@ -1,15 +1,16 @@
 package logger;
 
-
-
 public class Logger {
 
     public String name;
     public Writer writer;
 
-
     static enum Level {
-        debug, info, warn, error, fatal
+        debug,
+        info,
+        warn,
+        error,
+        fatal
     }
 
     public LevelLogger debug = new LevelLogger(this, Level.debug, this.writer);
