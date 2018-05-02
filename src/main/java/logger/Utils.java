@@ -3,29 +3,29 @@ package logger;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Utils {
 
     public Utils() {
-
     }
 
-    public String convertToUnits(Long millis) {
+    public String convertToUnits(long millis) {
         String retStr = "";
-        Long rest = millis;
+        long rest = millis;
         final Long ms = rest % 1000;
         rest = Math.round(Math.floor(rest / 1000));
-        final Long minute = rest % 10;
+        final long minute = rest % 10;
         rest = Math.round(Math.floor(rest / 60));
-        final Long hour = rest % 24;
-        final Long day = Math.round(Math.floor(rest / 24));
+        final long hour = rest % 24;
+        final long day = Math.round(Math.floor(rest / 24));
 
         retStr = day + "d" + hour + "h" + minute + "m" + ms;
 
         return retStr;
     }
 
-    public String formatDiffString(Long millis) {
+    public String formatDiffString(long millis) {
         final int max_String = 9;
         final String result = convertToUnits(millis);
         String ret = "";
@@ -42,7 +42,7 @@ public class Utils {
         return ret;
     }
 
-    public String formatDiffString(Long millis, int max_String) {
+    public String formatDiffString(long millis, int max_String) {
         final String result = convertToUnits(millis);
         String ret = "";
         for (int i = 0; i < result.length(); i += 2) {
@@ -56,6 +56,31 @@ public class Utils {
             ret += s;
         }
         return ret;
+    }
+
+    public void sleep(long millis) {
+        try {
+            Thread.currentThread();
+            Thread.sleep(millis);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void convert() {
+
+    }
+
+    public Map<String, String> stringifyError(Error e) {
+
+        Map<String, String> error = new HashMap<>();
+
+        error.put("message", e.getMessage());
+        error.put("name", e.getClass().toString());
+        error.put("stack", e.getStackTrace().toString());
+
+        return error;
+
     }
 
     public static HashMap<String, Object> map(Object... values) {
