@@ -5,4 +5,11 @@ package logger;
  */
 
 public class Logger_test {
+
+    private static String str = "hello";
+
+    public static void main(String[] agv) {
+        System.out.println("The information from console:" + str);
+    }
+
 }
