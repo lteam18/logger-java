@@ -6,6 +6,58 @@ import java.util.HashMap;
 
 public class Utils {
 
+    public Utils() {
+
+    }
+
+    public String convertToUnits(Long millis) {
+        String retStr = "";
+        Long rest = millis;
+        final Long ms = rest % 1000;
+        rest = Math.round(Math.floor(rest / 1000));
+        final Long minute = rest % 10;
+        rest = Math.round(Math.floor(rest / 60));
+        final Long hour = rest % 24;
+        final Long day = Math.round(Math.floor(rest / 24));
+
+        retStr = day + "d" + hour + "h" + minute + "m" + ms;
+
+        return retStr;
+    }
+
+    public String formatDiffString(Long millis) {
+        final int max_String = 9;
+        final String result = convertToUnits(millis);
+        String ret = "";
+        for (int i = 0; i < result.length(); i += 2) {
+            if (result.charAt(i) == '0') continue;
+            final String s = "" + result.charAt(i) + result.charAt(i + 1);
+            if (s.length() + ret.length() > max_String) {
+                if (ret.length() == 0)
+                    ret += s;
+                return ret;
+            }
+            ret += s;
+        }
+        return ret;
+    }
+
+    public String formatDiffString(Long millis, int max_String) {
+        final String result = convertToUnits(millis);
+        String ret = "";
+        for (int i = 0; i < result.length(); i += 2) {
+            if (result.charAt(i) == '0') continue;
+            final String s = "" + result.charAt(i) + result.charAt(i + 1);
+            if (s.length() + ret.length() > max_String) {
+                if (ret.length() == 0)
+                    ret += s;
+                return ret;
+            }
+            ret += s;
+        }
+        return ret;
+    }
+
     public static HashMap<String, Object> map(Object... values) {
         HashMap<String, Object> map = new HashMap<>();
         for (int i = 0; i < values.length; i += 2) {
@@ -13,6 +65,7 @@ public class Utils {
         }
         return map;
     }
+
 
     public static String getStacks(Throwable throwable) {
         StringWriter sw = new StringWriter();

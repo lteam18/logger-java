@@ -27,3 +27,5 @@ logger-java.ipr
 logger-java.iws
 build/*
 
+local.properties
+
