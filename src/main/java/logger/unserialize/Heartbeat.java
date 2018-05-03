@@ -1,5 +1,6 @@
 package logger.unserialize;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 /**
@@ -14,5 +15,7 @@ public class Heartbeat {
         this.hid = hid;
         this.data = data;
     }
+
+
 
 }
