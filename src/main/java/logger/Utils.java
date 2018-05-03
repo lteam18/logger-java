@@ -2,7 +2,9 @@ package logger;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 public class Utils {
@@ -67,20 +69,33 @@ public class Utils {
         }
     }
 
-    public void convert() {
+
+    // { a: { b:1, c:2 }}
+    // => [a.b]=1 [a.c]=2
+    public String convert(HashMap<String, Object> data, ArrayList<String> ret, String prefix) {
+        String re = "";
+        for (Map.Entry<String, Object> entry : data.entrySet()) {
+            if (entry.getValue() instanceof String || entry.getValue() instanceof Integer) {
+                ret.add(prefix + entry.getKey() + "=" + entry.getValue());
+                re = ret + "\n";
+
+            } else if (entry.getValue() instanceof HashMap) {
+                return convert((HashMap<String, Object>) entry.getValue(), ret, prefix + entry.getKey() + ".");
+            }
+
+        }
+        return re;
 
     }
 
-    public Map<String, String> stringifyError(Error e) {
-
-        Map<String, String> error = new HashMap<>();
-
-        error.put("message", e.getMessage());
-        error.put("name", e.getClass().toString());
-        error.put("stack", e.getStackTrace().toString());
-
-        return error;
-
+    public HashMap<String, Object> stringifyError(Error e) {
+//        Map<String, String> error = new HashMap<>();
+//        error.put("message", e.getMessage());
+//        error.put("name", e.getClass().toString());
+//        error.put("stack", e.getStackTrace().toString());
+//
+//        return error;
+        return map("message", e.getMessage(), "name", e.getClass().toString(), "stack", e.getStackTrace().toString());
     }
 
     public static HashMap<String, Object> map(Object... values) {
