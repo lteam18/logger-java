@@ -4,7 +4,6 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 public class Utils {
@@ -23,7 +22,6 @@ public class Utils {
         final long day = Math.round(Math.floor(rest / 24));
 
         retStr = day + "d" + hour + "h" + minute + "m" + ms;
-
         return retStr;
     }
 
@@ -72,21 +70,29 @@ public class Utils {
 
     // { a: { b:1, c:2 }}
     // => [a.b]=1 [a.c]=2
-    public String convert(HashMap<String, Object> data, ArrayList<String> ret, String prefix) {
-        String re = "";
+    public void convert(HashMap<String, Object> data, ArrayList<String> ret, String prefix) {
         for (Map.Entry<String, Object> entry : data.entrySet()) {
             if (entry.getValue() instanceof String || entry.getValue() instanceof Integer) {
                 ret.add(prefix + entry.getKey() + "=" + entry.getValue());
-                re = ret + "\n";
-
             } else if (entry.getValue() instanceof HashMap) {
-                return convert((HashMap<String, Object>) entry.getValue(), ret, prefix + entry.getKey() + ".");
+                convert((HashMap<String, Object>) entry.getValue(), ret, prefix + entry.getKey() + ".");
             }
 
         }
-        return re;
-
     }
+
+    public void convert(HashMap<String, Object> data, ArrayList<String> ret) {
+        String prefix = "";
+        for (Map.Entry<String, Object> entry : data.entrySet()) {
+            if (entry.getValue() instanceof String || entry.getValue() instanceof Integer) {
+                ret.add(prefix + entry.getKey() + "=" + entry.getValue());
+            } else if (entry.getValue() instanceof HashMap) {
+                convert((HashMap<String, Object>) entry.getValue(), ret, prefix + entry.getKey() + ".");
+            }
+
+        }
+    }
+
 
     public HashMap<String, Object> stringifyError(Error e) {
 //        Map<String, String> error = new HashMap<>();
