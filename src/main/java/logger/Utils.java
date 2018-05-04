@@ -93,15 +93,19 @@ public class Utils {
         }
     }
 
+    //测试方法,不用的时候删掉就好了
+    public String stringifyErrors(Error e) {
+//        e.printStackTrace();
+//        StringWriter sw = new StringWriter();
+//        PrintWriter pw = new PrintWriter(sw);
+//        e.printStackTrace(pw);
+//        StringBuffer error = sw.getBuffer();
+
+        return "message: " + e.getMessage() + "\n name: " + e.getClass().toString() + "\nstack: " + getStacks(e);
+    }
 
     public HashMap<String, Object> stringifyError(Error e) {
-//        Map<String, String> error = new HashMap<>();
-//        error.put("message", e.getMessage());
-//        error.put("name", e.getClass().toString());
-//        error.put("stack", e.getStackTrace().toString());
-//
-//        return error;
-        return map("message", e.getMessage(), "name", e.getClass().toString(), "stack", e.getStackTrace().toString());
+        return map("message", e.getMessage(), "name", e.getClass().toString(), "stack", getStacks(e));
     }
 
     public static HashMap<String, Object> map(Object... values) {
@@ -117,7 +121,9 @@ public class Utils {
         StringWriter sw = new StringWriter();
         PrintWriter pw = new PrintWriter(sw);
         throwable.printStackTrace(pw);
-        return pw.toString();
+        StringBuffer error = sw.getBuffer();
+        return error.toString();
+//        return pw.toString();
     }
 
     public static class ATTR {
