@@ -95,12 +95,6 @@ public class Utils {
 
     //测试方法,不用的时候删掉就好了
     public String stringifyErrors(Error e) {
-//        e.printStackTrace();
-//        StringWriter sw = new StringWriter();
-//        PrintWriter pw = new PrintWriter(sw);
-//        e.printStackTrace(pw);
-//        StringBuffer error = sw.getBuffer();
-
         return "message: " + e.getMessage() + "\n name: " + e.getClass().toString() + "\nstack: " + getStacks(e);
     }
 
@@ -121,9 +115,10 @@ public class Utils {
         StringWriter sw = new StringWriter();
         PrintWriter pw = new PrintWriter(sw);
         throwable.printStackTrace(pw);
+//        return pw.toString();
         StringBuffer error = sw.getBuffer();
         return error.toString();
-//        return pw.toString();
+//
     }
 
     public static class ATTR {

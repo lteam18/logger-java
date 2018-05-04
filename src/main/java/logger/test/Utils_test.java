@@ -32,7 +32,7 @@ public class Utils_test {
 
         utils.convert(data, list, "");
         System.out.println("result 5: " + list.toString());
-
+        System.out.println("result 6: " + utils.stringifyErrors(new Error("test Error")));
 
     }
 }
