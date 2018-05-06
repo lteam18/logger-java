@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import logger.Status;
+import logger.serialize.output.FileOutput;
 
 /**
  * Created by Lynnsion on 2018/5/2.
@@ -28,6 +29,12 @@ public class Logger_test {
 
         System.out.println("result : " + given);
         System.out.println("result : " + alist);
+
+
+        FileOutput fo = new FileOutput("./a.txt");
+        fo.output("ssdsds");
+        fo.output("ssdsds");
+        fo.output("ssdsds");
     }
 
 }
