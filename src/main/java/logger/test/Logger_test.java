@@ -1,12 +1,11 @@
 package logger.test;
 
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import logger.Status;
-import logger.serialize.output.FileOutput;
+import logger.serialize.output.Output;
 
 /**
  * Created by Lynnsion on 2018/5/2.
@@ -31,13 +30,22 @@ public class Logger_test {
         System.out.println("result : " + alist);
 
 
-        FileOutput fo = new FileOutput("./a.txt");
-        fo.output("ssdsds6");
-        fo.output("ssdsds5");
-        fo.output("ssdsds4");
-        fo.output("ssdsds3");
-        fo.output("ssdsds2");
-        fo.output("ssdsds1");
+        Output output = new Output("test file 1");
+//
+//        output.file("./a.txt");
+//
+//        Output output2 = new Output();
+//        output2.setMsg("test file2");
+//
+//        output2.file("./a.txt");
+
+
+        output.CONSOLE();
+
+        output.file("./a.txt");
+
+
+
     }
 
 }

@@ -11,13 +11,11 @@ import logger.types.Persistant;
 
 public class Major implements Type {
 
-//    public String levelLogStringify(String message){
-//        return JSON.stringify(message);
-//    }
+    private String levelLogStringify;
 
 
+    public Major(String str, String output){
 
-    public Major(String str, String consoleStr){
 
     }
 
