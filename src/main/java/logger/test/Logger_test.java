@@ -32,9 +32,12 @@ public class Logger_test {
 
 
         FileOutput fo = new FileOutput("./a.txt");
-        fo.output("ssdsds");
-        fo.output("ssdsds");
-        fo.output("ssdsds");
+        fo.output("ssdsds6");
+        fo.output("ssdsds5");
+        fo.output("ssdsds4");
+        fo.output("ssdsds3");
+        fo.output("ssdsds2");
+        fo.output("ssdsds1");
     }
 
 }
