@@ -29,5 +29,5 @@ build/*
 
 local.properties
 
-.txt
+*.txt
 
