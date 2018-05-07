@@ -47,6 +47,7 @@ public class Output implements Type {
         for (int i = 0; i < outputs.length; i++) {
             output.add(outputs[i]);
         }
+
         return (String message) -> output.forEach((e) -> e.output(message));
     }
 
