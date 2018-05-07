@@ -23,24 +23,40 @@ public class Persistant {
 
     public class LevelLog {
         private ArrayList<String> N;
-        //timeStamp
-        private long T;
-        //LogLevel
-        private int L;
-        //Message
-        private String M = "";
+        private long T; //timeStamp
+        private int L; //LogLevel
+
+        private String M = "";  //Message
         //Data
         private Map<String, Object> D = new HashMap<>();
         /*
-         Stack
+         ErrorStack
             msg?: string,
             name?: string,
             stack?: string
          */
-        private Map<String, Object> E = new HashMap<>();
+        public Map<String, Object> E = new HashMap<>();
 
         public LevelLog() {
 
+        }
+
+        public Map<String, Object> getLevelLogDataMap() {
+            Map<String, Object> result_map = new HashMap<>();
+            result_map.put("N", N);
+            result_map.put("T", T);    //timeStamp
+            result_map.put("L", L);    //LogLevel
+            if (!M.equals("")) {
+                result_map.put("M", M);    //Message
+            }
+            if (D.size() != 0) {
+                result_map.put("D", D);    //Data
+            }
+            if (E.size() != 0) {
+                result_map.put("E", E);    //ErrorStack
+            }
+
+            return result_map;
         }
     }
 
