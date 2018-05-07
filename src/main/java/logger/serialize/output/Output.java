@@ -4,12 +4,13 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 /**
  * Created by Lynnsion on 2018/5/6.
  */
 
-public class Output {
+public class Output implements Type {
 
     private String msg;
 
@@ -22,7 +23,7 @@ public class Output {
     }
 
     public Type CONSOLE() {
-       return (String msg) -> console(msg);
+        return (String msg) -> console(msg);
     }
 
     public void setMsg(String msg) {
@@ -30,15 +31,31 @@ public class Output {
     }
 
     public Type file(String filePath) {
-       return (String msg) -> appendFile(msg, filePath);
+        return (String msg) -> appendFile(msg, filePath);
+    }
+
+//    public Type combine(ArrayList<Type>... outputs) {
+//        ArrayList<ArrayList<Type>> output = new ArrayList<>();
+//        for (int i = 0; i < outputs.length; i++) {
+//            output.add(outputs[i]);
+//        }
+//        return (String message) -> output.forEach((e) -> e.forEach((a) -> a.output(message)));
+//    }
+
+    public Type combine(Type... outputs) {
+        ArrayList<Type> output = new ArrayList<>();
+        for (int i = 0; i < outputs.length; i++) {
+            output.add(outputs[i]);
+        }
+        return (String message) -> output.forEach((e) -> e.output(message));
     }
 
 
-    private void console(String msg){
+    private void console(String msg) {
         System.out.println(msg);
     }
 
-    private void appendFile(String msg, String filePath){
+    private void appendFile(String msg, String filePath) {
         FileWriter fw = null;
         try {
             File file = new File(filePath);
@@ -55,5 +72,11 @@ public class Output {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+
+    @Override
+    public void output(String msg) {
+        System.out.println(msg);
     }
 }
