@@ -1,7 +1,10 @@
 package logger.serialize.serializer;
 
+import com.google.gson.Gson;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 import logger.JSON;
@@ -12,25 +15,20 @@ import logger.types.Persistant;
  * Created by Lynnsion on 2018/5/6.
  */
 
-public class Major implements Type {
+public class Major implements Type, LevelLogStringify {
 
     private logger.serialize.output.Type output_Major = new Output().CONSOLE();
 
-
-    public Major(Object msg, logger.serialize.output.Type output) {
-        this.levelLogStringify(msg);
+    public Major(Object data, logger.serialize.output.Type output) {
+        this.levelLogStringify(data);
         this.output_Major = output;
-
-        System.out.println("Major.class");
     }
 
+    @Override
     public String levelLogStringify(Object msg) {
-        if (msg instanceof Persistant.LevelLog) {
-            return JSON.stringify(((Persistant.LevelLog) msg).getLevelLogDataMap());
-        } else
-            return JSON.stringify(msg);
+//        System.out.println(JSON.stringify(msg));
+        return JSON.stringify(msg);
     }
-
 
     @Override
     public void log(Persistant.LevelLog data) {

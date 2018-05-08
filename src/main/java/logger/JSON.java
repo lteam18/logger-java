@@ -20,12 +20,13 @@ public class JSON {
         return gson.toJson(map);
     }
 
-    public static String stringify(Object msg) {
-        Map<String, Object> map = new HashMap<>();
-        map.put("object",map);
+    public static String stringify(Object obj) {
         Gson gson = new Gson();
+        Map<String, Object> map = new HashMap<>();
+        map.put("Object",obj);
         return gson.toJson(map);
     }
+
 
     public static String createMapAndStringify(String... values) {
         return stringify(Utils.map(values));
