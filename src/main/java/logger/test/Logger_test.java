@@ -61,31 +61,31 @@ public class Logger_test {
 //        System.out.println(ANSI_CYAN + "This text is CYAN!" + ANSI_RESET);
 //        System.out.println(ANSI_BLACK + "This text is BLACK!" + ANSI_RESET);
 
-        Major major = new Major("ssssss", new Output().CONSOLE());
-        Persistant ps = new Persistant();
-        Persistant.LevelLog lg = ps.new LevelLog();
-        ArrayList<String> n = new ArrayList<>();
-        n.add("12");
-        n.add("34");
-        n.add("56");
-        n.add("78");
+//        Major major = new Major("new Major in test", new Output().CONSOLE());
+//        Persistant ps = new Persistant();
+//        Persistant.LevelLog lg = ps.new LevelLog();
+//        ArrayList<String> n = new ArrayList<>();
+//        n.add("12");
+//        n.add("34");
+//        n.add("56");
+//        n.add("78");
+//
+//        Map<String, Object> map = new HashMap<>();
+//        map.put("name", "a");
+//        map.put("age", 12);
+//        map.put("where", "China");
+//
+//
+//        Utils utils = new Utils();
+//
+//        lg.N = n;
+//        lg.T = (long) 12345;
+//        lg.L = 1;
+//        lg.M = "level log";
+//        lg.D = map;
+//        lg.E = utils.stringifyError(new Error("test Error"));
 
-        Map<String, Object> map = new HashMap<>();
-        map.put("name", "a");
-        map.put("age", 12);
-        map.put("where", "China");
-
-
-        Utils utils = new Utils();
-
-        lg.N = n;
-        lg.T = (long) 12345;
-        lg.L = 1;
-        lg.M = "level log";
-        lg.D = map;
-        lg.E = utils.stringifyError(new Error("test Error"));
-
-        major.log(lg);
+//        major.log(lg);
 
 
     }

@@ -16,6 +16,9 @@ import logger.types.Persistant;
 
 public class Major implements Type, LevelLogStringify {
 
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+
     private logger.serialize.output.Type output_Major = new Output().CONSOLE();
 
     public Major(Object data, logger.serialize.output.Type output) {
@@ -25,6 +28,7 @@ public class Major implements Type, LevelLogStringify {
 
     @Override
     public String levelLogStringify(Object msg) {
+        System.out.println(ANSI_GREEN+JSON.stringify_Object(msg)+ANSI_RESET);
         return JSON.stringify_Object(msg);
     }
 
