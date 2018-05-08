@@ -22,13 +22,13 @@ public class Persistant {
 
 
     public class LevelLog {
-        private ArrayList<String> N;
-        private long T; //timeStamp
-        private int L; //LogLevel
+        public ArrayList<String> N;
+        public long T; //timeStamp
+        public int L; //LogLevel
 
-        private String M = "";  //Message
+        public String M = "";  //Message
         //Data
-        private Map<String, Object> D = new HashMap<>();
+        public Map<String, Object> D = new HashMap<>();
         /*
          ErrorStack
             msg?: string,
@@ -40,6 +40,7 @@ public class Persistant {
         public LevelLog() {
 
         }
+
 
         public Map<String, Object> getLevelLogDataMap() {
             Map<String, Object> result_map = new HashMap<>();

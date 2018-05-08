@@ -20,11 +20,9 @@ public class JSON {
         return gson.toJson(map);
     }
 
-    public static String stringify(Object obj) {
+    public static String stringify_Object(Object obj) {
         Gson gson = new Gson();
-        Map<String, Object> map = new HashMap<>();
-        map.put("Object",obj);
-        return gson.toJson(map);
+        return gson.toJson(obj);
     }
 
 

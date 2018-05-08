@@ -95,7 +95,7 @@ public class Utils {
 
     //测试方法,不用的时候删掉就好了
     public String stringifyErrors(Error e) {
-        return "message: " + e.getMessage() + "\n name: " + e.getClass().toString() + "\nstack: " + getStacks(e);
+        return "message: " + e.getMessage() + "\n name: " + e.getClass().toString() + "\n stack: " + getStacks(e);
     }
 
     public HashMap<String, Object> stringifyError(Error e) {

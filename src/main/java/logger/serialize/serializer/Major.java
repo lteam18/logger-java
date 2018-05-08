@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
 
 import logger.JSON;
@@ -26,13 +25,12 @@ public class Major implements Type, LevelLogStringify {
 
     @Override
     public String levelLogStringify(Object msg) {
-//        System.out.println(JSON.stringify(msg));
-        return JSON.stringify(msg);
+        return JSON.stringify_Object(msg);
     }
 
     @Override
     public void log(Persistant.LevelLog data) {
-        output_Major.output(this.levelLogStringify(data));
+        output_Major.output(this.levelLogStringify(data.getLevelLogDataMap()));
     }
 
     @Override
@@ -42,7 +40,6 @@ public class Major implements Type, LevelLogStringify {
 
     @Override
     public void beat(long hid) {
-
         output_Major.output(hid + " " + getDataNow());
     }
 
@@ -64,6 +61,5 @@ public class Major implements Type, LevelLogStringify {
         dateNow = sdf.format(dt);
         return dateNow;
     }
-
 
 }
