@@ -1,7 +1,5 @@
 package logger.serialize.serializer;
 
-import com.google.gson.Gson;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
@@ -16,20 +14,11 @@ import logger.types.Persistant;
 
 public class Major implements Type, LevelLogStringify {
 
-    public static final String ANSI_RESET = "\u001B[0m";
-    public static final String ANSI_GREEN = "\u001B[32m";
-
     private logger.serialize.output.Type output_Major = new Output().CONSOLE();
 
     public Major(Object data, logger.serialize.output.Type output) {
         this.levelLogStringify(data);
         this.output_Major = output;
-    }
-
-    @Override
-    public String levelLogStringify(Object msg) {
-        System.out.println(ANSI_GREEN+JSON.stringify_Object(msg)+ANSI_RESET);
-        return JSON.stringify_Object(msg);
     }
 
     @Override
@@ -64,6 +53,12 @@ public class Major implements Type, LevelLogStringify {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss aa");
         dateNow = sdf.format(dt);
         return dateNow;
+    }
+
+    @Override
+    public String levelLogStringify(Object msg) {
+//        System.out.println(JSON.stringify_Object(msg));
+        return JSON.stringify_Object(msg);
     }
 
 }
