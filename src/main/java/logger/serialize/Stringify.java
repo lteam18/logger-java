@@ -55,11 +55,11 @@ public class Stringify {
         String temp = LEADING_CHARS + u.formatDiffString(diff);
         final String diff_time_str = temp.substring(temp.length() - SEP);
 
-        final String l_difftime = diff_time_str;
-        printBlue(l_difftime);
+        String l_difftime = diff_time_str;
+        l_difftime = printBlue(l_difftime);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-        final String l_time = sdf.format(data.T);
-        printGray(l_time);
+        String l_time = sdf.format(data.T);
+        l_time = printGray(l_time);
         final ArrayList<String> l_nameList = data.N;
         String l_msg = "";
         if (!data.M.equals("")) {
@@ -78,7 +78,7 @@ public class Stringify {
         }
         if (data.E.size() > 0) {
             msg += "\n" + data.E.get("stack");
-            printBlack(data.E.get("stack").toString());
+            data.E.put("stack", printBlack(data.E.get("stack").toString()));
         }
 
         msg.replace("\n", "\n" + LEADING_SPACE);
@@ -107,17 +107,18 @@ public class Stringify {
         }
     }
 
-    private void printBlue(String msg) {
-        System.out.println(ANSI_BLUE + msg + ANSI_RESET);
+    private String printBlue(String msg) {
+        return ANSI_BLUE + msg + ANSI_RESET;
     }
 
-    private void printGray(String msg) {
+    private String printGray(String msg) {
         // ts 的 gray 用 white
-        System.out.println(ANSI_WHITE + msg + ANSI_RESET);
+        return ANSI_WHITE + msg + ANSI_RESET;
+
     }
 
-    private void printBlack(String msg) {
-        System.out.println(ANSI_BLACK + msg + ANSI_RESET);
+    private String printBlack(String msg) {
+        return ANSI_BLACK + msg + ANSI_RESET;
     }
 
 
