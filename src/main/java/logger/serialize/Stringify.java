@@ -41,13 +41,13 @@ public class Stringify {
 
     }
 
-    public void createChalk(
+    public String createChalk(
     ) {
         long history = new Date().getTime();
-        chalk(history, t);
+        return chalk(history, t);
     }
 
-    private void chalk(long history, Persistant.LevelLog data) {
+    private String chalk(long history, Persistant.LevelLog data) {
         final long diff = data.T - history;
         history = data.T;
 
@@ -81,7 +81,7 @@ public class Stringify {
             data.E.put("stack", printBlack(data.E.get("stack").toString()));
         }
 
-        msg.replace("\n", "\n" + LEADING_SPACE);
+        return msg.replace("\n", "\n" + LEADING_SPACE);
     }
 
 
