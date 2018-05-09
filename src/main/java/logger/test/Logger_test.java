@@ -78,14 +78,14 @@ public class Logger_test {
 //        n.add("34");
 //        n.add("56");
 //        n.add("78");
-
+//
 //        final String[] a = {""};
 //
 //        n.forEach(e -> a[0] += e);
 //
 //        System.out.println("data =" + a[0]);
-
-//        Map<String, Object> map = new HashMap<>();
+//
+//        HashMap<String, Object> map = new HashMap<>();
 //        map.put("name", "a");
 //        map.put("age", 12);
 //        map.put("where", "China");
@@ -102,9 +102,9 @@ public class Logger_test {
 //
 //        major.log(lg);
 //        major.rec(123, map);
-//
-//        Stringify stringify =new Stringify();
-//        stringify.createChalk();
+
+        Stringify stringify = new Stringify();
+        stringify.createChalk();
 
 //        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss"); //设置日期格式
 //        String date = df.format(new Date());
