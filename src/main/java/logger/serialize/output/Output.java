@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * Created by Lynnsion on 2018/5/6.
  */
 
-public class Output implements Type {
+public class Output {
 
     private String msg;
 
@@ -21,6 +21,7 @@ public class Output implements Type {
     public Output(String msg) {
         this.msg = msg;
     }
+
 
     public Type CONSOLE() {
         return (String msg) -> console(msg);
@@ -76,8 +77,10 @@ public class Output implements Type {
     }
 
 
-    @Override
-    public void output(String msg) {
-        System.out.println(msg);
+
+    interface Type {
+        void output(String msg);
     }
+
+
 }

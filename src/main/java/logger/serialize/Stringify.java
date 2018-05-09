@@ -30,8 +30,8 @@ public class Stringify {
     private Utils u = new Utils();
 
     private final int SEP = 9;
-    private final String LEADING_SPACE = stringRepeat(" ", SEP + 1);
-    private final String LEADING_CHARS = stringRepeat("_", SEP);
+    private static final String LEADING_SPACE = "          ";
+    private static final String LEADING_CHARS = "_________";
 
     private LevelLoggerOption levelLoggerOption = new LevelLoggerOption();
     private Persistant persistant = new Persistant();
@@ -107,36 +107,9 @@ public class Stringify {
         }
     }
 
-//    private String printBlue(String msg) {
-//        return ANSI_BLUE + msg + ANSI_RESET;
-//    }
-//
-//    private String printGray(String msg) {
-//        // ts 的 gray 用 white
-//        return ANSI_WHITE + msg + ANSI_RESET;
-//
-//    }
-//
-//    private String printBlack(String msg) {
-//
-//        return ANSI_BLACK + msg + ANSI_RESET;
-//    }
 
     private String wrapWithColor(String color, String msg) {
         return color + msg + ANSI_RESET;
-    }
-
-
-    public String stringRepeat(String a, int b) {
-        String result = "";
-        if (a.equals("")) {
-            return null;
-        } else {
-            for (int i = 0; i < b; i++) {
-                result += a;
-            }
-            return result;
-        }
     }
 
 
