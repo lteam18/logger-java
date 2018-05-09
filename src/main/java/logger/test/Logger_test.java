@@ -1,13 +1,16 @@
 package logger.test;
 
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import logger.JSON;
 import logger.Status;
 import logger.Utils;
+import logger.serialize.Stringify;
 import logger.serialize.output.Output;
 import logger.serialize.output.Type;
 import logger.serialize.serializer.Major;
@@ -29,6 +32,8 @@ public class Logger_test {
     public static final String ANSI_CYAN = "\u001B[36m";
     public static final String ANSI_BLACK = "\u001B[37m";
 
+    public static final String RED_BOLD = "\033[1;31m";    // RED
+
 
     public static void main(String[] args) {
 //        Status status = new Status();
@@ -48,7 +53,7 @@ public class Logger_test {
 //
 //        Type type = new Output().CONSOLE();
 //        type.output("console");
-//
+
 //        Type ty2 = new Output().file("./a.txt");
 //        ty2.output("fileOutput 123123");
 //
@@ -60,8 +65,12 @@ public class Logger_test {
 //        System.out.println(ANSI_PURPLE + "This text is PURPLE!" + ANSI_RESET);
 //        System.out.println(ANSI_CYAN + "This text is CYAN!" + ANSI_RESET);
 //        System.out.println(ANSI_BLACK + "This text is BLACK!" + ANSI_RESET);
+//
+//        System.out.println(RED_BOLD + "This text is RED_BOLD!" + ANSI_RESET);
+
 
 //        Major major = new Major("new Major in test", new Output().CONSOLE());
+//
 //        Persistant ps = new Persistant();
 //        Persistant.LevelLog lg = ps.new LevelLog();
 //        ArrayList<String> n = new ArrayList<>();
@@ -69,7 +78,13 @@ public class Logger_test {
 //        n.add("34");
 //        n.add("56");
 //        n.add("78");
+
+//        final String[] a = {""};
 //
+//        n.forEach(e -> a[0] += e);
+//
+//        System.out.println("data =" + a[0]);
+
 //        Map<String, Object> map = new HashMap<>();
 //        map.put("name", "a");
 //        map.put("age", 12);
@@ -84,10 +99,22 @@ public class Logger_test {
 //        lg.M = "level log";
 //        lg.D = map;
 //        lg.E = utils.stringifyError(new Error("test Error"));
-
+//
 //        major.log(lg);
+//        major.rec(123, map);
+//
+//        Stringify stringify =new Stringify();
+//        stringify.createChalk();
+
+//        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss"); //设置日期格式
+//        String date = df.format(new Date());
+//
+//
+//        System.out.println("data long =" + new Date().getTime());
+//        System.out.println("data =" + date);
 
 
     }
+
 
 }

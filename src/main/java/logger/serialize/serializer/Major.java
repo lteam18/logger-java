@@ -33,24 +33,24 @@ public class Major implements Type, LevelLogStringify {
 
     @Override
     public void beat(long hid) {
-        output_Major.output(hid + " " + getDataNow());
+        output_Major.output(hid + " " + new Date().getTime());
     }
 
     @Override
     public void defineStatus(long sid, Map<String, Object> data) {
-        output_Major.output(sid + " " + getDataNow() + " " + JSON.stringify(data));
+        output_Major.output(sid + " " + JSON.stringify(data));
     }
 
     @Override
     public void rec(long sid, Map<String, Object> status) {
-        output_Major.output(sid + " " + getDataNow() + " " + JSON.stringify(status));
+        output_Major.output(sid + " " + new Date().getTime() + " " + JSON.stringify(status));
     }
 
     private String getDataNow() {
         String dateNow = "";
         Date dt = new Date();
-        //最后的aa表示“上午”或“下午”    HH表示24小时制    如果换成hh表示12小时制
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss aa");
+        //HH表示24小时制    如果换成hh表示12小时制
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         dateNow = sdf.format(dt);
         return dateNow;
     }

@@ -28,14 +28,14 @@ public class Persistant {
 
         public String M = "";  //Message
         //Data
-        public Map<String, Object> D = new HashMap<>();
+        public HashMap<String, Object> D = new HashMap<>();
         /*
          ErrorStack
             msg?: string,
             name?: string,
             stack?: string
          */
-        public Map<String, Object> E = new HashMap<>();
+        public HashMap<String, Object> E = new HashMap<>();
 
         public LevelLog() {
 
