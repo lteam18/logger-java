@@ -2,6 +2,7 @@ package logger.test;
 
 
 import logger.serialize.Stringify;
+import logger.serialize.output.Output;
 
 /**
  * Created by Lynnsion on 2018/5/2.
@@ -38,9 +39,13 @@ public class Logger_test {
 //        System.out.println("result : " + alist);
 //
 //
-//        Type type = new Output().CONSOLE();
-//        type.output("console");
+        Output.Type type = new Output().CONSOLE();
+        type.output("console");
 
+        Output output = new Output();
+        output.CONSOLE();
+
+//
 //        Type ty2 = new Output().file("./a.txt");
 //        ty2.output("fileOutput 123123");
 //

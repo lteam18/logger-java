@@ -14,6 +14,13 @@ public class Output {
 
     private String msg;
 
+    private Type type = new Type() {
+        @Override
+        public void output(String msg) {
+            System.out.println(msg);
+        }
+    };
+
     public Output() {
         this.msg = "";
     }
@@ -24,7 +31,8 @@ public class Output {
 
 
     public Type CONSOLE() {
-        return (String msg) -> console(msg);
+//        return (String msg) -> console(msg);
+        return   (String msg) -> type.output(msg);
     }
 
     public void setMsg(String msg) {
@@ -35,13 +43,6 @@ public class Output {
         return (String msg) -> appendFile(msg, filePath);
     }
 
-//    public Type combine(ArrayList<Type>... outputs) {
-//        ArrayList<ArrayList<Type>> output = new ArrayList<>();
-//        for (int i = 0; i < outputs.length; i++) {
-//            output.add(outputs[i]);
-//        }
-//        return (String message) -> output.forEach((e) -> e.forEach((a) -> a.output(message)));
-//    }
 
     public Type combine(Type... outputs) {
         ArrayList<Type> output = new ArrayList<>();
@@ -52,10 +53,9 @@ public class Output {
         return (String message) -> output.forEach((e) -> e.output(message));
     }
 
-
-    private void console(String msg) {
-        System.out.println(msg);
-    }
+//    private void console(String msg) {
+//        System.out.println(msg);
+//    }
 
     private void appendFile(String msg, String filePath) {
         FileWriter fw = null;
@@ -76,9 +76,7 @@ public class Output {
         }
     }
 
-
-
-    interface Type {
+   public interface Type {
         void output(String msg);
     }
 

@@ -14,9 +14,9 @@ import logger.types.Persistant;
 
 public class Major implements Type, LevelLogStringify {
 
-    private logger.serialize.output.Type output_Major = new Output().CONSOLE();
+    private logger.serialize.output.Output.Type output_Major = new Output().CONSOLE();
 
-    public Major(Object data, logger.serialize.output.Type output) {
+    public Major(Object data, logger.serialize.output.Output.Type output) {
         this.levelLogStringify(data);
         this.output_Major = output;
     }
