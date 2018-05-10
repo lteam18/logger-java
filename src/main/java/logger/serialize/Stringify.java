@@ -2,14 +2,11 @@ package logger.serialize;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
-import java.util.HashMap;
 
 import logger.Utils;
 import logger.types.LevelLoggerOption;
 import logger.types.Persistant;
-
 
 /**
  * Created by Lynnsion on 2018/5/8.

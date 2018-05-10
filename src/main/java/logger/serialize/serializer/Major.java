@@ -5,25 +5,31 @@ import java.util.Date;
 import java.util.Map;
 
 import logger.JSON;
-import logger.serialize.output.Output;
+import logger.serialize.Output;
 import logger.types.Persistant;
 
 /**
  * Created by Lynnsion on 2018/5/6.
  */
 
-public class Major implements Type, LevelLogStringify {
+public class Major implements Type {
 
-    private logger.serialize.output.Output.Type output_Major = new Output().CONSOLE();
+    private Output.Type output_Major = new Output().CONSOLE();
+    private LevelLogStringify levelLogStrify = msg -> JSON.stringify_Object(msg);
 
-    public Major(Object data, logger.serialize.output.Output.Type output) {
-        this.levelLogStringify(data);
+    public Major() {
+
+        this.output_Major = new Output().CONSOLE();
+    }
+
+    public Major(Object data, Output.Type output) {
+        this.levelLogStrify.levelLogStringify(data);
         this.output_Major = output;
     }
 
     @Override
     public void log(Persistant.LevelLog data) {
-        output_Major.output(this.levelLogStringify(data.getLevelLogDataMap()));
+        output_Major.output(this.levelLogStrify.levelLogStringify(data.getLevelLogDataMap()));
     }
 
     @Override
@@ -46,19 +52,11 @@ public class Major implements Type, LevelLogStringify {
         output_Major.output(sid + " " + new Date().getTime() + " " + JSON.stringify(status));
     }
 
-    private String getDataNow() {
-        String dateNow = "";
-        Date dt = new Date();
-        //HH表示24小时制    如果换成hh表示12小时制
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        dateNow = sdf.format(dt);
-        return dateNow;
+
+
+    public interface LevelLogStringify {
+        String levelLogStringify(Object msg);
     }
 
-    @Override
-    public String levelLogStringify(Object msg) {
-//        System.out.println(JSON.stringify_Object(msg));
-        return JSON.stringify_Object(msg);
-    }
 
 }

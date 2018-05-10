@@ -1,8 +1,13 @@
 package logger.test;
 
 
+import java.util.HashMap;
+
+import logger.loggers.HeartbeatLogger;
 import logger.serialize.Stringify;
-import logger.serialize.output.Output;
+import logger.serialize.Output;
+import logger.serialize.serializer.Major;
+import logger.serialize.serializer.Type;
 
 /**
  * Created by Lynnsion on 2018/5/2.
@@ -39,14 +44,10 @@ public class Logger_test {
 //        System.out.println("result : " + alist);
 //
 //
-        Output.Type type = new Output().CONSOLE();
-        type.output("console");
-
-        Output output = new Output();
-        output.CONSOLE();
-
+//        Output.Type type = new Output().CONSOLE();
+//        type.output("console");
 //
-//        Type ty2 = new Output().file("./a.txt");
+//        Output.Type ty2 = new Output().file("./a.txt");
 //        ty2.output("fileOutput 123123");
 //
 //        System.out.println(ANSI_WHITE + "This text is WHITE!" + ANSI_RESET);
@@ -77,10 +78,10 @@ public class Logger_test {
 //
 //        System.out.println("data =" + a[0]);
 //
-//        HashMap<String, Object> map = new HashMap<>();
-//        map.put("name", "a");
-//        map.put("age", 12);
-//        map.put("where", "China");
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("name", "a");
+        map.put("age", 12);
+        map.put("where", "China");
 //
 //
 //        Utils utils = new Utils();
@@ -95,8 +96,8 @@ public class Logger_test {
 //        major.log(lg);
 //        major.rec(123, map);
 
-        Stringify stringify = new Stringify();
-        stringify.createChalk();
+//        Stringify stringify = new Stringify();
+//        stringify.createChalk();
 
 //        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss"); //设置日期格式
 //        String date = df.format(new Date());
