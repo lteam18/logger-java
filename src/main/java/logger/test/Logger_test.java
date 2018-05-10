@@ -3,12 +3,14 @@ package logger.test;
 
 import java.util.HashMap;
 
+import logger.JSON;
 import logger.Utils;
 import logger.global.Instance;
 import logger.index.Logger;
 import logger.loggers.HeartbeatLogger;
 import logger.serialize.Stringify;
 import logger.serialize.Output;
+import logger.serialize.serializer.Combination;
 import logger.serialize.serializer.Major;
 import logger.serialize.serializer.Type;
 
@@ -18,13 +20,28 @@ import logger.serialize.serializer.Type;
 
 public class Logger_test {
 
-    private Utils utils = new Utils();
-    private Logger index ;
-    private Instance g;
+    public static void main(String[] args) {
 
-    public  void main(String[] args) {
+        Logger index = new Logger();
 
-//        index.createRoot()
+        Logger llo = index.createRoot("MainLogger-123", new Combination().combine(
+                new Major(
+                        new Stringify().createChalk(),
+                        new Output().combine(
+                                new Output().CONSOLE(),
+                                new Output().file("./a.log")
+                        )
+                ),
+                new Major(
+                        new Output().CONSOLE(),
+                        new Output().file("./a.json.log")
+                )
+
+                )
+        );
+
+        llo.error.msg("123");
+
 
     }
 

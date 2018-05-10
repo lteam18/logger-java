@@ -6,7 +6,9 @@ import java.util.Date;
 
 import logger.Utils;
 import logger.types.LevelLoggerOption;
+import logger.types.LevelType;
 import logger.types.Persistant;
+
 
 /**
  * Created by Lynnsion on 2018/5/8.
@@ -31,16 +33,26 @@ public class Stringify {
     private static final String LEADING_CHARS = "_________";
 
     private LevelLoggerOption levelLoggerOption = new LevelLoggerOption();
-    private Persistant persistant = new Persistant();
-    private Persistant.LevelLog t = persistant.new LevelLog();
+
+    private Persistant.LevelLog t = new Persistant.LevelLog();
 
     public Stringify() {
 
     }
 
-    public String createChalk(
-    ) {
+    public String createChalk() {
         long history = new Date().getTime();
+
+//        ArrayList<String> n = new ArrayList<>();
+//        n.add("n.1");
+//        n.add("n.12");
+//        n.add("n.123");
+//
+//        t.M = "stringify msg";
+//        t.T = new Date().getTime();
+//        t.N = n;
+//        t.L= LevelType.INFO;
+
         return chalk(history, t);
     }
 
@@ -84,19 +96,19 @@ public class Stringify {
 
     private void general_text_fun(Persistant.LevelLog data) {
         switch (data.L) {
-            case 0:
+            case DEBUG:
                 System.out.println(ANSI_GREEN + data.M + ANSI_RESET);
                 break;
-            case 1:
+            case INFO:
                 System.out.println(ANSI_CYAN + data.M + ANSI_RESET);
                 break;
-            case 2:
+            case WARN:
                 System.out.println(ANSI_YELLOW + data.M + ANSI_RESET);
                 break;
-            case 3:
+            case ERROR:
                 System.out.println(ANSI_PURPLE + data.M + ANSI_RESET);
                 break;
-            case 4:
+            case FATAL:
                 System.out.println(ANSI_RED + data.M + ANSI_RESET);
                 break;
             default:

@@ -10,24 +10,17 @@ import logger.Utils;
  * Created by Lynnsion on 2018/5/4.
  */
 
+@SuppressWarnings("SpellCheckingInspection")
 public class Persistant {
 
-    public LevelLog levelLog = new LevelLog();
-    public HeatLog heatLog = new HeatLog();
-    public BeatLog beatLog = new BeatLog();
-    public StatusDefineLog statusDefineLog = new StatusDefineLog();
-    public StatusRecordLog statusRecordLog = new StatusRecordLog();
-
-    public Persistant() {
-
-    }
-
+//    public Persistant() {
+//
+//    }
 
     public static class LevelLog {
         public ArrayList<String> N;
         public long T; //timeStamp
         public LevelType L; //LogLevel
-
         public String M = "";  //Message
         //Data
         public HashMap<String, Object> D = new HashMap<>();
@@ -73,10 +66,10 @@ public class Persistant {
             if (!M.equals("")) {
                 result_map.put("M", M);    //Message
             }
-            if (D.size() != 0) {
+            if (D != null) {
                 result_map.put("D", D);    //Data
             }
-            if (E.size() != 0) {
+            if (E != null) {
                 result_map.put("E", E);    //ErrorStack
             }
 

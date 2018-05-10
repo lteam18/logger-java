@@ -13,7 +13,7 @@ import logger.types.Persistant;
  * Created by Lynnsion on 2018/5/10.
  */
 
-public class LevelLogger {
+public  class LevelLogger {
     private LevelType logType;
     private Type s;
     private ArrayList<String> namelist;

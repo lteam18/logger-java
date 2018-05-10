@@ -2,7 +2,6 @@ package logger.types;
 
 
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by Lynnsion on 2018/5/3.
@@ -14,7 +13,7 @@ public class LevelLoggerOption {
     public String msg;
     public HashMap<String, Object> data;
 
-    public final String[] LOG_TYPE = {"debug", "info", "warn", "fatal"};
+//    public final String[] LOG_TYPE ={"debug", "info", "warn", "error", "fatal"};
 
     public LevelLoggerOption() {
     }

@@ -22,6 +22,11 @@ public class Major implements Type {
         this.output_Major = new Output().CONSOLE();
     }
 
+    public Major(Output.Type output) {
+
+        this.output_Major = output;
+    }
+
     public Major(Object data, Output.Type output) {
         this.levelLogStrify.levelLogStringify(data);
         this.output_Major = output;
@@ -51,7 +56,6 @@ public class Major implements Type {
     public void rec(long sid, Map<String, Object> status) {
         output_Major.output(sid + " " + new Date().getTime() + " " + JSON.stringify(status));
     }
-
 
 
     public interface LevelLogStringify {

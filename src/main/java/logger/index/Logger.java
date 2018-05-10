@@ -11,6 +11,7 @@ import logger.serialize.serializer.Combination;
 import logger.serialize.serializer.Major;
 import logger.serialize.serializer.Type;
 import logger.types.LevelType;
+import sun.rmi.runtime.Log;
 
 /**
  * Created by Lynnsion on 2018/5/4.
@@ -22,6 +23,10 @@ public class Logger {
     private Type s = new Major();
 
     private LevelType t;
+
+    public Logger(){
+
+    }
 
     public Logger(ArrayList<String> namelist, Type s) {
         this.namelist = namelist;

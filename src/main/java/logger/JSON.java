@@ -7,6 +7,7 @@ import java.lang.reflect.Type;
 import java.util.Map;
 
 public class JSON {
+
     public static Map<String, String> parse(String json) {
         Gson gson = new Gson();
         Type type = new TypeToken<Map<String, String>>() {
@@ -32,4 +33,6 @@ public class JSON {
     public static String createMapJson(Object... values) {
         return stringify(Utils.map(values));
     }
+
+
 }

@@ -13,6 +13,10 @@ public class Combination implements Type {
 
     private ArrayList<Type> s;
 
+    public Combination(){
+
+    }
+
     public Combination(ArrayList<Type> s) {
         this.s = s;
     }
