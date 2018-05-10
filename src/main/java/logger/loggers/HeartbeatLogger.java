@@ -14,7 +14,7 @@ public class HeartbeatLogger {
 
     private Type s;
     public static long HID = 0;
-    private long hid;  //hid  readonly
+    private long hid;
 
     public HeartbeatLogger(Type s, String msg, HashMap<String, Object> data) {
         if (s == null) {
@@ -22,10 +22,8 @@ public class HeartbeatLogger {
         } else {
             this.s = s;
         }
-
         this.hid = this.HID++;
         def(msg, data);
-
     }
 
     public void def(String msg, HashMap<String, Object> data) {
@@ -34,6 +32,10 @@ public class HeartbeatLogger {
 
     public void beat(String msg, HashMap<String, Object> status) {
         this.s.beat(this.hid);
+    }
+
+    public long gethid() {
+        return this.hid;
     }
 
 }
