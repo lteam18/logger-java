@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import logger.Utils;
+
 /**
  * Created by Lynnsion on 2018/5/4.
  */
@@ -21,10 +23,10 @@ public class Persistant {
     }
 
 
-    public class LevelLog {
+    public static class LevelLog {
         public ArrayList<String> N;
         public long T; //timeStamp
-        public int L; //LogLevel
+        public LevelType L; //LogLevel
 
         public String M = "";  //Message
         //Data
@@ -38,6 +40,27 @@ public class Persistant {
         public HashMap<String, Object> E = new HashMap<>();
 
         public LevelLog() {
+
+        }
+
+        public LevelLog(
+                ArrayList<String> N,
+                long T,
+                LevelType L,
+                String M,
+                HashMap<String, Object> D,
+                Error E
+        ) {
+            this.N = N;
+            this.T = T;
+            this.L = L;
+            this.M = M;
+            this.D = D;
+            if (E == null) {
+                ;
+            } else {
+                this.E = new Utils().stringifyError(E);
+            }
 
         }
 
