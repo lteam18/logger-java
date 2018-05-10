@@ -6,7 +6,6 @@ import java.util.Date;
 
 import logger.Utils;
 import logger.types.LevelLoggerOption;
-import logger.types.LevelType;
 import logger.types.Persistant;
 
 
@@ -41,8 +40,6 @@ public class Stringify {
     }
 
     public String createChalk() {
-        long history = new Date().getTime();
-
 //        ArrayList<String> n = new ArrayList<>();
 //        n.add("n.1");
 //        n.add("n.12");
@@ -53,6 +50,7 @@ public class Stringify {
 //        t.N = n;
 //        t.L= LevelType.INFO;
 
+        long history = new Date().getTime();
         return chalk(history, t);
     }
 
