@@ -28,18 +28,6 @@ public class Status {
         this.given.put("d", 3);
     }
 
-//    public ArrayList<Object> rec(Map<String, Object> given, ArrayList<Object> alist) {
-//        for (Map.Entry<String, Object> entry : given.entrySet()) {
-//            if (entry.getValue() instanceof Integer) {
-//                alist.add(entry.getKey() + ":" + entry.getValue());
-//            } else {
-//                alist.add(entry.getKey() + ":" + entry.getValue());
-//            }
-//        }
-//
-//        return alist;
-//    }
-
     public Map<String, Object> rec(Map<String, Object> given,Map<String, Object> alist) {
         for (Map.Entry<String, Object> entry : given.entrySet()) {
             if (entry.getValue() instanceof Map) {

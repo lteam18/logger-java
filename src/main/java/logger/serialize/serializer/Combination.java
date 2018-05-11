@@ -3,7 +3,7 @@ package logger.serialize.serializer;
 import java.util.ArrayList;
 import java.util.Map;
 
-import logger.types.Persistant;
+import logger.types.Types;
 
 /**
  * Created by Lynnsion on 2018/5/6.
@@ -13,8 +13,8 @@ public class Combination implements Type {
 
     private ArrayList<Type> s;
 
-    public Combination(){
-
+    public Combination() {
+        s = new ArrayList<>();
     }
 
     public Combination(ArrayList<Type> s) {
@@ -22,7 +22,7 @@ public class Combination implements Type {
     }
 
     @Override
-    public void log(Persistant.LevelLog data) {
+    public void log(Types.Persistant.LevelLog data) {
         this.s.forEach((e) -> e.log(data));
     }
 

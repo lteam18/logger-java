@@ -7,11 +7,9 @@ import java.util.HashMap;
 import logger.loggers.HeartbeatLogger;
 import logger.loggers.LevelLogger;
 import logger.loggers.StatusLogger;
-import logger.serialize.Stringify;
-import logger.serialize.serializer.Combination;
 import logger.serialize.serializer.Major;
 import logger.serialize.serializer.Type;
-import logger.types.LevelType;
+import logger.types.Types;
 
 /**
  * Created by Lynnsion on 2018/5/4.
@@ -21,7 +19,7 @@ public class Logger {
 
     private ArrayList<String> namelist;
     private Type s = new Major();
-    private LevelType t;
+    private Types.LevelType t;
 
     public Logger(){
 

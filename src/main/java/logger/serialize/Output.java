@@ -12,37 +12,18 @@ import java.util.ArrayList;
 
 public class Output {
 
-    private String msg;
-
-    private Type type = new Type() {
-        @Override
-        public void output(String msg) {
-            System.out.println(msg);
-        }
-    };
+    private Type type = msg1 -> System.out.println(msg1);
 
     public Output() {
-        this.msg = "";
     }
-
-    public Output(String msg) {
-        this.msg = msg;
-    }
-
 
     public Type CONSOLE() {
-//        return (String msg) -> console(msg);
         return   (String msg) -> type.output(msg);
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
     }
 
     public Type file(String filePath) {
         return (String msg) -> appendFile(msg, filePath);
     }
-
 
     public Type combine(Type... outputs) {
         ArrayList<Type> output = new ArrayList<>();
@@ -52,10 +33,6 @@ public class Output {
 
         return (String message) -> output.forEach((e) -> e.output(message));
     }
-
-//    private void console(String msg) {
-//        System.out.println(msg);
-//    }
 
     private void appendFile(String msg, String filePath) {
         FileWriter fw = null;

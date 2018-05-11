@@ -24,7 +24,7 @@ public class Logger_test {
 
         Logger index = new Logger();
 
-        Instance instance  =new Instance();
+        Instance instance = new Instance();
 
 //        Logger llo = index.createRoot("MainLogger-123", new Combination().combine(
 //                new Major(
@@ -41,9 +41,24 @@ public class Logger_test {
 //
 //                )
 //        );
-//
-//
-//        llo.debug.msg("123");
+
+        Logger llo = index.createRoot("MainLogger-123", new Combination().combine(
+                new Major(
+                        new Stringify().createChalk(),
+                        new Output().combine(
+                                new Output().CONSOLE(),
+                                new Output().file("./a.log")
+                        )
+                ),
+                new Major(
+                        new Stringify().createChalk(),
+                        new Output().file("./a.log")
+                )
+                )
+        );
+
+
+        llo.debug.msg("this is a test");
 
 
     }

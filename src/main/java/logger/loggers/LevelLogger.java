@@ -4,55 +4,74 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
+import logger.Utils;
 import logger.serialize.serializer.Type;
-import logger.types.LevelLoggerOption;
-import logger.types.LevelType;
-import logger.types.Persistant;
+import logger.types.Types;
 
 /**
  * Created by Lynnsion on 2018/5/10.
  */
 
-public  class LevelLogger {
-    private LevelType logType;
+public class LevelLogger {
+    private Types.LevelType logType;
     private Type s;
     private ArrayList<String> namelist;
 
-    public LevelLogger(LevelType logType, Type s, ArrayList<String> namelist) {
+    private O o;
+    private Types log = new Types();
+
+
+    public LevelLogger(Types.LevelType logType, Type s, ArrayList<String> namelist) {
         this.logType = logType;
         this.s = s;
         this.namelist = namelist;
     }
 
 
-    public void o(LevelLoggerOption o) {
-        this.s.log(new Persistant.LevelLog(
-                this.namelist,
-                new Date().getTime(),
-                this.logType,
-                o.msg,
-                o.data,
-                o.error));
+    public void o(Types.LevelLoggerOption o) {
+
+        log.persistant.levelLog.N = this.namelist;
+        log.persistant.levelLog.T = new Date().getTime();
+        log.persistant.levelLog.L = this.logType;
+        log.persistant.levelLog.M = o.msg;
+        log.persistant.levelLog.D = o.data;
+        if(o.error !=null)
+        log.persistant.levelLog.E = new Utils().stringifyError(o.error);
+
+
+        this.s.log(log.persistant.levelLog);
+//        return
     }
 
     public void msg(String msg) {
-        this.o(new LevelLoggerOption(msg));
+        log.levelLoggerOption.msg = msg;
+        this.o(log.levelLoggerOption);
     }
 
     public void msg_trace(String msg, Error error) {
-        this.o(new LevelLoggerOption(msg, error));
+        log.levelLoggerOption.msg = msg;
+        log.levelLoggerOption.error = error;
+        this.o(log.levelLoggerOption);
     }
 
     public void msg_data(String msg, HashMap<String, Object> data) {
-        this.o(new LevelLoggerOption(msg, data));
+        log.levelLoggerOption.msg = msg;
+        log.levelLoggerOption.data = data;
+        this.o(log.levelLoggerOption);
     }
 
     public void msg_data_trace(String msg, HashMap<String, Object> data, Error error) {
-        this.o(new LevelLoggerOption(msg, data, error));
+        log.levelLoggerOption.msg = msg;
+        log.levelLoggerOption.data = data;
+        log.levelLoggerOption.error = error;
+        this.o(log.levelLoggerOption);
     }
 
-    public void trace(Error error){
+    public void trace(Error error) {
         this.msg_trace("invoked", error);
     }
 
+    public interface O {
+        void log(Types.Persistant.LevelLog data);
+    }
 }
