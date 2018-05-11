@@ -12,6 +12,7 @@ import logger.types.Types;
  * Created by Lynnsion on 2018/5/8.
  */
 
+@SuppressWarnings("SpellCheckingInspection")
 public class Stringify {
 
     public static final String ANSI_RESET = "\u001B[0m";
@@ -30,8 +31,8 @@ public class Stringify {
     private static final String LEADING_SPACE = "          ";
     private static final String LEADING_CHARS = "_________";
 
-    private Types types = new Types();
-    private Types.LevelLoggerOption levelLoggerOption = types.levelLoggerOption;
+//    private Types types = new Types();
+//    private Types.LevelLoggerOption levelLoggerOption = types.levelLoggerOption;
 
     private long history;
 
@@ -136,19 +137,25 @@ public class Stringify {
     private void general_text_fun(Types.Persistant.LevelLog data) {
         switch (data.L) {
             case DEBUG:
-                System.out.println(ANSI_GREEN + data.M + ANSI_RESET);
+                data.M = ANSI_GREEN + data.M + ANSI_RESET;
+
+//                System.out.println(ANSI_GREEN + data.M + ANSI_RESET);
+//                System.out.println(ANSI_CYAN + data.M + ANSI_RESET);
+//                System.out.println(ANSI_YELLOW + data.M + ANSI_RESET);
+//                System.out.println(ANSI_PURPLE + data.M + ANSI_RESET);
+//                System.out.println(ANSI_RED + data.M + ANSI_RESET);
                 break;
             case INFO:
-                System.out.println(ANSI_CYAN + data.M + ANSI_RESET);
+                data.M = ANSI_CYAN + data.M + ANSI_RESET;
                 break;
             case WARN:
-                System.out.println(ANSI_YELLOW + data.M + ANSI_RESET);
+                data.M = ANSI_YELLOW + data.M + ANSI_RESET;
                 break;
             case ERROR:
-                System.out.println(ANSI_PURPLE + data.M + ANSI_RESET);
+                data.M = ANSI_PURPLE + data.M + ANSI_RESET;
                 break;
             case FATAL:
-                System.out.println(ANSI_RED + data.M + ANSI_RESET);
+                data.M = ANSI_RED + data.M + ANSI_RESET;
                 break;
             default:
                 break;
