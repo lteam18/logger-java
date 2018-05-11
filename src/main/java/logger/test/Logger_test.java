@@ -1,6 +1,8 @@
 package logger.test;
 
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 import logger.JSON;
@@ -51,10 +53,29 @@ public class Logger_test {
                 ));
         Types types = new Types();
         types.persistant.levelLog.M = "this is a major";
-        types.persistant.levelLog.L = Types.LevelType.DEBUG;
+        types.persistant.levelLog.T = new Date().getTime();
+//        ArrayList<String> ns = new ArrayList<>();
+//        ns.add("majro1");
+//        ns.add("majro2");
+//        types.persistant.levelLog.N = ns;
 
+//        types.persistant.levelLog.L = Types.LevelType.DEBUG;
+//        major.log(types.persistant.levelLog);
 
+//        types.persistant.levelLog.L = Types.LevelType.INFO;
+//        major.log(types.persistant.levelLog);
+
+//        types.persistant.levelLog.L = Types.LevelType.WARN;
+//        major.log(types.persistant.levelLog);
+
+//        types.persistant.levelLog.L = Types.LevelType.ERROR;
+//        major.log(types.persistant.levelLog);
+
+        types.persistant.levelLog.L = Types.LevelType.FATAL;
         major.log(types.persistant.levelLog);
+
+
+
 
     }
 

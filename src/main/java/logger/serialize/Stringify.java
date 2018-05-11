@@ -51,7 +51,9 @@ public class Stringify {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
             String l_time = sdf.format(data.T);
             l_time = wrapWithColor(ANSI_WHITE, l_time);
+
             final ArrayList<String> l_nameList = data.N;
+
             String l_msg = "";
             if (!data.M.equals("")) {
                 l_msg = data.M;
@@ -138,12 +140,6 @@ public class Stringify {
         switch (data.L) {
             case DEBUG:
                 data.M = ANSI_GREEN + data.M + ANSI_RESET;
-
-//                System.out.println(ANSI_GREEN + data.M + ANSI_RESET);
-//                System.out.println(ANSI_CYAN + data.M + ANSI_RESET);
-//                System.out.println(ANSI_YELLOW + data.M + ANSI_RESET);
-//                System.out.println(ANSI_PURPLE + data.M + ANSI_RESET);
-//                System.out.println(ANSI_RED + data.M + ANSI_RESET);
                 break;
             case INFO:
                 data.M = ANSI_CYAN + data.M + ANSI_RESET;
