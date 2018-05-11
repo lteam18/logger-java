@@ -24,23 +24,26 @@ public class Logger_test {
 
         Logger index = new Logger();
 
-        Logger llo = index.createRoot("MainLogger-123", new Combination().combine(
-                new Major(
-                        new Stringify().createChalk(),
-                        new Output().combine(
-                                new Output().CONSOLE(),
-                                new Output().file("./a.log")
-                        )
-                ),
-                new Major(
-                        new Output().CONSOLE(),
-                        new Output().file("./a.json.log")
-                )
+        Instance instance  =new Instance();
 
-                )
-        );
-
-        llo.error.msg("123");
+//        Logger llo = index.createRoot("MainLogger-123", new Combination().combine(
+//                new Major(
+//                        new Stringify().createChalk(),
+//                        new Output().combine(
+//                                new Output().CONSOLE(),
+//                                new Output().file("./a.log")
+//                        )
+//                ),
+//                new Major(
+//                        new Output().CONSOLE(),
+//                        new Output().file("./a.json.log")
+//                )
+//
+//                )
+//        );
+//
+//
+//        llo.debug.msg("123");
 
 
     }

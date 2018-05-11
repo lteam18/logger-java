@@ -33,7 +33,6 @@ public class Stringify {
 
     private LevelLoggerOption levelLoggerOption = new LevelLoggerOption();
 
-    private Persistant.LevelLog t = new Persistant.LevelLog();
 
     public Stringify() {
 
@@ -51,7 +50,7 @@ public class Stringify {
 //        t.L= LevelType.INFO;
 
         long history = new Date().getTime();
-        return chalk(history, t);
+        return chalk(history);
     }
 
     private String chalk(long history, Persistant.LevelLog data) {

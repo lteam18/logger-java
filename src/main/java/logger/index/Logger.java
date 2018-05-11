@@ -12,7 +12,6 @@ import logger.serialize.serializer.Combination;
 import logger.serialize.serializer.Major;
 import logger.serialize.serializer.Type;
 import logger.types.LevelType;
-import sun.rmi.runtime.Log;
 
 /**
  * Created by Lynnsion on 2018/5/4.

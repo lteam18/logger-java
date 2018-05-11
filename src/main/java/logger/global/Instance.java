@@ -25,5 +25,7 @@ public class Instance {
                         )
                 )
         );
+
+        System.out.print(RootLogger.getClass().toString());
     }
 }
