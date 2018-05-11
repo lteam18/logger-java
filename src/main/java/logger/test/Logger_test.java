@@ -13,6 +13,7 @@ import logger.serialize.Output;
 import logger.serialize.serializer.Combination;
 import logger.serialize.serializer.Major;
 import logger.serialize.serializer.Type;
+import logger.types.Types;
 
 /**
  * Created by Lynnsion on 2018/5/2.
@@ -42,26 +43,19 @@ public class Logger_test {
 //                )
 //        );
 
-        Logger llo = index.createRoot("MainLogger-123", new Combination().combine(
-                new Major(
-                        new Stringify().createChalk(),
-                        new Output().combine(
-                                new Output().CONSOLE(),
-                                new Output().file("./a.log")
-                        )
-                ),
-                new Major(
-                        new Stringify().createChalk(),
+
+        Major major = new Major(new Stringify().createChalk(),
+                new Output().combine(
+                        new Output().CONSOLE(),
                         new Output().file("./a.log")
-                )
-                )
-        );
+                ));
+        Types types = new Types();
+        types.persistant.levelLog.M = "this is a major";
+        types.persistant.levelLog.L = Types.LevelType.DEBUG;
 
 
-        llo.debug.msg("this is a test");
-
+        major.log(types.persistant.levelLog);
 
     }
-
 
 }
