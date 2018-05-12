@@ -14,7 +14,6 @@ import logger.types.Types;
 
 public class Major implements Type {
 
-//    private LevelLogStringify levelLogStringify;
     private Output.Type output_Major;
     private Stringify.Chalk levelLogStringify;
 
@@ -53,9 +52,6 @@ public class Major implements Type {
         output_Major.output(sid + " " + new Date().getTime() + " " + JSON.stringify(status));
     }
 
-//    public interface LevelLogStringify {
-//        String levelLogStringify(Types.Persistant.LevelLog data);
-//    }
 
 
 }
