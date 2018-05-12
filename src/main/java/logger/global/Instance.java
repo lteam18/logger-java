@@ -17,9 +17,9 @@ public class Instance {
     public static Serializer serializer = new Serializer();
 
     public Instance() {
-        RootLogger = new Logger().createRoot(
+        this.RootLogger = new Logger().createRoot(
                 "Logger",
-                 serializer.new Major(
+                serializer.new Major(
                         new Stringify().createChalk(),
                         new Output().combine(
                                 new Output().CONSOLE()
@@ -27,6 +27,6 @@ public class Instance {
                 )
         );
 
-        System.out.print(RootLogger.getClass().toString());
+//        System.out.println("Instance class =" + RootLogger.getClass().toString());
     }
 }

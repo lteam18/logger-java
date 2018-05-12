@@ -18,8 +18,9 @@ public class LevelLogger {
     private Serializer.Type s;
     private ArrayList<String> namelist;
 
-    private O o;
     private Types log = new Types();
+
+    private static int aa = 0;
 
 
     public LevelLogger(Types.LevelType logType, Serializer.Type s, ArrayList<String> namelist) {
@@ -30,6 +31,8 @@ public class LevelLogger {
             this.s = s;
         }
         this.namelist = namelist;
+        aa++;
+//        System.out.println(aa + ": logType =" + logType + "  s=" + s + "  namelist =" + namelist);
     }
 
 
@@ -75,7 +78,8 @@ public class LevelLogger {
         this.msg_trace("invoked", error);
     }
 
-    public interface O {
-        void log(Types.Persistant.LevelLog data);
-    }
+//    public interface O {
+//        void log(Types.Persistant.LevelLog data);
+//    }
+
 }

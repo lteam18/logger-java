@@ -34,51 +34,51 @@ public class Stringify {
 
     public IChalk ichalk = new IChalk() {
         @Override
-        public String chalk(Object data) {
-            System.out.println("go into chalk");
-            if(data instanceof Types.Persistant.LevelLog)
-                return data.toString();
-            return "go into chalk";
-//            System.out.println("go into chalk");
-//            if(data instanceof Types.Persistant.LevelLog)
-//                return data.toString();
-//
-//            final long diff = data.T - history;
-//            history = data.T;
-//
-//            String temp = LEADING_CHARS + u.formatDiffString(diff);
-//            final String diff_time_str = temp.substring(temp.length() - SEP);
-//
-//            String l_difftime = diff_time_str;
-//            l_difftime = wrapWithColor(ANSI_BLUE, l_difftime);
-//            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-//            String l_time = sdf.format(data.T);
-//            l_time = wrapWithColor(ANSI_WHITE, l_time);
-//
-//            final ArrayList<String> l_nameList = data.N;
-//
-//            String l_msg = "";
-//            if (!data.M.equals("")) {
-//                l_msg = general_text_fun(data);
-//            }
-//
-//            String msg = l_difftime + " " + l_time + " " + l_nameList + " " + l_msg;
-//
-//            if (data.D.size() > 0) {
-//                ArrayList<String> ret = new ArrayList<>();
-//                u.convert(data.D, ret, "");
-//
-//                final String[] l_data = {""};
-//                ret.forEach(e -> l_data[0] += e);
-//                msg += "\n" + l_data[0];
-//            }
-//            if (data.E.size() > 0) {
-//                msg += "\n" + data.E.get("stack");
-//                data.E.put("stack", wrapWithColor(ANSI_BLACK, data.E.get("stack").toString()));
-//            }
-//
-//            System.out.println("stringify ="+msg.replace("\n", "\n" + LEADING_SPACE));
-//            return msg.replace("\n", "\n" + LEADING_SPACE);
+        public String chalk(Object Object_msg) {
+            if (Object_msg instanceof Types.Persistant.LevelLog) {
+//                System.out.println("go into chalk");
+                Types.Persistant.LevelLog data = (Types.Persistant.LevelLog) Object_msg;
+//                if (data instanceof Types.Persistant.LevelLog)
+//                    return data.toString();
+
+                final long diff = data.T - history;
+                history = data.T;
+
+                String temp = LEADING_CHARS + u.formatDiffString(diff);
+                final String diff_time_str = temp.substring(temp.length() - SEP);
+
+                String l_difftime = diff_time_str;
+                l_difftime = wrapWithColor(ANSI_BLUE, l_difftime);
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+                String l_time = sdf.format(data.T);
+                l_time = wrapWithColor(ANSI_WHITE, l_time);
+
+                final ArrayList<String> l_nameList = data.N;
+
+                String l_msg = "";
+                if (!data.M.equals("")) {
+                    l_msg = general_text_fun(data);
+                }
+
+                String msg = l_difftime + " " + l_time + " " + l_nameList + " " + l_msg;
+
+                if (data.D != null) {
+                    ArrayList<String> ret = new ArrayList<>();
+                    u.convert(data.D, ret, "");
+
+                    final String[] l_data = {""};
+                    ret.forEach(e -> l_data[0] += e);
+                    msg += "\n" + l_data[0];
+                }
+                if (data.E.size() > 0) {
+                    msg += "\n" + data.E.get("stack");
+                    data.E.put("stack", wrapWithColor(ANSI_BLACK, data.E.get("stack").toString()));
+                }
+
+//                System.out.println("stringify =" + msg.replace("\n", "\n" + LEADING_SPACE));
+                return msg.replace("\n", "\n" + LEADING_SPACE);
+            }
+            return " data error";
         }
     };
 
@@ -94,7 +94,6 @@ public class Stringify {
 
 
     private String general_text_fun(Types.Persistant.LevelLog data) {
-        System.out.println("stringify data.L = " + data.L);
         switch (data.L) {
             case DEBUG:
                 return ANSI_GREEN + data.M + ANSI_RESET;
@@ -115,8 +114,6 @@ public class Stringify {
     private String wrapWithColor(String color, String msg) {
         return color + msg + ANSI_RESET;
     }
-
-
 
 
 }

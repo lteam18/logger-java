@@ -17,8 +17,8 @@ import logger.types.Types;
 @SuppressWarnings("SpellCheckingInspection")
 public class Logger {
 
-    private ArrayList<String> namelist;
-    private Serializer.Type s;
+    private static ArrayList<String> namelist;
+    private static Serializer.Type s;
     private Types.LevelType t;
 
     public Logger() {
@@ -36,13 +36,20 @@ public class Logger {
 
     }
 
-    public static Logger createRoot(String name, Serializer.Type s) {
+    public Logger createRoot(String name, Serializer.Type s) {
         String[] a = {name};
-        ArrayList<String> arrayList = new ArrayList<String>(Arrays.asList(a));
+        ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(a));
 
         if (s == null) {
+
+            this.s = new Serializer().major;
+//            System.out.println("Logger class, arraylist=" + arrayList + " s=" +new Serializer().major);
             return new Logger(arrayList, new Serializer().major);
         } else {
+
+            this.s  = s;
+            this.namelist = arrayList;
+//            System.out.println("Logger class, arraylist=" + this.namelist + " s=" +this.s);
             return new Logger(arrayList, s);
         }
 

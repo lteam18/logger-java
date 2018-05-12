@@ -29,13 +29,6 @@ public class Logger_test {
                                         new Output().CONSOLE(),
                                         new Output().file("./a.log")
                                 )
-                        ),
-                        new Serializer().new Major(
-                                new Stringify().ichalk,
-                                new Output().combine(
-                                        new Output().CONSOLE(),
-                                        new Output().file("./a.log")
-                                )
                         )
                 )
         );
