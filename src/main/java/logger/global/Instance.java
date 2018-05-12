@@ -2,8 +2,8 @@ package logger.global;
 
 import logger.index.Logger;
 import logger.serialize.Output;
+import logger.serialize.Serializer;
 import logger.serialize.Stringify;
-import logger.serialize.serializer.Major;
 
 /**
  * Created by Lynnsion on 2018/5/4.
@@ -11,14 +11,15 @@ import logger.serialize.serializer.Major;
 
 public class Instance {
 
-    private Logger index;
 
     public static Logger RootLogger;
 
+    public static Serializer serializer = new Serializer();
+
     public Instance() {
-        RootLogger = index.createRoot(
+        RootLogger = new Logger().createRoot(
                 "Logger",
-                new Major(
+                 serializer.new Major(
                         new Stringify().createChalk(),
                         new Output().combine(
                                 new Output().CONSOLE()

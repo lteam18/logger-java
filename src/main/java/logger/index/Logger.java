@@ -7,33 +7,45 @@ import java.util.HashMap;
 import logger.loggers.HeartbeatLogger;
 import logger.loggers.LevelLogger;
 import logger.loggers.StatusLogger;
-import logger.serialize.serializer.Major;
-import logger.serialize.serializer.Type;
+import logger.serialize.Serializer;
 import logger.types.Types;
 
 /**
  * Created by Lynnsion on 2018/5/4.
  */
 
+@SuppressWarnings("SpellCheckingInspection")
 public class Logger {
 
     private ArrayList<String> namelist;
-    private Type s = new Major();
+    private Serializer.Type s;
     private Types.LevelType t;
 
-    public Logger(){
-
+    public Logger() {
+        this.namelist = new ArrayList<>();
+        this.s = new Serializer().major;
     }
 
-    public Logger(ArrayList<String> namelist, Type s) {
+    public Logger(ArrayList<String> namelist, Serializer.Type s) {
         this.namelist = namelist;
-        this.s = s;
+        if (s == null) {
+            this.s = new Serializer().major;
+        } else {
+            this.s = s;
+        }
+
     }
 
-    public static Logger createRoot(String name, Type s) {
+    public static Logger createRoot(String name, Serializer.Type s) {
         String[] a = {name};
         ArrayList<String> arrayList = new ArrayList<String>(Arrays.asList(a));
-        return new Logger(arrayList, s);
+
+        if (s == null) {
+            return new Logger(arrayList, new Serializer().major);
+        } else {
+            return new Logger(arrayList, s);
+        }
+
     }
 
     public Logger createSub(String name) {

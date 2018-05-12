@@ -3,8 +3,7 @@ package logger.loggers;
 
 import java.util.HashMap;
 
-import logger.serialize.serializer.Major;
-import logger.serialize.serializer.Type;
+import logger.serialize.Serializer;
 
 /**
  * Created by Lynnsion on 2018/5/4.
@@ -12,13 +11,13 @@ import logger.serialize.serializer.Type;
 
 public class HeartbeatLogger {
 
-    private Type s;
+    private Serializer.Type s;
     public static long HID = 0;
     private long hid;
 
-    public HeartbeatLogger(Type s, String msg, HashMap<String, Object> data) {
+    public HeartbeatLogger(Serializer.Type s, String msg, HashMap<String, Object> data) {
         if (s == null) {
-            this.s = new Major();
+            this.s = new Serializer().major;
         } else {
             this.s = s;
         }

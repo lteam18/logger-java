@@ -5,25 +5,30 @@ import java.util.Date;
 import java.util.HashMap;
 
 import logger.Utils;
-import logger.serialize.serializer.Type;
+import logger.serialize.Serializer;
 import logger.types.Types;
 
 /**
  * Created by Lynnsion on 2018/5/10.
  */
 
+@SuppressWarnings("SpellCheckingInspection")
 public class LevelLogger {
     private Types.LevelType logType;
-    private Type s;
+    private Serializer.Type s;
     private ArrayList<String> namelist;
 
     private O o;
     private Types log = new Types();
 
 
-    public LevelLogger(Types.LevelType logType, Type s, ArrayList<String> namelist) {
+    public LevelLogger(Types.LevelType logType, Serializer.Type s, ArrayList<String> namelist) {
         this.logType = logType;
-        this.s = s;
+        if (s == null) {
+            this.s = new Serializer().major;
+        } else {
+            this.s = s;
+        }
         this.namelist = namelist;
     }
 
@@ -35,12 +40,11 @@ public class LevelLogger {
         log.persistant.levelLog.L = this.logType;
         log.persistant.levelLog.M = o.msg;
         log.persistant.levelLog.D = o.data;
-        if(o.error !=null)
-        log.persistant.levelLog.E = new Utils().stringifyError(o.error);
+        if (o.error != null)
+            log.persistant.levelLog.E = new Utils().stringifyError(o.error);
 
 
         this.s.log(log.persistant.levelLog);
-//        return
     }
 
     public void msg(String msg) {
