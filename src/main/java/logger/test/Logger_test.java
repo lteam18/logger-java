@@ -54,11 +54,11 @@ public class Logger_test {
                 ));
         Types types = new Types();
         types.persistant.levelLog.M = "this is a major";
-//        types.persistant.levelLog.T = new Date().getTime();
-//        ArrayList<String> ns = new ArrayList<>();
-//        ns.add("majro1");
-//        ns.add("majro2");
-//        types.persistant.levelLog.N = ns;
+        types.persistant.levelLog.T = new Date().getTime();
+        ArrayList<String> ns = new ArrayList<>();
+        ns.add("majro1");
+        ns.add("majro2");
+        types.persistant.levelLog.N = ns;
 
         types.persistant.levelLog.L = Types.LevelType.DEBUG;
         major.log(types.persistant.levelLog);

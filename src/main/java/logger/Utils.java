@@ -29,15 +29,21 @@ public class Utils {
         final int max_String = 9;
         final String result = convertToUnits(millis);
         String ret = "";
+
         for (int i = 0; i < result.length(); i += 2) {
+            final String s;
             if (result.charAt(i) == '0') continue;
-            final String s = "" + result.charAt(i) + result.charAt(i + 1);
+            if (i + 1 < result.length())
+                s = "" + result.charAt(i) + result.charAt(i + 1);
+            else
+                s = "" + result.charAt(i);
             if (s.length() + ret.length() > max_String) {
                 if (ret.length() == 0)
                     ret += s;
                 return ret;
             }
             ret += s;
+
         }
         return ret;
     }
@@ -45,15 +51,21 @@ public class Utils {
     public String formatDiffString(long millis, int max_String) {
         final String result = convertToUnits(millis);
         String ret = "";
+
         for (int i = 0; i < result.length(); i += 2) {
+            final String s;
             if (result.charAt(i) == '0') continue;
-            final String s = "" + result.charAt(i) + result.charAt(i + 1);
+            if (i + 1 < result.length())
+                s = "" + result.charAt(i) + result.charAt(i + 1);
+            else
+                s = "" + result.charAt(i);
             if (s.length() + ret.length() > max_String) {
                 if (ret.length() == 0)
                     ret += s;
                 return ret;
             }
             ret += s;
+
         }
         return ret;
     }

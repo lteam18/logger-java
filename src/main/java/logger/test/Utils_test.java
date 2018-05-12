@@ -2,6 +2,7 @@ package logger.test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 
 import logger.Utils;
 
@@ -15,10 +16,9 @@ public class Utils_test {
         Utils utils = new Utils();
         utils.convertToUnits(123423213133L);
 
-        System.out.println("result 1 = " + utils.convertToUnits(123423213133L));
-
-        System.out.println("result 2 = " + utils.formatDiffString(123423213133L));
-        System.out.println("result 3 = " + utils.formatDiffString(123423213133L, 12));
+        System.out.println("result 1 = " + utils.formatDiffString(123423213133L, 12));
+        System.out.println("result 2 = " + utils.formatDiffString(1001));
+        System.out.println("result 3 = " + utils.formatDiffString(60001));
 
         HashMap<String, Object> data = new HashMap<>();
         HashMap<String, Object> data2 = new HashMap<>();
