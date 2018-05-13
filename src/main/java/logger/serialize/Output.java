@@ -6,19 +6,15 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-/**
- * Created by Lynnsion on 2018/5/6.
- */
-
+/** Created by Lynnsion on 2018/5/6. */
 public class Output {
 
     private Type type = msg1 -> System.out.println(msg1);
 
-    public Output() {
-    }
+    public Output() {}
 
     public Type CONSOLE() {
-        return   (String msg) -> type.output(msg);
+        return (String msg) -> type.output(msg);
     }
 
     public Type file(String filePath) {
@@ -53,9 +49,7 @@ public class Output {
         }
     }
 
-   public interface Type {
+    public interface Type {
         void output(String msg);
     }
-
-
 }

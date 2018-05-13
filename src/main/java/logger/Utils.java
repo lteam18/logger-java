@@ -8,8 +8,7 @@ import java.util.Map;
 
 public class Utils {
 
-    public Utils() {
-    }
+    public Utils() {}
 
     public String convertToUnits(long millis) {
         String retStr = "";
@@ -33,17 +32,13 @@ public class Utils {
         for (int i = 0; i < result.length(); i += 2) {
             final String s;
             if (result.charAt(i) == '0') continue;
-            if (i + 1 < result.length())
-                s = "" + result.charAt(i) + result.charAt(i + 1);
-            else
-                s = "" + result.charAt(i);
+            if (i + 1 < result.length()) s = "" + result.charAt(i) + result.charAt(i + 1);
+            else s = "" + result.charAt(i);
             if (s.length() + ret.length() > max_String) {
-                if (ret.length() == 0)
-                    ret += s;
+                if (ret.length() == 0) ret += s;
                 return ret;
             }
             ret += s;
-
         }
         return ret;
     }
@@ -55,22 +50,18 @@ public class Utils {
         for (int i = 0; i < result.length(); i += 2) {
             final String s;
             if (result.charAt(i) == '0') continue;
-            if (i + 1 < result.length())
-                s = "" + result.charAt(i) + result.charAt(i + 1);
-            else
-                s = "" + result.charAt(i);
+            if (i + 1 < result.length()) s = "" + result.charAt(i) + result.charAt(i + 1);
+            else s = "" + result.charAt(i);
             if (s.length() + ret.length() > max_String) {
-                if (ret.length() == 0)
-                    ret += s;
+                if (ret.length() == 0) ret += s;
                 return ret;
             }
             ret += s;
-
         }
         return ret;
     }
 
-    public void sleep(long millis) {
+    public static void sleep(long millis) {
         try {
             Thread.currentThread();
             Thread.sleep(millis);
@@ -79,7 +70,6 @@ public class Utils {
         }
     }
 
-
     // { a: { b:1, c:2 }}
     // => [a.b]=1 [a.c]=2
     public void convert(HashMap<String, Object> data, ArrayList<String> ret, String prefix) {
@@ -87,9 +77,11 @@ public class Utils {
             if (entry.getValue() instanceof String || entry.getValue() instanceof Integer) {
                 ret.add(prefix + entry.getKey() + "=" + entry.getValue());
             } else if (entry.getValue() instanceof HashMap) {
-                convert((HashMap<String, Object>) entry.getValue(), ret, prefix + entry.getKey() + ".");
+                convert(
+                        (HashMap<String, Object>) entry.getValue(),
+                        ret,
+                        prefix + entry.getKey() + ".");
             }
-
         }
     }
 
@@ -99,19 +91,27 @@ public class Utils {
             if (entry.getValue() instanceof String || entry.getValue() instanceof Integer) {
                 ret.add(prefix + entry.getKey() + "=" + entry.getValue());
             } else if (entry.getValue() instanceof HashMap) {
-                convert((HashMap<String, Object>) entry.getValue(), ret, prefix + entry.getKey() + ".");
+                convert(
+                        (HashMap<String, Object>) entry.getValue(),
+                        ret,
+                        prefix + entry.getKey() + ".");
             }
-
         }
     }
 
     //测试方法,不用的时候删掉就好了
     public String stringifyErrors(Error e) {
-        return "message: " + e.getMessage() + "\n name: " + e.getClass().toString() + "\n stack: " + getStacks(e);
+        return "message: "
+                + e.getMessage()
+                + "\n name: "
+                + e.getClass().toString()
+                + "\n stack: "
+                + getStacks(e);
     }
 
     public HashMap<String, Object> stringifyError(Error e) {
-        return map("message", e.getMessage(), "name", e.getClass().toString(), "stack", getStacks(e));
+        return map(
+                "message", e.getMessage(), "name", e.getClass().toString(), "stack", getStacks(e));
     }
 
     public static HashMap<String, Object> map(Object... values) {
@@ -122,15 +122,14 @@ public class Utils {
         return map;
     }
 
-
     public static String getStacks(Throwable throwable) {
         StringWriter sw = new StringWriter();
         PrintWriter pw = new PrintWriter(sw);
         throwable.printStackTrace(pw);
-//        return pw.toString();
+        //        return pw.toString();
         StringBuffer error = sw.getBuffer();
         return error.toString();
-//
+        //
     }
 
     public static class ATTR {

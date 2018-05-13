@@ -3,17 +3,13 @@ package logger.index;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-
 import logger.loggers.HeartbeatLogger;
 import logger.loggers.LevelLogger;
 import logger.loggers.StatusLogger;
 import logger.serialize.Serializer;
 import logger.types.Types;
 
-/**
- * Created by Lynnsion on 2018/5/4.
- */
-
+/** Created by Lynnsion on 2018/5/4. */
 @SuppressWarnings("SpellCheckingInspection")
 public class Logger {
 
@@ -33,7 +29,6 @@ public class Logger {
         } else {
             this.s = s;
         }
-
     }
 
     public Logger createRoot(String name, Serializer.Type s) {
@@ -43,16 +38,15 @@ public class Logger {
         if (s == null) {
 
             this.s = new Serializer().major;
-//            System.out.println("Logger class, arraylist=" + arrayList + " s=" +new Serializer().major);
+            //            System.out.println("Logger class, arraylist=" + arrayList + " s=" +new Serializer().major);
             return new Logger(arrayList, new Serializer().major);
         } else {
 
-            this.s  = s;
+            this.s = s;
             this.namelist = arrayList;
-//            System.out.println("Logger class, arraylist=" + this.namelist + " s=" +this.s);
+            //            System.out.println("Logger class, arraylist=" + this.namelist + " s=" +this.s);
             return new Logger(arrayList, s);
         }
-
     }
 
     public Logger createSub(String name) {
@@ -75,7 +69,6 @@ public class Logger {
     // Error that resulted in exit
     public LevelLogger fatal = new LevelLogger(t.FATAL, this.s, this.namelist);
 
-
     public HeartbeatLogger defineHeartbeatLogger(String msg, HashMap<String, Object> data) {
         return new HeartbeatLogger(this.s, msg, data);
     }
@@ -83,5 +76,4 @@ public class Logger {
     public StatusLogger defineStatusLogger(HashMap<String, Object> Schema) {
         return new StatusLogger(this.s, Schema);
     }
-
 }

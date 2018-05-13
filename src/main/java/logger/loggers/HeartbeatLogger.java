@@ -1,14 +1,9 @@
 package logger.loggers;
 
-
 import java.util.HashMap;
-
 import logger.serialize.Serializer;
 
-/**
- * Created by Lynnsion on 2018/5/4.
- */
-
+/** Created by Lynnsion on 2018/5/4. */
 public class HeartbeatLogger {
 
     private Serializer.Type s;
@@ -25,9 +20,7 @@ public class HeartbeatLogger {
         def(msg, data);
     }
 
-    public void def(String msg, HashMap<String, Object> data) {
-
-    }
+    public void def(String msg, HashMap<String, Object> data) {}
 
     public void beat(String msg, HashMap<String, Object> status) {
         this.s.beat(this.hid);
@@ -36,5 +29,4 @@ public class HeartbeatLogger {
     public long gethid() {
         return this.hid;
     }
-
 }

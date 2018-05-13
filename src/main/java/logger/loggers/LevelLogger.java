@@ -3,15 +3,11 @@ package logger.loggers;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-
 import logger.Utils;
 import logger.serialize.Serializer;
 import logger.types.Types;
 
-/**
- * Created by Lynnsion on 2018/5/10.
- */
-
+/** Created by Lynnsion on 2018/5/10. */
 @SuppressWarnings("SpellCheckingInspection")
 public class LevelLogger {
     private Types.LevelType logType;
@@ -20,8 +16,7 @@ public class LevelLogger {
 
     private Types log = new Types();
 
-//    private static int aa = 0;
-
+    //    private static int aa = 0;
 
     public LevelLogger(Types.LevelType logType, Serializer.Type s, ArrayList<String> namelist) {
         this.logType = logType;
@@ -31,10 +26,9 @@ public class LevelLogger {
             this.s = s;
         }
         this.namelist = namelist;
-//        aa++;
-//        System.out.println(aa + ": logType =" + logType + "  s=" + s + "  namelist =" + namelist);
+        //        aa++;
+        //        System.out.println(aa + ": logType =" + logType + "  s=" + s + "  namelist =" + namelist);
     }
-
 
     public void o(Types.LevelLoggerOption o) {
         log.persistant.levelLog.N = this.namelist;
@@ -42,9 +36,8 @@ public class LevelLogger {
         log.persistant.levelLog.L = this.logType;
         log.persistant.levelLog.M = o.msg;
         log.persistant.levelLog.D = o.data;
-        if (o.error != null)
-            log.persistant.levelLog.E = new Utils().stringifyError(o.error);
-        if(o.error == null){
+        if (o.error != null) log.persistant.levelLog.E = new Utils().stringifyError(o.error);
+        if (o.error == null) {
             log.persistant.levelLog.E.clear();
         }
         this.s.log(log.persistant.levelLog);
@@ -61,8 +54,6 @@ public class LevelLogger {
         this.o(log.levelLoggerOption);
 
         log.levelLoggerOption.error = null;
-
-
     }
 
     public void msg_data(String msg, HashMap<String, Object> data) {
@@ -76,11 +67,9 @@ public class LevelLogger {
         log.levelLoggerOption.data = data;
         log.levelLoggerOption.error = error;
         this.o(log.levelLoggerOption);
-
     }
 
     public void trace(Error error) {
         this.msg_trace("invoked", error);
     }
-
 }

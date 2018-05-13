@@ -1,23 +1,17 @@
 package logger.test;
 
-
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
-import logger.Utils;
 import logger.global.Instance;
 import logger.index.Logger;
+import logger.serialize.Output;
 import logger.serialize.Serializer;
 import logger.serialize.Stringify;
-import logger.serialize.Output;
 import logger.types.Types;
 
-/**
- * Created by Lynnsion on 2018/5/2.
- */
-
+/** Created by Lynnsion on 2018/5/2. */
 public class Logger_test {
-
 
     public static void main(String[] args) {
 
@@ -25,19 +19,21 @@ public class Logger_test {
 
         Instance instance = new Instance();
 
-        final Logger llo = instance.RootLogger = index.createRoot(
-                "MainLogger-123",
-                new Serializer().combine(
-                        new Serializer().new Major(
-                                new Stringify().ichalk,
-                                new Output().combine(
-                                        new Output().CONSOLE(),
-                                        new Output().file("./a.log")
-                                )
-                        )
-                )
-        );
-
+        final Logger llo =
+                instance.RootLogger =
+                        index.createRoot(
+                                "MainLogger-123",
+                                new Serializer()
+                                        .combine(
+                                                new Serializer()
+                                                .new Major(
+                                                        new Stringify().ichalk,
+                                                        new Output()
+                                                                .combine(
+                                                                        new Output().CONSOLE(),
+                                                                        new Output()
+                                                                                .file(
+                                                                                        "./a.log")))));
 
         Types.LevelLoggerOption lo = new Types().new LevelLoggerOption("Program ready");
 
@@ -49,7 +45,6 @@ public class Logger_test {
         }
 
         llo.debug.msg("123");
-
 
         HashMap<String, Object> data = new LinkedHashMap<>();
         HashMap<String, Object> data2 = new LinkedHashMap<>();
@@ -76,9 +71,5 @@ public class Logger_test {
         slog.fatal.msg_data("Fatal", data);
 
         slog.error.msg_data("Error", data);
-
-
     }
-
-
 }

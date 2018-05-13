@@ -3,14 +3,10 @@ package logger.serialize;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
-
 import logger.JSON;
 import logger.types.Types;
 
-/**
- * Created by Lynnsion on 2018/5/12.
- */
-
+/** Created by Lynnsion on 2018/5/12. */
 public class Serializer {
     public interface Type {
         void log(Types.Persistant.LevelLog data);
@@ -22,7 +18,6 @@ public class Serializer {
         void defineStatus(long sid, Map<String, Object> data);
 
         void rec(long sid, Map<String, Object> status);
-
     }
 
     public class Major implements Type {
@@ -63,8 +58,6 @@ public class Serializer {
         public void rec(long sid, Map<String, Object> status) {
             output_Major.output(sid + " " + new Date().getTime() + " " + JSON.stringify(status));
         }
-
-
     }
 
     public class Combination implements Type {
@@ -103,9 +96,7 @@ public class Serializer {
         public void rec(long sid, Map<String, Object> status) {
             this.s.forEach((e) -> e.rec(sid, status));
         }
-
     }
-
 
     public Combination combine(Type... s) {
         ArrayList<Type> arrayList = new ArrayList<>();
@@ -115,12 +106,11 @@ public class Serializer {
         return new Combination(arrayList);
     }
 
-
     public Major major;
 
     public Combination combination;
 
-    public Serializer(){
+    public Serializer() {
         this.major = new Major();
         this.combination = new Combination();
     }
@@ -129,6 +119,4 @@ public class Serializer {
         this.major = major;
         this.combination = combination;
     }
-
-
 }

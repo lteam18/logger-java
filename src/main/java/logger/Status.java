@@ -1,15 +1,9 @@
 package logger;
 
-
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-
-/**
- * Created by Lynnsion on 2018/5/4.
- */
-
+/** Created by Lynnsion on 2018/5/4. */
 public class Status {
 
     //const given = { a: {b:1, c:2}, d:3 }
@@ -28,19 +22,15 @@ public class Status {
         this.given.put("d", 3);
     }
 
-    public Map<String, Object> rec(Map<String, Object> given,Map<String, Object> alist) {
+    public Map<String, Object> rec(Map<String, Object> given, Map<String, Object> alist) {
         for (Map.Entry<String, Object> entry : given.entrySet()) {
             if (entry.getValue() instanceof Map) {
-                alist.put(entry.getKey(),entry.getValue());
+                alist.put(entry.getKey(), entry.getValue());
             } else {
-               alist.put(entry.getKey(),entry.getValue());
+                alist.put(entry.getKey(), entry.getValue());
             }
-
         }
 
         return alist;
     }
-
-
-
 }

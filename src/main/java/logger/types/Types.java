@@ -1,27 +1,19 @@
 package logger.types;
 
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
 import logger.Utils;
-import logger.unserialize.Heartbeat;
 
-/**
- * Created by Lynnsion on 2018/5/10.
- */
-
+/** Created by Lynnsion on 2018/5/10. */
 public class Types {
 
-    public  class LevelLoggerOption {
+    public class LevelLoggerOption {
         public Error error;
         public String msg;
         public HashMap<String, Object> data;
 
-        public LevelLoggerOption() {
-        }
-
+        public LevelLoggerOption() {}
 
         public LevelLoggerOption(String msg) {
             this.msg = msg;
@@ -31,7 +23,6 @@ public class Types {
             this.error = error;
             this.msg = msg;
         }
-
 
         public LevelLoggerOption(String msg, HashMap<String, Object> data) {
             this.msg = msg;
@@ -67,20 +58,18 @@ public class Types {
             public ArrayList<String> N;
             public long T; //timeStamp
             public LevelType L; //LogLevel
-            public String M = "";  //Message
+            public String M = ""; //Message
             //Data
             public HashMap<String, Object> D = new HashMap<>();
             /*
-             ErrorStack
-                msg?: string,
-                name?: string,
-                stack?: string
-             */
+            ErrorStack
+               msg?: string,
+               name?: string,
+               stack?: string
+            */
             public HashMap<String, Object> E = new HashMap<>();
 
-            public LevelLog() {
-
-            }
+            public LevelLog() {}
 
             public LevelLog(
                     ArrayList<String> N,
@@ -88,8 +77,7 @@ public class Types {
                     LevelType L,
                     String M,
                     HashMap<String, Object> D,
-                    Error E
-            ) {
+                    Error E) {
                 this.N = N;
                 this.T = T;
                 this.L = L;
@@ -100,23 +88,21 @@ public class Types {
                 } else {
                     this.E = new Utils().stringifyError(E);
                 }
-
             }
-
 
             public Map<String, Object> getLevelLogDataMap() {
                 Map<String, Object> result_map = new HashMap<>();
                 result_map.put("N", N);
-                result_map.put("T", T);    //timeStamp
-                result_map.put("L", L);    //LogLevel
+                result_map.put("T", T); //timeStamp
+                result_map.put("L", L); //LogLevel
                 if (!M.equals("")) {
-                    result_map.put("M", M);    //Message
+                    result_map.put("M", M); //Message
                 }
                 if (D != null) {
-                    result_map.put("D", D);    //Data
+                    result_map.put("D", D); //Data
                 }
                 if (E != null) {
-                    result_map.put("E", E);    //ErrorStack
+                    result_map.put("E", E); //ErrorStack
                 }
 
                 return result_map;
@@ -127,50 +113,43 @@ public class Types {
             public BeatLog beatLog;
             public HashMap<String, Object> data;
 
-            public HeatLog() {
-
-            }
+            public HeatLog() {}
         }
 
         public class BeatLog {
             public long hid;
 
-            public BeatLog() {
-
-            }
+            public BeatLog() {}
         }
 
         public class StatusDefineLog {
             public long sid;
             public Map<String, Object> data;
 
-            public StatusDefineLog() {
-
-            }
+            public StatusDefineLog() {}
         }
 
         public class StatusRecordLog {
             public long sid;
             public Map<String, Object> data;
 
-            public StatusRecordLog() {
-
-            }
+            public StatusRecordLog() {}
         }
-
     }
 
     public enum LevelType {
-        DEBUG, INFO, WARN, ERROR, FATAL
+        DEBUG,
+        INFO,
+        WARN,
+        ERROR,
+        FATAL
     }
 
     public static LevelLoggerOption levelLoggerOption;
     public static Persistant persistant;
 
     public Types() {
-         this.levelLoggerOption = new LevelLoggerOption();
-         this.persistant = new Persistant();
+        this.levelLoggerOption = new LevelLoggerOption();
+        this.persistant = new Persistant();
     }
-
-
 }
