@@ -1,11 +1,16 @@
 package logger.test;
 
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+
+import logger.Utils;
 import logger.global.Instance;
 import logger.index.Logger;
 import logger.serialize.Serializer;
 import logger.serialize.Stringify;
 import logger.serialize.Output;
+import logger.types.Types;
 
 /**
  * Created by Lynnsion on 2018/5/2.
@@ -20,7 +25,7 @@ public class Logger_test {
 
         Instance instance = new Instance();
 
-        Logger llo = instance.RootLogger = index.createRoot(
+     final  Logger llo = instance.RootLogger = index.createRoot(
                 "MainLogger-123",
                 new Serializer().combine(
                         new Serializer().new Major(
@@ -34,11 +39,38 @@ public class Logger_test {
         );
 
 
+        Types.LevelLoggerOption lo = new Types().new LevelLoggerOption("Program ready");
+
+        llo.debug.o(lo);
+        try {
+            Thread.sleep(1218);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         llo.debug.msg("123");
-        llo.info.msg("123");
-        llo.warn.msg("123");
-        llo.error.msg("123");
-        llo.fatal.msg("123");
+
+
+        HashMap<String, Object> data = new LinkedHashMap<>();
+        HashMap<String, Object> data2 = new LinkedHashMap<>();
+        data2.put("a", "1");
+        data2.put("b", "2");
+        data.put("status","on");
+        data.put("work", data2);
+
+        llo.debug.msg_data("123",data);
+
+        data.clear();
+        data2.clear();
+
+        data2.put("a",3);
+        data2.put("b",4);
+        data.put("status","off");
+        data.put("work",data2);
+        llo.info.msg_data("12312",data);
+
+
+
 
     }
 

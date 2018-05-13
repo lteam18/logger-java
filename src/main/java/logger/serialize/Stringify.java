@@ -36,11 +36,7 @@ public class Stringify {
         @Override
         public String chalk(Object Object_msg) {
             if (Object_msg instanceof Types.Persistant.LevelLog) {
-//                System.out.println("go into chalk");
                 Types.Persistant.LevelLog data = (Types.Persistant.LevelLog) Object_msg;
-//                if (data instanceof Types.Persistant.LevelLog)
-//                    return data.toString();
-
                 final long diff = data.T - history;
                 history = data.T;
 
@@ -57,17 +53,15 @@ public class Stringify {
 
                 String l_msg = "";
                 if (!data.M.equals("")) {
-                    l_msg = general_text_fun(data);
+                    l_msg = general_text_fun(data, data.M);
                 }
 
                 String msg = l_difftime + " " + l_time + " " + l_nameList + " " + l_msg;
-
                 if (data.D != null) {
                     ArrayList<String> ret = new ArrayList<>();
                     u.convert(data.D, ret, "");
-
                     final String[] l_data = {""};
-                    ret.forEach(e -> l_data[0] += e);
+                    ret.forEach(e -> l_data[0] += general_text_fun(data, e + " "));
                     msg += "\n" + l_data[0];
                 }
                 if (data.E.size() > 0) {
@@ -75,7 +69,6 @@ public class Stringify {
                     data.E.put("stack", wrapWithColor(ANSI_BLACK, data.E.get("stack").toString()));
                 }
 
-//                System.out.println("stringify =" + msg.replace("\n", "\n" + LEADING_SPACE));
                 return msg.replace("\n", "\n" + LEADING_SPACE);
             }
             return " data error";
@@ -93,20 +86,20 @@ public class Stringify {
     }
 
 
-    private String general_text_fun(Types.Persistant.LevelLog data) {
+    private String general_text_fun(Types.Persistant.LevelLog data, String msg) {
         switch (data.L) {
             case DEBUG:
-                return ANSI_GREEN + data.M + ANSI_RESET;
+                return ANSI_GREEN + msg + ANSI_RESET;
             case INFO:
-                return ANSI_BLUE + data.M + ANSI_RESET;
+                return ANSI_BLUE + msg + ANSI_RESET;
             case WARN:
-                return ANSI_YELLOW + data.M + ANSI_RESET;
+                return ANSI_YELLOW + msg + ANSI_RESET;
             case ERROR:
-                return ANSI_PURPLE + data.M + ANSI_RESET;
+                return ANSI_PURPLE + msg + ANSI_RESET;
             case FATAL:
-                return ANSI_RED + data.M + ANSI_RESET;
+                return ANSI_RED + msg + ANSI_RESET;
             default:
-                return data.M;
+                return "";
         }
     }
 
