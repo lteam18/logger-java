@@ -25,7 +25,7 @@ public class Logger_test {
 
         Instance instance = new Instance();
 
-     final  Logger llo = instance.RootLogger = index.createRoot(
+        final Logger llo = instance.RootLogger = index.createRoot(
                 "MainLogger-123",
                 new Serializer().combine(
                         new Serializer().new Major(
@@ -55,27 +55,27 @@ public class Logger_test {
         HashMap<String, Object> data2 = new LinkedHashMap<>();
         data2.put("a", "1");
         data2.put("b", "2");
-        data.put("status","on");
+        data.put("status", "on");
         data.put("work", data2);
 
-        llo.debug.msg_data("123",data);
+        llo.debug.msg_data("123", data);
 
         data.clear();
         data2.clear();
 
-        data2.put("a",3);
-        data2.put("b",4);
-        data.put("status","off");
-        data.put("work",data2);
-        llo.info.msg_data("12312",data);
+        data2.put("a", 3);
+        data2.put("b", 4);
+        data.put("status", "off");
+        data.put("work", data2);
+        llo.info.msg_data("12312", data);
 
         final Logger slog = llo.createSub("sublogger");
 
         slog.warn.trace(new Error("Here"));
 
-        slog.fatal.msg_data("Fatal",data);
+        slog.fatal.msg_data("Fatal", data);
 
-        slog.error.msg_data("Error",data);
+        slog.error.msg_data("Error", data);
 
 
     }
