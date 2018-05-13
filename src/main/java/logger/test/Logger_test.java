@@ -69,7 +69,13 @@ public class Logger_test {
         data.put("work",data2);
         llo.info.msg_data("12312",data);
 
+        final Logger slog = llo.createSub("sublogger");
 
+        slog.warn.trace(new Error("Here"));
+
+        slog.fatal.msg_data("Fatal",data);
+
+        slog.error.msg_data("Error",data);
 
 
     }

@@ -44,6 +44,9 @@ public class LevelLogger {
         log.persistant.levelLog.D = o.data;
         if (o.error != null)
             log.persistant.levelLog.E = new Utils().stringifyError(o.error);
+        if(o.error == null){
+            log.persistant.levelLog.E.clear();
+        }
         this.s.log(log.persistant.levelLog);
     }
 
@@ -56,6 +59,10 @@ public class LevelLogger {
         log.levelLoggerOption.msg = msg;
         log.levelLoggerOption.error = error;
         this.o(log.levelLoggerOption);
+
+        log.levelLoggerOption.error = null;
+
+
     }
 
     public void msg_data(String msg, HashMap<String, Object> data) {
@@ -69,6 +76,7 @@ public class LevelLogger {
         log.levelLoggerOption.data = data;
         log.levelLoggerOption.error = error;
         this.o(log.levelLoggerOption);
+
     }
 
     public void trace(Error error) {
