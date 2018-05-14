@@ -25,19 +25,26 @@ public class Utils {
     public static String formatDiffString(long millis) {
         final int max_String = 9;
         final String result = convertToUnits(millis);
-        String ret = "";
+//        String ret = "";
+        StringBuilder ret;
 
         for (int i = 0; i < result.length(); i += 2) {
-            final String s;
+             StringBuilder s;
             if (result.charAt(i) == '0') continue;
-            if (i + 1 < result.length()) s = "" + result.charAt(i) + result.charAt(i + 1);
-            else s = "" + result.charAt(i);
-            if (s.length() + ret.length() > max_String) {
-                if (ret.length() == 0) ret += s;
-                return ret;
-            }
-            ret += s;
+            if (i + 1 < result.length()) s.append("" + result.charAt(i) + result.charAt(i + 1));
         }
+
+//        for (int i = 0; i < result.length(); i += 2) {
+//            final String s;
+//            if (result.charAt(i) == '0') continue;
+//            if (i + 1 < result.length()) s = "" + result.charAt(i) + result.charAt(i + 1);
+//            else s = "" + result.charAt(i);
+//            if (s.length() + ret.length() > max_String) {
+//                if (ret.length() == 0) ret += s;
+//                return ret;
+//            }
+//            ret += s;
+//        }
         return ret;
     }
 
