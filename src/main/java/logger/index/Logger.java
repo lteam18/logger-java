@@ -46,8 +46,6 @@ public class Logger {
     }
 
     public static Logger createSub(String name) {
-//        ArrayList nameList = new ArrayList();
-//        nameList.add(name);
         namelist.add(name);
         return new Logger(namelist, s);
     }

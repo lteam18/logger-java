@@ -10,7 +10,7 @@ import java.util.Map;
 public class Utils {
 
     public static String convertToUnits(long millis) {
-        String retStr = "";
+        String retStr ;
         long rest = millis;
         final Long ms = rest % 1000;
         rest = Math.round(Math.floor(rest / 1000));
@@ -106,6 +106,7 @@ public class Utils {
     public static HashMap<String, Object> map(Object... values) {
         HashMap<String, Object> map = new LinkedHashMap<>();
         for (int i = 0; i < values.length; i += 2) {
+            if(i+1<values.length)
             map.put(values[i].toString(), values[i + 1]);
         }
         return map;

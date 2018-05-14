@@ -8,6 +8,7 @@ import logger.serialize.Stringify;
 /**
  * Created by Lynnsion on 2018/5/4.
  */
+@SuppressWarnings("SpellCheckingInspection")
 public class Instance {
 
     public static Logger RootLogger;
@@ -18,6 +19,9 @@ public class Instance {
                         "Logger",
                         new Serializer().new Major(
                                 Stringify.createChalk(),
-                                Output.combine(Output.CONSOLE())));
+                                Output.combine(Output.CONSOLE()
+                                )
+                        )
+                );
     }
 }

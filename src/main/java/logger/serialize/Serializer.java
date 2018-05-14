@@ -37,6 +37,9 @@ public class Serializer {
             this.output_Major = output;
         }
 
+
+
+
         @Override
         public void log(Types.Persistant.LevelLog data) {
             output_Major.output(this.levelLogStringify.chalk(data));

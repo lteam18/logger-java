@@ -1,15 +1,14 @@
 package logger.test;
 
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 
+import logger.JSON;
 import logger.Utils;
 import logger.global.Instance;
 import logger.index.Logger;
 import logger.serialize.Output;
 import logger.serialize.Serializer;
 import logger.serialize.Stringify;
-import logger.types.Types;
 
 /**
  * Created by Lynnsion on 2018/5/2.
@@ -31,6 +30,10 @@ public class Logger_test {
                                         Output.CONSOLE(),
                                         Output.file("./a.log")
                                 )
+                        ),
+                        new Serializer().new Major(
+                                JSON.stringify,
+                                Output.file("./a.json.log")
                         )
                 )
         );
@@ -43,7 +46,6 @@ public class Logger_test {
         }
 
         llo.debug.msg("123");
-
 
         HashMap<String, Object> data2 = Utils.map("a", "1", "b", "2");
         HashMap<String, Object> data = Utils.map("status", "on", "work", data2);
