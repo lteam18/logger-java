@@ -22,20 +22,20 @@ public class Logger_test {
 
         Instance instance = new Instance();
 
-        final Logger llo =
-                instance.RootLogger =
-                        index.createRoot(
-                                "MainLogger-123",
-                                new Serializer().combine(
-                                        new Serializer().new Major(
-                                                new Stringify().ichalk,
-                                                Output.combine(
-                                                        Output.CONSOLE(),
-                                                        Output.file("./a.log")))));
+        final Logger llo = instance.RootLogger = index.createRoot(
+                "MainLogger-123",
+                new Serializer().combine(
+                        new Serializer().new Major(
+                                Stringify.ichalk,
+                                Output.combine(
+                                        Output.CONSOLE(),
+                                        Output.file("./a.log")
+                                )
+                        )
+                )
+        );
 
-        Types.LevelLoggerOption lo = new Types().new LevelLoggerOption("Program ready");
-
-        llo.debug.o(lo);
+        llo.debug.msg("Program ready");
         try {
             Thread.sleep(1218);
         } catch (InterruptedException e) {
@@ -43,13 +43,6 @@ public class Logger_test {
         }
 
         llo.debug.msg("123");
-
-//        HashMap<String, Object> data = new LinkedHashMap<>();
-//        HashMap<String, Object> data2 = new LinkedHashMap<>();
-//        data2.put("a", "1");
-//        data2.put("b", "2");
-//        data.put("status", "on");
-//        data.put("work", data2);
 
 
         HashMap<String, Object> data2 = Utils.map("a", "1", "b", "2");

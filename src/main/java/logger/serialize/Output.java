@@ -31,7 +31,7 @@ public class Output {
     }
 
     private static void appendFile(String msg, String filePath) {
-        FileWriter fw = null;
+        FileWriter fw;
         try {
             File file = new File(filePath);
             fw = new FileWriter(file, true);

@@ -3,13 +3,16 @@ package logger.index;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+
 import logger.loggers.HeartbeatLogger;
 import logger.loggers.LevelLogger;
 import logger.loggers.StatusLogger;
 import logger.serialize.Serializer;
 import logger.types.Types;
 
-/** Created by Lynnsion on 2018/5/4. */
+/**
+ * Created by Lynnsion on 2018/5/4.
+ */
 @SuppressWarnings("SpellCheckingInspection")
 public class Logger {
 
@@ -31,25 +34,22 @@ public class Logger {
         }
     }
 
-    public Logger createRoot(String name, Serializer.Type s) {
+    public static Logger createRoot(String name, Serializer.Type s) {
         String[] a = {name};
         ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(a));
 
         if (s == null) {
-
-            this.s = new Serializer().major;
             return new Logger(arrayList, new Serializer().major);
         } else {
-
-            this.s = s;
-            this.namelist = arrayList;
             return new Logger(arrayList, s);
         }
     }
 
-    public Logger createSub(String name) {
-        this.namelist.add(name);
-        return new Logger(this.namelist, this.s);
+    public static Logger createSub(String name) {
+//        ArrayList nameList = new ArrayList();
+//        nameList.add(name);
+        namelist.add(name);
+        return new Logger(namelist, s);
     }
 
     // Very detailed infomation

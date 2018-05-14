@@ -3,10 +3,13 @@ package logger.serialize;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
+
 import logger.JSON;
 import logger.types.Types;
 
-/** Created by Lynnsion on 2018/5/12. */
+/**
+ * Created by Lynnsion on 2018/5/12.
+ */
 public class Serializer {
     public interface Type {
         void log(Types.Persistant.LevelLog data);
@@ -26,7 +29,7 @@ public class Serializer {
 
         public Major() {
             levelLogStringify = msg -> JSON.stringify_Object(msg);
-            this.output_Major = new Output().CONSOLE();
+            this.output_Major = Output.CONSOLE();
         }
 
         public Major(IChalk chalk, Output.Type output) {
@@ -60,7 +63,7 @@ public class Serializer {
         }
     }
 
-    public class Combination implements Type {
+    public static class Combination implements Type {
 
         private ArrayList<Type> s;
 
@@ -98,7 +101,7 @@ public class Serializer {
         }
     }
 
-    public Combination combine(Type... s) {
+    public static Combination combine(Type... s) {
         ArrayList<Type> arrayList = new ArrayList<>();
         for (int i = 0; i < s.length; i++) {
             arrayList.add(s[i]);
@@ -119,4 +122,6 @@ public class Serializer {
         this.major = major;
         this.combination = combination;
     }
+
+
 }

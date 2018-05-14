@@ -14,7 +14,7 @@ import logger.types.Types;
 @SuppressWarnings("SpellCheckingInspection")
 public class LevelLogger {
     private Types.LevelType logType;
-    private Serializer.Type s;
+    private static Serializer.Type s;
     private ArrayList<String> namelist;
 
     public LevelLogger(Types.LevelType logType, Serializer.Type s, ArrayList<String> namelist) {
@@ -30,12 +30,12 @@ public class LevelLogger {
     public void o(Types.LevelLoggerOption o) {
         HashMap<String, Object> errorHashmap;
         if (o.error != null) {
-            errorHashmap = new Utils().stringifyError(o.error);
+            errorHashmap = Utils.stringifyError(o.error);
         } else {
             errorHashmap = null;
         }
 
-        Types.Persistant.LevelLog levelLog = new Types().new Persistant().new LevelLog(
+        Types.Persistant.LevelLog levelLog = new Types.Persistant.LevelLog(
                 this.namelist,
                 new Date().getTime(),
                 this.logType,
@@ -47,27 +47,27 @@ public class LevelLogger {
     }
 
     public void msg(String msg) {
-        Types.LevelLoggerOption levelLoggerOption = new Types().new LevelLoggerOption();
+        Types.LevelLoggerOption levelLoggerOption = new Types.LevelLoggerOption();
         levelLoggerOption.msg = msg;
         this.o(levelLoggerOption);
     }
 
     public void msg_trace(String msg, Error error) {
-        Types.LevelLoggerOption levelLoggerOption = new Types().new LevelLoggerOption();
+        Types.LevelLoggerOption levelLoggerOption = new Types.LevelLoggerOption();
         levelLoggerOption.msg = msg;
         levelLoggerOption.error = error;
         this.o(levelLoggerOption);
     }
 
     public void msg_data(String msg, HashMap<String, Object> data) {
-        Types.LevelLoggerOption levelLoggerOption = new Types().new LevelLoggerOption();
+        Types.LevelLoggerOption levelLoggerOption = new Types.LevelLoggerOption();
         levelLoggerOption.msg = msg;
         levelLoggerOption.data = data;
         this.o(levelLoggerOption);
     }
 
     public void msg_data_trace(String msg, HashMap<String, Object> data, Error error) {
-        Types.LevelLoggerOption levelLoggerOption = new Types().new LevelLoggerOption();
+        Types.LevelLoggerOption levelLoggerOption = new Types.LevelLoggerOption();
         levelLoggerOption.msg = msg;
         levelLoggerOption.data = data;
         levelLoggerOption.error = error;

@@ -8,8 +8,6 @@ import java.util.Map;
 
 public class Utils {
 
-    public Utils() {}
-
     public static String convertToUnits(long millis) {
         String retStr = "";
         long rest = millis;

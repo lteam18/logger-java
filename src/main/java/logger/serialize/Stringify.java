@@ -28,58 +28,55 @@ public class Stringify {
 
     private static long history;
 
-    public static IChalk ichalk =
-            new IChalk() {
-                @Override
-                public String chalk(Object Object_msg) {
-                    if (Object_msg instanceof Types.Persistant.LevelLog) {
-                        Types.Persistant.LevelLog data = (Types.Persistant.LevelLog) Object_msg;
-                        final long diff = data.T - history;
-                        history = data.T;
+    public static IChalk ichalk = new IChalk() {
+        @Override
+        public String chalk(Object Object_msg) {
+            if (Object_msg instanceof Types.Persistant.LevelLog) {
+                Types.Persistant.LevelLog data = (Types.Persistant.LevelLog) Object_msg;
+                final long diff = data.T - history;
 
-                        String temp = LEADING_CHARS + Utils.formatDiffString(diff);
-                        final String diff_time_str = temp.substring(temp.length() - SEP);
+                history = data.T;
 
-                        String l_difftime = diff_time_str;
-                        l_difftime = wrapWithColor(ANSI_BLUE, l_difftime);
-                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-                        String l_time = sdf.format(data.T);
-                        l_time = wrapWithColor(ANSI_WHITE, l_time);
+                String temp = LEADING_CHARS + Utils.formatDiffString(diff);
+                final String diff_time_str = temp.substring(temp.length() - SEP);
 
-                        final ArrayList<String> l_nameList = data.N;
+                String l_difftime = diff_time_str;
+                l_difftime = wrapWithColor(ANSI_BLUE, l_difftime);
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+                String l_time = sdf.format(data.T);
+                l_time = wrapWithColor(ANSI_WHITE, l_time);
 
-                        String l_msg = "";
-                        if (!data.M.equals("")) {
-                            l_msg = general_text_fun(data, data.M);
-                        }
+                final ArrayList<String> l_nameList = data.N;
 
-                        String msg = l_difftime + " " + l_time + " " + l_nameList + " " + l_msg;
-                        if (data.D != null) {
-                            ArrayList<String> ret = new ArrayList<>();
-                            Utils.convert(data.D, ret, "");
-                            final String[] l_data = {""};
-                            ret.forEach(e -> l_data[0] += general_text_fun(data, e + " "));
-                            msg += "\n" + l_data[0];
-                        }
-                        if (data.E.size() > 0) {
-                            msg += "\n" + data.E.get("stack");
-                            data.E.put(
-                                    "stack",
-                                    wrapWithColor(ANSI_BLACK, data.E.get("stack").toString()));
-                        }
-
-                        return msg.replace("\n", "\n" + LEADING_SPACE);
-                    }
-                    return " data error";
+                String l_msg = "";
+                if (!data.M.equals("")) {
+                    l_msg = general_text_fun(data, data.M);
                 }
-            };
 
-    public Stringify() {
-    }
+                String msg = l_difftime + " " + l_time + " " + l_nameList + " " + l_msg;
+                if (data.D != null) {
+                    ArrayList<String> ret = new ArrayList<>();
+                    Utils.convert(data.D, ret, "");
+                    final String[] l_data = {""};
+                    ret.forEach(e -> l_data[0] += general_text_fun(data, e + " "));
+                    msg += "\n" + l_data[0];
+                }
+                if (data.E.size() > 0) {
+                    msg += "\n" + data.E.get("stack");
+                    data.E.put(
+                            "stack",
+                            wrapWithColor(ANSI_BLACK, data.E.get("stack").toString()));
+                }
 
-    public IChalk createChalk() {
-        this.history = new Date().getTime();
-        return this.ichalk;
+                return msg.replace("\n", "\n" + LEADING_SPACE);
+            }
+            return " data error";
+        }
+    };
+
+    public static IChalk createChalk() {
+        history = new Date().getTime();
+        return ichalk;
     }
 
     private static String general_text_fun(Types.Persistant.LevelLog data, String msg) {
