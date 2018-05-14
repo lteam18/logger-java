@@ -25,45 +25,38 @@ public class Utils {
     public static String formatDiffString(long millis) {
         final int max_String = 9;
         final String result = convertToUnits(millis);
-//        String ret = "";
-        StringBuilder ret;
+        StringBuilder ret = new StringBuilder();
 
         for (int i = 0; i < result.length(); i += 2) {
-             StringBuilder s;
+            StringBuilder s = new StringBuilder();
             if (result.charAt(i) == '0') continue;
-            if (i + 1 < result.length()) s.append("" + result.charAt(i) + result.charAt(i + 1));
+            if (i + 1 < result.length()) s.append(result.charAt(i) + result.charAt(i + 1));
+            else s.append(result.charAt(i));
+            if (s.length() + ret.length() > max_String) {
+                if (ret.length() == 0) ret.append(s);
+                return ret.toString();
+            }
+            ret.append(s);
         }
-
-//        for (int i = 0; i < result.length(); i += 2) {
-//            final String s;
-//            if (result.charAt(i) == '0') continue;
-//            if (i + 1 < result.length()) s = "" + result.charAt(i) + result.charAt(i + 1);
-//            else s = "" + result.charAt(i);
-//            if (s.length() + ret.length() > max_String) {
-//                if (ret.length() == 0) ret += s;
-//                return ret;
-//            }
-//            ret += s;
-//        }
-        return ret;
+        return ret.toString();
     }
 
     public static String formatDiffString(long millis, int max_String) {
         final String result = convertToUnits(millis);
-        String ret = "";
+        StringBuilder ret = new StringBuilder();
 
         for (int i = 0; i < result.length(); i += 2) {
-            final String s;
+            StringBuilder s = new StringBuilder();
             if (result.charAt(i) == '0') continue;
-            if (i + 1 < result.length()) s = "" + result.charAt(i) + result.charAt(i + 1);
-            else s = "" + result.charAt(i);
+            if (i + 1 < result.length()) s.append(result.charAt(i) + result.charAt(i + 1));
+            else s.append(result.charAt(i));
             if (s.length() + ret.length() > max_String) {
-                if (ret.length() == 0) ret += s;
-                return ret;
+                if (ret.length() == 0) ret.append(s);
+                return ret.toString();
             }
-            ret += s;
+            ret.append(s);
         }
-        return ret;
+        return ret.toString();
     }
 
     public static void sleep(long millis) {
