@@ -3,9 +3,12 @@ package logger.types;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
 import logger.Utils;
 
-/** Created by Lynnsion on 2018/5/10. */
+/**
+ * Created by Lynnsion on 2018/5/10.
+ */
 public class Types {
 
     public class LevelLoggerOption {
@@ -13,7 +16,8 @@ public class Types {
         public String msg;
         public HashMap<String, Object> data;
 
-        public LevelLoggerOption() {}
+        public LevelLoggerOption() {
+        }
 
         public LevelLoggerOption(String msg) {
             this.msg = msg;
@@ -69,7 +73,8 @@ public class Types {
             */
             public HashMap<String, Object> E = new HashMap<>();
 
-            public LevelLog() {}
+            public LevelLog() {
+            }
 
             public LevelLog(
                     ArrayList<String> N,
@@ -77,21 +82,25 @@ public class Types {
                     LevelType L,
                     String M,
                     HashMap<String, Object> D,
-                    Error E) {
+                    Object E) {
                 this.N = N;
                 this.T = T;
                 this.L = L;
                 this.M = M;
                 this.D = D;
                 if (E == null) {
-                    ;
+                    return;
                 } else {
-                    this.E = new Utils().stringifyError(E);
+                    if (E instanceof Error)
+                        this.E = new Utils().stringifyError((Error) E);
+                    else if (E instanceof HashMap) {
+                        this.E = (HashMap<String, Object>) E;
+                    }
                 }
             }
 
-            public Map<String, Object> getLevelLogDataMap() {
-                Map<String, Object> result_map = new HashMap<>();
+            public HashMap<String, Object> getLevelLogDataMap() {
+                HashMap<String, Object> result_map = new HashMap<>();
                 result_map.put("N", N);
                 result_map.put("T", T); //timeStamp
                 result_map.put("L", L); //LogLevel
@@ -113,27 +122,31 @@ public class Types {
             public BeatLog beatLog;
             public HashMap<String, Object> data;
 
-            public HeatLog() {}
+            public HeatLog() {
+            }
         }
 
         public class BeatLog {
             public long hid;
 
-            public BeatLog() {}
+            public BeatLog() {
+            }
         }
 
         public class StatusDefineLog {
             public long sid;
             public Map<String, Object> data;
 
-            public StatusDefineLog() {}
+            public StatusDefineLog() {
+            }
         }
 
         public class StatusRecordLog {
             public long sid;
             public Map<String, Object> data;
 
-            public StatusRecordLog() {}
+            public StatusRecordLog() {
+            }
         }
     }
 

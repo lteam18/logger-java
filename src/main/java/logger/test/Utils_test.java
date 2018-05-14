@@ -2,7 +2,6 @@ package logger.test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
 import logger.Utils;
 
 /** Created by Lynnsion on 2018/5/2. */
@@ -29,6 +28,5 @@ public class Utils_test {
 
         utils.convert(data, list, "");
         System.out.println("result 5: " + list.toString());
-        System.out.println("result 6: " + utils.stringifyErrors(new Error("test Error")));
     }
 }

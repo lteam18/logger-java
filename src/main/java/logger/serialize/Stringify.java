@@ -3,10 +3,13 @@ package logger.serialize;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+
 import logger.Utils;
 import logger.types.Types;
 
-/** Created by Lynnsion on 2018/5/8. */
+/**
+ * Created by Lynnsion on 2018/5/8.
+ */
 @SuppressWarnings("SpellCheckingInspection")
 public class Stringify {
 
@@ -73,7 +76,8 @@ public class Stringify {
                 }
             };
 
-    public Stringify() {}
+    public Stringify() {
+    }
 
     public IChalk createChalk() {
         this.history = new Date().getTime();

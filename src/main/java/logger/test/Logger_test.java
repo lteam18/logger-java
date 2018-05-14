@@ -10,7 +10,9 @@ import logger.serialize.Serializer;
 import logger.serialize.Stringify;
 import logger.types.Types;
 
-/** Created by Lynnsion on 2018/5/2. */
+/**
+ * Created by Lynnsion on 2018/5/2.
+ */
 public class Logger_test {
 
     public static void main(String[] args) {
@@ -23,17 +25,12 @@ public class Logger_test {
                 instance.RootLogger =
                         index.createRoot(
                                 "MainLogger-123",
-                                new Serializer()
-                                        .combine(
-                                                new Serializer()
-                                                .new Major(
-                                                        new Stringify().ichalk,
-                                                        new Output()
-                                                                .combine(
-                                                                        new Output().CONSOLE(),
-                                                                        new Output()
-                                                                                .file(
-                                                                                        "./a.log")))));
+                                new Serializer().combine(
+                                        new Serializer().new Major(
+                                                new Stringify().ichalk,
+                                                new Output().combine(
+                                                        new Output().CONSOLE(),
+                                                        new Output().file("./a.log")))));
 
         Types.LevelLoggerOption lo = new Types().new LevelLoggerOption("Program ready");
 
@@ -64,7 +61,7 @@ public class Logger_test {
         data.put("work", data2);
         llo.info.msg_data("12312", data);
 
-        final Logger slog = llo.createSub("sublogger");
+        final Logger slog = llo.createSub("subLogger");
 
         slog.warn.trace(new Error("Here"));
 

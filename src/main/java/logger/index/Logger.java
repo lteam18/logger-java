@@ -38,13 +38,11 @@ public class Logger {
         if (s == null) {
 
             this.s = new Serializer().major;
-            //            System.out.println("Logger class, arraylist=" + arrayList + " s=" +new Serializer().major);
             return new Logger(arrayList, new Serializer().major);
         } else {
 
             this.s = s;
             this.namelist = arrayList;
-            //            System.out.println("Logger class, arraylist=" + this.namelist + " s=" +this.s);
             return new Logger(arrayList, s);
         }
     }
