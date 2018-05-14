@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Utils {
@@ -103,7 +104,7 @@ public class Utils {
     }
 
     public static HashMap<String, Object> map(Object... values) {
-        HashMap<String, Object> map = new HashMap<>();
+        HashMap<String, Object> map = new LinkedHashMap<>();
         for (int i = 0; i < values.length; i += 2) {
             map.put(values[i].toString(), values[i + 1]);
         }
@@ -114,7 +115,6 @@ public class Utils {
         StringWriter sw = new StringWriter();
         PrintWriter pw = new PrintWriter(sw);
         throwable.printStackTrace(pw);
-        //        return pw.toString();
         StringBuffer error = sw.getBuffer();
         return error.toString();
     }
