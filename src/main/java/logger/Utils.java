@@ -10,7 +10,7 @@ public class Utils {
 
     public Utils() {}
 
-    public String convertToUnits(long millis) {
+    public static String convertToUnits(long millis) {
         String retStr = "";
         long rest = millis;
         final Long ms = rest % 1000;
@@ -24,7 +24,7 @@ public class Utils {
         return retStr;
     }
 
-    public String formatDiffString(long millis) {
+    public static String formatDiffString(long millis) {
         final int max_String = 9;
         final String result = convertToUnits(millis);
         String ret = "";
@@ -43,7 +43,7 @@ public class Utils {
         return ret;
     }
 
-    public String formatDiffString(long millis, int max_String) {
+    public static String formatDiffString(long millis, int max_String) {
         final String result = convertToUnits(millis);
         String ret = "";
 
@@ -72,7 +72,7 @@ public class Utils {
 
     // { a: { b:1, c:2 }}
     // => [a.b]=1 [a.c]=2
-    public void convert(HashMap<String, Object> data, ArrayList<String> ret, String prefix) {
+    public static void convert(HashMap<String, Object> data, ArrayList<String> ret, String prefix) {
         for (Map.Entry<String, Object> entry : data.entrySet()) {
             if (entry.getValue() instanceof String || entry.getValue() instanceof Integer) {
                 ret.add(prefix + entry.getKey() + "=" + entry.getValue());
@@ -85,7 +85,7 @@ public class Utils {
         }
     }
 
-    public void convert(HashMap<String, Object> data, ArrayList<String> ret) {
+    public static void convert(HashMap<String, Object> data, ArrayList<String> ret) {
         String prefix = "";
         for (Map.Entry<String, Object> entry : data.entrySet()) {
             if (entry.getValue() instanceof String || entry.getValue() instanceof Integer) {
@@ -99,7 +99,7 @@ public class Utils {
         }
     }
 
-    public HashMap<String, Object> stringifyError(Error e) {
+    public static HashMap<String, Object> stringifyError(Error e) {
         return map(
                 "message", e.getMessage(), "name", e.getClass().toString(), "stack", getStacks(e));
     }

@@ -3,6 +3,7 @@ package logger.test;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
+import logger.Utils;
 import logger.global.Instance;
 import logger.index.Logger;
 import logger.serialize.Output;
@@ -43,12 +44,16 @@ public class Logger_test {
 
         llo.debug.msg("123");
 
-        HashMap<String, Object> data = new LinkedHashMap<>();
-        HashMap<String, Object> data2 = new LinkedHashMap<>();
-        data2.put("a", "1");
-        data2.put("b", "2");
-        data.put("status", "on");
-        data.put("work", data2);
+//        HashMap<String, Object> data = new LinkedHashMap<>();
+//        HashMap<String, Object> data2 = new LinkedHashMap<>();
+//        data2.put("a", "1");
+//        data2.put("b", "2");
+//        data.put("status", "on");
+//        data.put("work", data2);
+
+
+        HashMap<String, Object> data2 = Utils.map("a", "1", "b", "2");
+        HashMap<String, Object> data = Utils.map("status", "on", "work", data2);
 
         llo.debug.msg_data("123", data);
 
