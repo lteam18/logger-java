@@ -98,7 +98,7 @@ public class Serializer {
         }
     }
 
-    public  Combination combine(Type... s) {
+    public Combination combine(Type... s) {
         ArrayList<Type> arrayList = new ArrayList<>();
         for (int i = 0; i < s.length; i++) {
             arrayList.add(s[i]);

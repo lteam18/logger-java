@@ -9,19 +9,19 @@ import java.util.ArrayList;
 /** Created by Lynnsion on 2018/5/6. */
 public class Output {
 
-    private Type type = msg1 -> System.out.println(msg1);
-
     public Output() {}
 
-    public Type CONSOLE() {
-        return (String msg) -> type.output(msg);
+    public static Type CONSOLE() {
+        Type t = msg -> System.out.println(msg);
+        return t;
     }
 
-    public Type file(String filePath) {
-        return (String msg) -> appendFile(msg, filePath);
+    public static Type file(String filePath) {
+        Type t = msg -> appendFile(msg, filePath);
+        return t;
     }
 
-    public Type combine(Type... outputs) {
+    public static Type combine(Type... outputs) {
         ArrayList<Type> output = new ArrayList<>();
         for (int i = 0; i < outputs.length; i++) {
             output.add(outputs[i]);
@@ -30,7 +30,7 @@ public class Output {
         return (String message) -> output.forEach((e) -> e.output(message));
     }
 
-    private void appendFile(String msg, String filePath) {
+    private static void appendFile(String msg, String filePath) {
         FileWriter fw = null;
         try {
             File file = new File(filePath);

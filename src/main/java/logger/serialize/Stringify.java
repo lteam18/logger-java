@@ -22,15 +22,13 @@ public class Stringify {
     public static final String ANSI_PURPLE = "\033[0;95m"; // PURPLE
     public static final String ANSI_GREEN = "\033[0;96m"; // GREEN
 
-    private Utils u = new Utils();
-
-    private final int SEP = 9;
+    private static final int SEP = 9;
     private static final String LEADING_SPACE = "          ";
     private static final String LEADING_CHARS = "_________";
 
-    private long history;
+    private static long history;
 
-    public IChalk ichalk =
+    public static IChalk ichalk =
             new IChalk() {
                 @Override
                 public String chalk(Object Object_msg) {
@@ -39,7 +37,7 @@ public class Stringify {
                         final long diff = data.T - history;
                         history = data.T;
 
-                        String temp = LEADING_CHARS + u.formatDiffString(diff);
+                        String temp = LEADING_CHARS + Utils.formatDiffString(diff);
                         final String diff_time_str = temp.substring(temp.length() - SEP);
 
                         String l_difftime = diff_time_str;
@@ -58,7 +56,7 @@ public class Stringify {
                         String msg = l_difftime + " " + l_time + " " + l_nameList + " " + l_msg;
                         if (data.D != null) {
                             ArrayList<String> ret = new ArrayList<>();
-                            u.convert(data.D, ret, "");
+                            Utils.convert(data.D, ret, "");
                             final String[] l_data = {""};
                             ret.forEach(e -> l_data[0] += general_text_fun(data, e + " "));
                             msg += "\n" + l_data[0];
@@ -84,7 +82,7 @@ public class Stringify {
         return this.ichalk;
     }
 
-    private String general_text_fun(Types.Persistant.LevelLog data, String msg) {
+    private static String general_text_fun(Types.Persistant.LevelLog data, String msg) {
         switch (data.L) {
             case DEBUG:
                 return ANSI_GREEN + msg + ANSI_RESET;
@@ -101,7 +99,7 @@ public class Stringify {
         }
     }
 
-    private String wrapWithColor(String color, String msg) {
+    private static String wrapWithColor(String color, String msg) {
         return color + msg + ANSI_RESET;
     }
 }

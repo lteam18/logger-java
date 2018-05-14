@@ -29,9 +29,9 @@ public class Logger_test {
                                 new Serializer().combine(
                                         new Serializer().new Major(
                                                 new Stringify().ichalk,
-                                                new Output().combine(
-                                                        new Output().CONSOLE(),
-                                                        new Output().file("./a.log")))));
+                                                Output.combine(
+                                                        Output.CONSOLE(),
+                                                        Output.file("./a.log")))));
 
         Types.LevelLoggerOption lo = new Types().new LevelLoggerOption("Program ready");
 
