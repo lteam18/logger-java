@@ -61,7 +61,7 @@ public class JSON {
                 map.put("E", data.E);
             }
 //            System.out.println("JSON map=" + map);
-            return stringify(map);
+            return stringify(map)+ "\n";
 
         }
 
