@@ -33,11 +33,6 @@ public class Serializer {
             this.output_Major = Output.CONSOLE();
         }
 
-//        public Major(IChalk chalk, Output.Type output) {
-//            levelLogStringify = chalk;
-//            this.output_Major = output;
-//        }
-
         public Major(IChalk chalk, Output.Type... outputs) {
             this.levelLogStringify = chalk;
             this.output_Major = Output.combine(outputs);
