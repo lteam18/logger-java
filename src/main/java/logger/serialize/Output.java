@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 
 /** Created by Lynnsion on 2018/5/6. */
+@SuppressWarnings("SpellCheckingInspection")
 public class Output {
 
     public Output() {}
@@ -37,7 +38,7 @@ public class Output {
             fw = new FileWriter(file, true);
             PrintWriter pw = new PrintWriter(fw);
 
-            pw.println(msg);
+            pw.print(msg);
 
             pw.flush();
             fw.flush();

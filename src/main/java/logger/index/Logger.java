@@ -22,26 +22,32 @@ public class Logger {
 
     public Logger() {
         this.namelist = new ArrayList<>();
-        this.s = new Serializer().major;
+        this.s = new Serializer.Major();
     }
 
     public Logger(ArrayList<String> namelist, Serializer.Type s) {
         this.namelist = namelist;
+        System.out.println(" Logger namelist ="+this.namelist);
         if (s == null) {
-            this.s = new Serializer().major;
+            this.s = new Serializer.Major();
         } else {
             this.s = s;
+            System.out.println("createRoot ss=" + this.s);
+
         }
     }
 
-    public static Logger createRoot(String name, Serializer.Type s) {
+    public static Logger createRoot(String name, Serializer.Type ss) {
         String[] a = {name};
         ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(a));
-
-        if (s == null) {
-            return new Logger(arrayList, new Serializer().major);
+//        System.out.println("name ="+name);
+        System.out.println("namelist ="+arrayList);
+        if (ss == null) {
+            return new Logger(arrayList, new Serializer.Major());
         } else {
-            return new Logger(arrayList, s);
+            s = ss;
+            System.out.println("createRoot ss=" + ss);
+            return new Logger(arrayList, ss);
         }
     }
 

@@ -70,23 +70,6 @@ public class Types {
                 }
             }
 
-//            public HashMap<String, Object> getLevelLogDataMap() {
-//                HashMap<String, Object> result_map = new HashMap<>();
-//                result_map.put("N", N);
-//                result_map.put("T", T); //timeStamp
-//                result_map.put("L", L); //LogLevel
-//                if (!M.equals("")) {
-//                    result_map.put("M", M); //Message
-//                }
-//                if (D != null) {
-//                    result_map.put("D", D); //Data
-//                }
-//                if (E != null) {
-//                    result_map.put("E", E); //ErrorStack
-//                }
-//
-//                return result_map;
-//            }
         }
 
         public static class HeatLog {

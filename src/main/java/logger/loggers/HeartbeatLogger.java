@@ -14,7 +14,7 @@ public class HeartbeatLogger {
 
     public HeartbeatLogger(Serializer.Type s, String msg, HashMap<String, Object> data) {
         if (s == null) {
-            this.s = new Serializer().major;
+            this.s =  new Serializer.Major();
         } else {
             this.s = s;
         }

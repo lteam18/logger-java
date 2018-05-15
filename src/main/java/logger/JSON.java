@@ -39,49 +39,35 @@ public class JSON {
         return stringify(Utils.map(values));
     }
 
-    public static IChalk stringify = new IChalk() {
-        @Override
-        public String chalk(Object msg) {
-            if (msg instanceof Types.Persistant.LevelLog) {
-                Types.Persistant.LevelLog data = (Types.Persistant.LevelLog) msg;
-                HashMap<String, Object> map = new LinkedHashMap<>();
+    public static IChalk stringify = msg -> {
+        if (msg instanceof Types.Persistant.LevelLog) {
+            Types.Persistant.LevelLog data = (Types.Persistant.LevelLog) msg;
+            HashMap<String, Object> map = new LinkedHashMap<>();
 
-
-                if (data.N != null) {
-                    map.put("N", data.N);
-                    System.out.println("data.N =" + data.N);
-                }
-
-                if (data.T != 0) {
-                    map.put("T", data.T);
-                    System.out.println("data.T =" + data.T);
-
-                }
-                if (data.L != null) {
-                    map.put("L", data.L);
-                    System.out.println("data.L =" + data.L);
-                }
-                if (data.M != null) {
-                    map.put("M", data.M);
-                    System.out.println("data.M =" + data.M);
-                }
-                if (data.D != null) {
-                    map.put("D", data.D);
-                    System.out.println("data. =" + data.D);
-                }
-                if (data.E != null && data.E.size() > 0) {
-                    map.put("E", data.E);
-                    System.out.println("data.E =" + data.E);
-                }
-                System.out.println("JSON map=" + map);
-                return stringify(map);
-
+            if (data.N != null) {
+                map.put("N", data.N);
             }
+            if (data.T != 0) {
+                map.put("T", data.T);
+            }
+            if (data.L != null) {
+                map.put("L", data.L);
+            }
+            if (data.M != null) {
+                map.put("M", data.M);
+            }
+            if (data.D != null) {
+                map.put("D", data.D);
+            }
+            if (data.E != null && data.E.size() > 0) {
+                map.put("E", data.E);
+            }
+            System.out.println("JSON map=" + map);
+            return stringify(map);
 
-
-            return "null";
         }
 
 
+        return "null";
     };
 }

@@ -1,5 +1,6 @@
 package logger.global;
 
+import logger.JSON;
 import logger.index.Logger;
 import logger.serialize.Output;
 import logger.serialize.Serializer;
@@ -10,18 +11,15 @@ import logger.serialize.Stringify;
  */
 @SuppressWarnings("SpellCheckingInspection")
 public class Instance {
+    public static Logger RootLogger = Logger.createRoot(
+            "Logger",
+            new Serializer.Major(
+                    Stringify.createChalk(),
+                    Output.combine(
+                            Output.CONSOLE()
+//                            Output.file("./a.log")
+                    )
+            )
+    );
 
-    public static Logger RootLogger;
-
-    public Instance() {
-        this.RootLogger =
-                Logger.createRoot(
-                        "Logger",
-                        new Serializer().new Major(
-                                Stringify.createChalk(),
-                                Output.combine(Output.CONSOLE()
-                                )
-                        )
-                );
-    }
 }

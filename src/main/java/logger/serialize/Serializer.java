@@ -10,6 +10,7 @@ import logger.types.Types;
 /**
  * Created by Lynnsion on 2018/5/12.
  */
+@SuppressWarnings( "SpellCheckingInspection")
 public class Serializer {
     public interface Type {
         void log(Types.Persistant.LevelLog data);
@@ -23,12 +24,12 @@ public class Serializer {
         void rec(long sid, Map<String, Object> status);
     }
 
-    public class Major implements Type {
+    public static class Major implements Type {
         private Output.Type output_Major;
         private IChalk levelLogStringify;
 
         public Major() {
-            levelLogStringify = msg -> JSON.stringify_Object(msg);
+            levelLogStringify = JSON.stringify;
             this.output_Major = Output.CONSOLE();
         }
 
@@ -36,9 +37,6 @@ public class Serializer {
             levelLogStringify = chalk;
             this.output_Major = output;
         }
-
-
-
 
         @Override
         public void log(Types.Persistant.LevelLog data) {
@@ -69,10 +67,6 @@ public class Serializer {
     public static class Combination implements Type {
 
         private ArrayList<Type> s;
-
-        public Combination() {
-            s = new ArrayList<>();
-        }
 
         public Combination(ArrayList<Type> s) {
             this.s = s;
@@ -111,20 +105,5 @@ public class Serializer {
         }
         return new Combination(arrayList);
     }
-
-    public Major major;
-
-    public Combination combination;
-
-    public Serializer() {
-        this.major = new Major();
-        this.combination = new Combination();
-    }
-
-    public Serializer(Major major, Combination combination) {
-        this.major = major;
-        this.combination = combination;
-    }
-
 
 }

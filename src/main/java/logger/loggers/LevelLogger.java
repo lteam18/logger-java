@@ -15,16 +15,19 @@ import logger.types.Types;
 public class LevelLogger {
     private Types.LevelType logType;
     private static Serializer.Type s;
-    private ArrayList<String> namelist;
+    private static ArrayList<String> namelist;
 
     public LevelLogger(Types.LevelType logType, Serializer.Type s, ArrayList<String> namelist) {
         this.logType = logType;
         if (s == null) {
-            this.s = new Serializer().major;
+            this.s =  new Serializer.Major();
         } else {
             this.s = s;
         }
+        System.out.println("LevelLogger sssss=" + namelist);
         this.namelist = namelist;
+        System.out.println("LevelLogger namelist=" + this.namelist);
+
     }
 
     public void o(Types.LevelLoggerOption o) {
