@@ -17,15 +17,4 @@ public class Instance {
                     Output.CONSOLE()
             )
     );
-
-    public static Logger RootLogger() {
-        return Logger.createRoot(
-                "Logger",
-                new Serializer.Major(
-                        Stringify.createChalk(),
-                        Output.CONSOLE()
-                )
-        );
-    }
-
 }

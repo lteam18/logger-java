@@ -34,7 +34,6 @@ public class Stringify {
             if (Object_msg instanceof Types.Persistant.LevelLog) {
                 Types.Persistant.LevelLog data = (Types.Persistant.LevelLog) Object_msg;
                 final long diff = data.T - history;
-
                 history = data.T;
 
                 String temp = LEADING_CHARS + Utils.formatDiffString(diff);
