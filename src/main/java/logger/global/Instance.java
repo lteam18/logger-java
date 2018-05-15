@@ -17,7 +17,6 @@ public class Instance {
                     Stringify.createChalk(),
                     Output.combine(
                             Output.CONSOLE()
-//                            Output.file("./a.log")
                     )
             )
     );

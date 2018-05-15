@@ -24,9 +24,7 @@ public class LevelLogger {
         } else {
             this.s = s;
         }
-        System.out.println("LevelLogger sssss=" + namelist);
         this.namelist = namelist;
-        System.out.println("LevelLogger namelist=" + this.namelist);
 
     }
 

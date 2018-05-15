@@ -9,7 +9,6 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import logger.serialize.IChalk;
-import logger.serialize.Stringify;
 import logger.types.Types;
 
 public class JSON {
@@ -43,7 +42,6 @@ public class JSON {
         if (msg instanceof Types.Persistant.LevelLog) {
             Types.Persistant.LevelLog data = (Types.Persistant.LevelLog) msg;
             HashMap<String, Object> map = new LinkedHashMap<>();
-
             if (data.N != null) {
                 map.put("N", data.N);
             }
