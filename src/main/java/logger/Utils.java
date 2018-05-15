@@ -26,7 +26,6 @@ public class Utils {
     public static String formatDiffString(long millis) {
         final int max_String = 9;
         final String result = convertToUnits(millis);
-        System.out.println("result =" + result);
         StringBuilder ret = new StringBuilder();
 
         for (int i = 0; i < result.length(); i += 2) {
