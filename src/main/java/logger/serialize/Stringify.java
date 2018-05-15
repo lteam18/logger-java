@@ -98,4 +98,8 @@ public class Stringify {
     private static String wrapWithColor(String color, String msg) {
         return color + msg + ANSI_RESET;
     }
+
+    public  interface IChalk{
+        String chalk(Object msg);
+    }
 }

@@ -26,14 +26,14 @@ public class Serializer {
 
     public static class Major implements Type {
         private Output.Type output_Major;
-        private IChalk levelLogStringify;
+        private Stringify.IChalk levelLogStringify;
 
         public Major() {
             levelLogStringify = JSON.stringify;
             this.output_Major = Output.CONSOLE();
         }
 
-        public Major(IChalk chalk, Output.Type... outputs) {
+        public Major(Stringify.IChalk chalk, Output.Type... outputs) {
             this.levelLogStringify = chalk;
             this.output_Major = Output.combine(outputs);
         }
