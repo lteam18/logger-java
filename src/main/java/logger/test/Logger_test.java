@@ -37,11 +37,7 @@ public class Logger_test {
 
         llo.debug.msg("Program ready");
 
-        try {
-            Thread.sleep(1218);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+         Utils.sleep(1128);
 
         llo.debug.msg("123");
 
