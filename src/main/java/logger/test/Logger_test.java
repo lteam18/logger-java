@@ -17,25 +17,23 @@ public class Logger_test {
 
     public static void main(String[] args) {
 
-//         Instance.RootLogger = Logger.createRoot(
-//                "MainLogger-123",
-//                 Serializer.combine(
-//                        new Serializer.Major(
-//                                Stringify.ichalk,
-//                                Output.combine(
-//                                        Output.CONSOLE(),
-//                                        Output.file("./a.log")
-//                                )
-//                        ),
-//                        new Serializer.Major(
-//                                JSON.stringify,
-//                                Output.file("./a.json.log")
-//                        )
-//                )
-//        );
+         Logger llo = Instance.RootLogger;
+         Instance.RootLogger = Logger.createRoot(
+                "MainLogger-123",
+                Serializer.combine(
+                        new Serializer.Major(
+                                Stringify.ichalk,
+                                Output.CONSOLE(),
+                                Output.file("./a.log")
+                        ),
+                        new Serializer.Major(
+                                JSON.stringify,
+                                Output.file("./a.json.log")
+                        )
+                )
+        );
 
 
-        final Logger llo = Instance.RootLogger;
 
         llo.debug.msg("Program ready");
 

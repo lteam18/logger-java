@@ -37,8 +37,11 @@ public class Stringify {
 
                 history = data.T;
 
+                System.out.println("diff =" + diff);
                 String temp = LEADING_CHARS + Utils.formatDiffString(diff);
                 final String diff_time_str = temp.substring(temp.length() - SEP);
+
+                System.out.println("diff_time_str =" + diff_time_str);
 
                 String l_difftime = diff_time_str;
                 l_difftime = wrapWithColor(ANSI_BLUE, l_difftime);

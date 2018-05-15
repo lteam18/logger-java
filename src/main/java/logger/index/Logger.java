@@ -20,12 +20,9 @@ public class Logger {
     private static Serializer.Type s;
     private Types.LevelType t;
 
-    public Logger() {
-        this.namelist = new ArrayList<>();
-        this.s = new Serializer.Major();
-    }
 
     public Logger(ArrayList<String> namelist, Serializer.Type s) {
+
         this.namelist = namelist;
         if (s == null) {
             this.s = new Serializer.Major();
@@ -35,14 +32,17 @@ public class Logger {
         }
     }
 
-    public static Logger createRoot(String name, Serializer.Type ss) {
+    public static Logger createRoot(String name, Serializer.Type sType) {
         String[] a = {name};
         ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(a));
-        if (ss == null) {
-            return new Logger(arrayList, new Serializer.Major());
+        namelist = arrayList;
+
+        if (sType == null) {
+            return new Logger(namelist, new Serializer.Major());
         } else {
-            s = ss;
-            return new Logger(arrayList, ss);
+            namelist = arrayList;
+            s = sType;
+            return new Logger(namelist, s);
         }
     }
 

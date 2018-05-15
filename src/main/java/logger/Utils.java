@@ -10,11 +10,11 @@ import java.util.Map;
 public class Utils {
 
     public static String convertToUnits(long millis) {
-        String retStr ;
+        String retStr;
         long rest = millis;
         final Long ms = rest % 1000;
         rest = Math.round(Math.floor(rest / 1000));
-        final long minute = rest % 10;
+        final long minute = rest % 60;
         rest = Math.round(Math.floor(rest / 60));
         final long hour = rest % 24;
         final long day = Math.round(Math.floor(rest / 24));
@@ -26,13 +26,14 @@ public class Utils {
     public static String formatDiffString(long millis) {
         final int max_String = 9;
         final String result = convertToUnits(millis);
+        System.out.println("result =" + result);
         StringBuilder ret = new StringBuilder();
 
         for (int i = 0; i < result.length(); i += 2) {
             StringBuilder s = new StringBuilder();
             if (result.charAt(i) == '0') continue;
-            if (i + 1 < result.length()) s.append(result.charAt(i) + result.charAt(i + 1));
-            else s.append(result.charAt(i));
+            if (i + 1 < result.length()) s.append("" + result.charAt(i) + result.charAt(i + 1));
+            else s.append("" + result.charAt(i));
             if (s.length() + ret.length() > max_String) {
                 if (ret.length() == 0) ret.append(s);
                 return ret.toString();
@@ -44,13 +45,14 @@ public class Utils {
 
     public static String formatDiffString(long millis, int max_String) {
         final String result = convertToUnits(millis);
+        System.out.println("result =" + result);
         StringBuilder ret = new StringBuilder();
 
         for (int i = 0; i < result.length(); i += 2) {
             StringBuilder s = new StringBuilder();
             if (result.charAt(i) == '0') continue;
-            if (i + 1 < result.length()) s.append(result.charAt(i) + result.charAt(i + 1));
-            else s.append(result.charAt(i));
+            if (i + 1 < result.length()) s.append("" + result.charAt(i) + result.charAt(i + 1));
+            else s.append("" + result.charAt(i));
             if (s.length() + ret.length() > max_String) {
                 if (ret.length() == 0) ret.append(s);
                 return ret.toString();
@@ -106,8 +108,8 @@ public class Utils {
     public static HashMap<String, Object> map(Object... values) {
         HashMap<String, Object> map = new LinkedHashMap<>();
         for (int i = 0; i < values.length; i += 2) {
-            if(i+1<values.length)
-            map.put(values[i].toString(), values[i + 1]);
+            if (i + 1 < values.length)
+                map.put(values[i].toString(), values[i + 1]);
         }
         return map;
     }

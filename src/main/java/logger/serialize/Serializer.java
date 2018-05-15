@@ -10,7 +10,7 @@ import logger.types.Types;
 /**
  * Created by Lynnsion on 2018/5/12.
  */
-@SuppressWarnings( "SpellCheckingInspection")
+@SuppressWarnings("SpellCheckingInspection")
 public class Serializer {
     public interface Type {
         void log(Types.Persistant.LevelLog data);
@@ -33,10 +33,16 @@ public class Serializer {
             this.output_Major = Output.CONSOLE();
         }
 
-        public Major(IChalk chalk, Output.Type output) {
-            levelLogStringify = chalk;
-            this.output_Major = output;
+//        public Major(IChalk chalk, Output.Type output) {
+//            levelLogStringify = chalk;
+//            this.output_Major = output;
+//        }
+
+        public Major(IChalk chalk, Output.Type... outputs) {
+            this.levelLogStringify = chalk;
+            this.output_Major = Output.combine(outputs);
         }
+
 
         @Override
         public void log(Types.Persistant.LevelLog data) {

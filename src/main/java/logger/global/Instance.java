@@ -1,6 +1,5 @@
 package logger.global;
 
-import logger.JSON;
 import logger.index.Logger;
 import logger.serialize.Output;
 import logger.serialize.Serializer;
@@ -15,10 +14,18 @@ public class Instance {
             "Logger",
             new Serializer.Major(
                     Stringify.createChalk(),
-                    Output.combine(
-                            Output.CONSOLE()
-                    )
+                    Output.CONSOLE()
             )
     );
+
+    public static Logger RootLogger() {
+        return Logger.createRoot(
+                "Logger",
+                new Serializer.Major(
+                        Stringify.createChalk(),
+                        Output.CONSOLE()
+                )
+        );
+    }
 
 }
