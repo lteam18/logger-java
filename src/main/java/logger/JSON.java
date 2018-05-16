@@ -49,7 +49,7 @@ public class JSON {
                 map.put("T", data.T);
             }
             if (data.L != null) {
-                map.put("L", data.L);
+                map.put("L", getIntLogLevel(data.L));
             }
             if (data.M != null) {
                 map.put("M", data.M);
@@ -61,11 +61,29 @@ public class JSON {
                 map.put("E", data.E);
             }
 //            System.out.println("JSON map=" + map);
-            return stringify(map)+ "\n";
+            return stringify(map) + "\n";
 
         }
-
-
         return "null";
     };
+
+    private static int getIntLogLevel(Types.LevelType level) {
+
+        switch (level) {
+            case DEBUG:
+                return 0;
+            case INFO:
+                return 1;
+            case WARN:
+                return 2;
+            case ERROR:
+                return 3;
+            case FATAL:
+                return 4;
+            default:
+                break;
+        }
+
+        return 100 ;
+    }
 }

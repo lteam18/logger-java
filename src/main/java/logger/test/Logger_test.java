@@ -18,6 +18,14 @@ public class Logger_test {
     public static void main(String[] args) {
 
         Instance.RootLogger = Logger.createRoot(
+            "Logger",
+            new Serializer.Major(
+                    Stringify.createChalk(),
+                    Output.CONSOLE()
+            )
+        );
+
+        Instance.RootLogger = Logger.createRoot(
                 "MainLogger-123",
                 Serializer.combine(
                         new Serializer.Major(
@@ -49,7 +57,6 @@ public class Logger_test {
         slog.fatal.msg_data("Fatal", Utils.map("static", "off", "work", Utils.map("a", "3", "b", 4)));
 
         llo.error.msg_data("Error", Utils.map("static", "off", "work", Utils.map("a", "3", "b", 4)));
-
 
     }
 }
