@@ -16,58 +16,56 @@ import logger.types.Types;
 @SuppressWarnings("SpellCheckingInspection")
 public class Logger {
 
-    private static ArrayList<String> namelist;
+    public ArrayList<String> namelist = new ArrayList<>();
     private static Serializer.Type s;
-    private Types.LevelType t;
 
+    // Very detailed infomation
+    public LevelLogger debug;
+    public LevelLogger info;
+    // Warning
+    // Some unoccasional situation, not important
+    public LevelLogger warn;
+    // Unexepected situation, handled or not
+    // To do:Issue established, explantion or solution MUST GIVEN
+    public LevelLogger error;
+    // Error that resulted in exit
+    public LevelLogger fatal;
+
+    public String name;
 
     public Logger(ArrayList<String> namelist, Serializer.Type s) {
-
+        this.name = namelist + "";
         this.namelist = namelist;
-        System.out.println("Logger class namelist =" + this.namelist);
         if (s == null) {
             this.s = new Serializer.Major();
         } else {
             this.s = s;
-
         }
+
+        debug = new LevelLogger(Types.LevelType.DEBUG, s, namelist);
+        info = new LevelLogger(Types.LevelType.INFO, s, namelist);
+        warn = new LevelLogger(Types.LevelType.WARN, s, namelist);
+        error = new LevelLogger(Types.LevelType.ERROR, s, namelist);
+        fatal = new LevelLogger(Types.LevelType.FATAL, s, namelist);
     }
 
     public static Logger createRoot(String name, Serializer.Type sType) {
         String[] a = {name};
         ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(a));
-//        namelist = arrayList;
 
         if (sType == null) {
-//            return new Logger(namelist, new Serializer.Major());
             return new Logger(arrayList, new Serializer.Major());
         } else {
-//            namelist = arrayList;
-//            s = sType;
-//            return new Logger(namelist, s);
             return new Logger(arrayList, sType);
         }
     }
 
-    public static Logger createSub(String name) {
-        namelist.add(name);
-        return new Logger(namelist, s);
+    public Logger createSub(String name) {
+        ArrayList<String> nameList = new ArrayList<>();
+        nameList.add(this.name);
+        nameList.add(name);
+        return new Logger(nameList, s);
     }
-
-    // Very detailed infomation
-    public LevelLogger debug = new LevelLogger(this.t.DEBUG, this.s, this.namelist);
-    public LevelLogger info = new LevelLogger(this.t.INFO, this.s, this.namelist);
-
-    // Warning
-    // Some unoccasional situation, not important
-    public LevelLogger warn = new LevelLogger(this.t.WARN, this.s, this.namelist);
-
-    // Unexepected situation, handled or not
-    // To do:Issue established, explantion or solution MUST GIVEN
-    public LevelLogger error = new LevelLogger(this.t.ERROR, this.s, this.namelist);
-
-    // Error that resulted in exit
-    public LevelLogger fatal = new LevelLogger(this.t.FATAL, this.s, this.namelist);
 
     public HeartbeatLogger defineHeartbeatLogger(String msg, HashMap<String, Object> data) {
         return new HeartbeatLogger(this.s, msg, data);

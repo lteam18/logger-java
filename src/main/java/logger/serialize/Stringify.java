@@ -67,7 +67,7 @@ public class Stringify {
                             wrapWithColor(ANSI_BLACK, data.E.get("stack").toString()));
                 }
 
-                return msg.replace("\n", "\n" + LEADING_SPACE) + "\n";
+                return msg.replace("\n", "\n" + LEADING_SPACE);
             }
             return " data error";
         }

@@ -15,12 +15,12 @@ import logger.types.Types;
 public class LevelLogger {
     private Types.LevelType logType;
     private static Serializer.Type s;
-    private static ArrayList<String> namelist;
+    private ArrayList<String> namelist;
 
     public LevelLogger(Types.LevelType logType, Serializer.Type s, ArrayList<String> namelist) {
         this.logType = logType;
         if (s == null) {
-            this.s =  new Serializer.Major();
+            this.s = new Serializer.Major();
         } else {
             this.s = s;
         }

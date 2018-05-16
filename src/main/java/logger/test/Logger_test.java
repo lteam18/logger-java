@@ -17,9 +17,7 @@ public class Logger_test {
 
     public static void main(String[] args) {
 
-        Logger llo = Instance.RootLogger;
-
-        llo = Logger.createRoot(
+        Instance.RootLogger = Logger.createRoot(
                 "MainLogger-123",
                 Serializer.combine(
                         new Serializer.Major(
@@ -35,33 +33,23 @@ public class Logger_test {
                 )
         );
 
+        final Logger llo = Instance.RootLogger;
 
 
-        Instance.RootLogger.debug.msg("root");
-        llo.debug.msg("llo1");
+        llo.debug.msg("Program ready");
+        Utils.sleep(1218);
+
+        llo.debug.msg("123");
+
+        llo.debug.msg_data("123", Utils.map("static", "on", "work", Utils.map("a", 1, "b", 2)));
+
+        llo.info.msg_data("12321", Utils.map("static", "off", "work", Utils.map("a", "3", "b", 4)));
+
         final Logger slog = llo.createSub("sublogger");
+        slog.warn.trace(new Error("Here"));
+        slog.fatal.msg_data("Fatal", Utils.map("static", "off", "work", Utils.map("a", "3", "b", 4)));
 
-        slog.debug.msg("slog");
-
-        llo.debug.msg("llo2");
-        Instance.RootLogger.debug.msg("root2");
-
-
-
-//        llo.debug.msg("Program ready");
-//        Utils.sleep(1218);
-//
-//        llo.debug.msg("123");
-//
-//        llo.debug.msg_data("123", Utils.map("static", "on", "work", Utils.map("a", 1, "b", 2)));
-//
-//        llo.info.msg_data("12321", Utils.map("static", "off", "work", Utils.map("a", "3", "b", 4)));
-//
-//        final Logger slog = llo.createSub("sublogger");
-//        slog.warn.trace(new Error("Here"));
-//        slog.fatal.msg_data("Fatal", Utils.map("static", "off", "work", Utils.map("a", "3", "b", 4)));
-//
-//        llo.error.msg_data("Error", Utils.map("static", "off", "work", Utils.map("a", "3", "b", 4)));
+        llo.error.msg_data("Error", Utils.map("static", "off", "work", Utils.map("a", "3", "b", 4)));
 
 
     }
