@@ -24,6 +24,7 @@ public class Logger {
     public Logger(ArrayList<String> namelist, Serializer.Type s) {
 
         this.namelist = namelist;
+        System.out.println("Logger class namelist =" + this.namelist);
         if (s == null) {
             this.s = new Serializer.Major();
         } else {
@@ -35,14 +36,16 @@ public class Logger {
     public static Logger createRoot(String name, Serializer.Type sType) {
         String[] a = {name};
         ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(a));
-        namelist = arrayList;
+//        namelist = arrayList;
 
         if (sType == null) {
-            return new Logger(namelist, new Serializer.Major());
+//            return new Logger(namelist, new Serializer.Major());
+            return new Logger(arrayList, new Serializer.Major());
         } else {
-            namelist = arrayList;
-            s = sType;
-            return new Logger(namelist, s);
+//            namelist = arrayList;
+//            s = sType;
+//            return new Logger(namelist, s);
+            return new Logger(arrayList, sType);
         }
     }
 
@@ -52,19 +55,19 @@ public class Logger {
     }
 
     // Very detailed infomation
-    public LevelLogger debug = new LevelLogger(t.DEBUG, this.s, this.namelist);
-    public LevelLogger info = new LevelLogger(t.INFO, this.s, this.namelist);
+    public LevelLogger debug = new LevelLogger(this.t.DEBUG, this.s, this.namelist);
+    public LevelLogger info = new LevelLogger(this.t.INFO, this.s, this.namelist);
 
     // Warning
     // Some unoccasional situation, not important
-    public LevelLogger warn = new LevelLogger(t.WARN, this.s, this.namelist);
+    public LevelLogger warn = new LevelLogger(this.t.WARN, this.s, this.namelist);
 
     // Unexepected situation, handled or not
     // To do:Issue established, explantion or solution MUST GIVEN
-    public LevelLogger error = new LevelLogger(t.ERROR, this.s, this.namelist);
+    public LevelLogger error = new LevelLogger(this.t.ERROR, this.s, this.namelist);
 
     // Error that resulted in exit
-    public LevelLogger fatal = new LevelLogger(t.FATAL, this.s, this.namelist);
+    public LevelLogger fatal = new LevelLogger(this.t.FATAL, this.s, this.namelist);
 
     public HeartbeatLogger defineHeartbeatLogger(String msg, HashMap<String, Object> data) {
         return new HeartbeatLogger(this.s, msg, data);

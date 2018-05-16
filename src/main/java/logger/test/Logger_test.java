@@ -1,6 +1,5 @@
 package logger.test;
 
-import java.util.HashMap;
 
 import logger.JSON;
 import logger.Utils;
@@ -13,19 +12,22 @@ import logger.serialize.Stringify;
 /**
  * Created by Lynnsion on 2018/5/2.
  */
+@SuppressWarnings("SpellCheckingInspection")
 public class Logger_test {
 
     public static void main(String[] args) {
 
-         Logger llo = Instance.RootLogger;
-         Instance.RootLogger = Logger.createRoot(
+        Logger llo = Instance.RootLogger;
+
+        llo = Logger.createRoot(
                 "MainLogger-123",
                 Serializer.combine(
                         new Serializer.Major(
                                 Stringify.ichalk,
                                 Output.CONSOLE(),
                                 Output.file("./a.log")
-                        ),
+                        )
+                        ,
                         new Serializer.Major(
                                 JSON.stringify,
                                 Output.file("./a.json.log")
@@ -35,26 +37,32 @@ public class Logger_test {
 
 
 
-        llo.debug.msg("Program ready");
+        Instance.RootLogger.debug.msg("root");
+        llo.debug.msg("llo1");
+        final Logger slog = llo.createSub("sublogger");
 
-         Utils.sleep(1128);
+        slog.debug.msg("slog");
 
-        llo.debug.msg("123");
+        llo.debug.msg("llo2");
+        Instance.RootLogger.debug.msg("root2");
 
-        HashMap<String, Object> data2 = Utils.map("a", "1", "b", "2");
-        HashMap<String, Object> data = Utils.map("status", "on", "work", data2);
-        data2.put("a", 3);
-        data2.put("b", 4);
-        data.put("status", "off");
-        data.put("work", data2);
-        llo.debug.msg_data("123", data);
 
-        final Logger slog = llo.createSub("subLogger");
 
-        slog.warn.trace(new Error("Here"));
+//        llo.debug.msg("Program ready");
+//        Utils.sleep(1218);
+//
+//        llo.debug.msg("123");
+//
+//        llo.debug.msg_data("123", Utils.map("static", "on", "work", Utils.map("a", 1, "b", 2)));
+//
+//        llo.info.msg_data("12321", Utils.map("static", "off", "work", Utils.map("a", "3", "b", 4)));
+//
+//        final Logger slog = llo.createSub("sublogger");
+//        slog.warn.trace(new Error("Here"));
+//        slog.fatal.msg_data("Fatal", Utils.map("static", "off", "work", Utils.map("a", "3", "b", 4)));
+//
+//        llo.error.msg_data("Error", Utils.map("static", "off", "work", Utils.map("a", "3", "b", 4)));
 
-        slog.fatal.msg_data("Fatal", data);
 
-        slog.error.msg_data("Error", data);
     }
 }

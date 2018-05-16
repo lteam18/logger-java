@@ -78,9 +78,7 @@ public class Utils {
                 ret.add(prefix + entry.getKey() + "=" + entry.getValue());
             } else if (entry.getValue() instanceof HashMap) {
                 convert(
-                        (HashMap<String, Object>) entry.getValue(),
-                        ret,
-                        prefix + entry.getKey() + ".");
+                        (HashMap<String, Object>) entry.getValue(), ret, prefix + entry.getKey() + ".");
             }
         }
     }
@@ -92,9 +90,7 @@ public class Utils {
                 ret.add(prefix + entry.getKey() + "=" + entry.getValue());
             } else if (entry.getValue() instanceof HashMap) {
                 convert(
-                        (HashMap<String, Object>) entry.getValue(),
-                        ret,
-                        prefix + entry.getKey() + ".");
+                        (HashMap<String, Object>) entry.getValue(), ret, prefix + entry.getKey() + ".");
             }
         }
     }
