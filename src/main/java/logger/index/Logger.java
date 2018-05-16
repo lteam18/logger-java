@@ -21,9 +21,9 @@ public class Logger {
 
     // Very detailed infomation
     public LevelLogger debug;
-    public LevelLogger info;
     // Warning
     // Some unoccasional situation, not important
+    public LevelLogger info;
     public LevelLogger warn;
     // Unexepected situation, handled or not
     // To do:Issue established, explantion or solution MUST GIVEN

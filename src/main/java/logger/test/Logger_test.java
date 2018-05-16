@@ -35,7 +35,6 @@ public class Logger_test {
 
         final Logger llo = Instance.RootLogger;
 
-
         llo.debug.msg("Program ready");
         Utils.sleep(1218);
 
