@@ -19,33 +19,20 @@ public class Types {
     }
 
     public static class Persistant {
-//        public LevelLog levelLog;
-//        public HeatLog heatLog;
-//        public BeatLog beatLog;
-//        public StatusDefineLog statusDefineLog;
-//        public StatusRecordLog statusRecordLog;
-
-//        public Persistant() {
-//            levelLog = new LevelLog();
-//            heatLog = new HeatLog();
-//            beatLog = new BeatLog();
-//            statusDefineLog = new StatusDefineLog();
-//            statusRecordLog = new StatusRecordLog();
-//        }
 
         public static class LevelLog {
             public ArrayList<String> N;
-            public long T; //timeStamp
-            public LevelType L; //LogLevel
-            public String M = ""; //Message
-            //Data
+            public long T;          //timeStamp
+            public LevelType L;     //LogLevel
+            public String M = "";   //Message
+                                    //Data
             public HashMap<String, Object> D = new HashMap<>();
-            /*
-            ErrorStack
-               msg?: string,
-               name?: string,
-               stack?: string
-            */
+                                    /*
+                                    ErrorStack
+                                       msg?: string,
+                                       name?: string,
+                                       stack?: string
+                                    */
             public HashMap<String, Object> E = new HashMap<>();
 
             public LevelLog(ArrayList<String> N,

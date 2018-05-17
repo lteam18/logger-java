@@ -29,6 +29,36 @@ public class Stringify {
 
     private static long history;
 
+    public static IChalk createChalk() {
+        history = new Date().getTime();
+        return ichalk;
+    }
+
+    private static String general_text_fun(Types.Persistant.LevelLog data, String msg) {
+        switch (data.L) {
+            case DEBUG:
+                return ANSI_GREEN + msg + ANSI_RESET;
+            case INFO:
+                return ANSI_BLUE + msg + ANSI_RESET;
+            case WARN:
+                return ANSI_YELLOW + msg + ANSI_RESET;
+            case ERROR:
+                return ANSI_PURPLE + msg + ANSI_RESET;
+            case FATAL:
+                return ANSI_RED + msg + ANSI_RESET;
+            default:
+                return "";
+        }
+    }
+
+    private static String wrapWithColor(String color, String msg) {
+        return color + msg + ANSI_RESET;
+    }
+
+    public  interface IChalk{
+        String chalk(Object msg);
+    }
+
     public static IChalk ichalk = new IChalk() {
         @Override
         public String chalk(Object Object_msg) {
@@ -73,34 +103,4 @@ public class Stringify {
             return " data error";
         }
     };
-
-    public static IChalk createChalk() {
-        history = new Date().getTime();
-        return ichalk;
-    }
-
-    private static String general_text_fun(Types.Persistant.LevelLog data, String msg) {
-        switch (data.L) {
-            case DEBUG:
-                return ANSI_GREEN + msg + ANSI_RESET;
-            case INFO:
-                return ANSI_BLUE + msg + ANSI_RESET;
-            case WARN:
-                return ANSI_YELLOW + msg + ANSI_RESET;
-            case ERROR:
-                return ANSI_PURPLE + msg + ANSI_RESET;
-            case FATAL:
-                return ANSI_RED + msg + ANSI_RESET;
-            default:
-                return "";
-        }
-    }
-
-    private static String wrapWithColor(String color, String msg) {
-        return color + msg + ANSI_RESET;
-    }
-
-    public  interface IChalk{
-        String chalk(Object msg);
-    }
 }

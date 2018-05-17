@@ -34,8 +34,6 @@ public class Logger {
 
     public String name;
 
-    private static int count = 0;
-
     public Logger(ArrayList<String> namelist, Serializer.Type s) {
         this.name = namelist + "";
         this.namelist = namelist;
@@ -50,8 +48,6 @@ public class Logger {
         this.warn = new LevelLogger(Types.LevelType.WARN, this.s, this.namelist);
         this.error = new LevelLogger(Types.LevelType.ERROR, this.s, this.namelist);
         this.fatal = new LevelLogger(Types.LevelType.FATAL, this.s, this.namelist);
-
-//        System.out.println("count ="+ ++count + " name ="+namelist +"Serializer.Type ="+s);
     }
 
     public static Logger createRoot(String name, Serializer.Type sType) {
