@@ -3,7 +3,6 @@ package logger.index;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.function.Supplier;
 
 import logger.loggers.HeartbeatLogger;
 import logger.loggers.LevelLogger;
@@ -53,7 +52,6 @@ public class Logger {
     public static Logger createRoot(String name, Serializer.Type sType) {
         String[] a = {name};
         ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(a));
-
 
         if (sType == null) {
             return new Logger(arrayList, new Serializer.Major());
