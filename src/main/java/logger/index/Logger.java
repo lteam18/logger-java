@@ -67,7 +67,6 @@ public class Logger {
         nameList.add(this.name);
         nameList.add(name);
 
-        System.out.println("createSub nameList ="+nameList);
         return new Logger(nameList, s);
     }
 
