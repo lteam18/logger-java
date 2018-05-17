@@ -16,6 +16,7 @@ import logger.types.Types;
  */
 @SuppressWarnings("SpellCheckingInspection")
 public class Logger {
+
     public ArrayList<String> namelist = new ArrayList<>();
     public Serializer.Type s;
 

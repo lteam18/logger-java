@@ -1,8 +1,5 @@
-package logger.test;
+package logger;
 
-
-import logger.JSON;
-import logger.Utils;
 import logger.global.Instance;
 import logger.index.Logger;
 import logger.serialize.Output;
@@ -15,12 +12,9 @@ import logger.serialize.Stringify;
 @SuppressWarnings("SpellCheckingInspection")
 public class Logger_test {
 
-    public static final String ANSI_YELLOW = "\033[0;93m"; // YELLOW
-    public static final String ANSI_PURPLE = "\033[0;95m"; // PURPLE
-    public static final String ANSI_GREEN = "\033[0;96m"; // GREEN
-    public static final String ANSI_RESET = "\u001B[0m"; //RESET
-
     public static void main(String[] args) {
+
+        Instance.LoggerStart();
 
         Instance.RootLogger = Logger.createRoot(
                 "MainLogger-123",
