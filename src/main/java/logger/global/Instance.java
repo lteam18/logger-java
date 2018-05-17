@@ -10,13 +10,13 @@ import logger.serialize.Stringify;
  */
 @SuppressWarnings("SpellCheckingInspection")
 public class Instance {
-//    public static Logger RootLogger = Logger.createRoot(
-//            "Logger",
-//            new Serializer.Major(
-//                    Stringify.createChalk(),
-//                    Output.CONSOLE()
-//            )
-//    );
 
-    public static Logger RootLogger ;
+    public static Logger RootLogger = Logger.createRoot(
+            "Logger",
+            new Serializer.Major(
+                    Stringify.createChalk(),
+                    Output.CONSOLE()
+            )
+    );
+
 }

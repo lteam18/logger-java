@@ -3,6 +3,7 @@ package logger.index;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.function.Supplier;
 
 import logger.loggers.HeartbeatLogger;
 import logger.loggers.LevelLogger;
@@ -16,7 +17,7 @@ import logger.types.Types;
 @SuppressWarnings("SpellCheckingInspection")
 public class Logger {
     public ArrayList<String> namelist = new ArrayList<>();
-    public static Serializer.Type s;
+    public Serializer.Type s;
 
     // Very detailed infomation
     public LevelLogger debug;
@@ -33,7 +34,7 @@ public class Logger {
     public String name;
 
 
-     public Logger(ArrayList<String> namelist, Serializer.Type s) {
+    public Logger(ArrayList<String> namelist, Serializer.Type s) {
         this.name = namelist + "";
         this.namelist = namelist;
         if (s == null) {
@@ -42,16 +43,17 @@ public class Logger {
             this.s = s;
         }
 
-        debug = new LevelLogger(Types.LevelType.DEBUG, s, namelist);
-        info = new LevelLogger(Types.LevelType.INFO, s, namelist);
-        warn = new LevelLogger(Types.LevelType.WARN, s, namelist);
-        error = new LevelLogger(Types.LevelType.ERROR, s, namelist);
-        fatal = new LevelLogger(Types.LevelType.FATAL, s, namelist);
+        this.debug = new LevelLogger(Types.LevelType.DEBUG, this.s, this.namelist);
+        this.info = new LevelLogger(Types.LevelType.INFO, this.s, this.namelist);
+        this.warn = new LevelLogger(Types.LevelType.WARN, this.s, this.namelist);
+        this.error = new LevelLogger(Types.LevelType.ERROR, this.s, this.namelist);
+        this.fatal = new LevelLogger(Types.LevelType.FATAL, this.s, this.namelist);
     }
 
-     public static Logger createRoot(String name, Serializer.Type sType) {
+    public static Logger createRoot(String name, Serializer.Type sType) {
         String[] a = {name};
         ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(a));
+
 
         if (sType == null) {
             return new Logger(arrayList, new Serializer.Major());

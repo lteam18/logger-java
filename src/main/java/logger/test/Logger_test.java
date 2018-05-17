@@ -15,15 +15,12 @@ import logger.serialize.Stringify;
 @SuppressWarnings("SpellCheckingInspection")
 public class Logger_test {
 
-    public static void main(String[] args) {
+    public static final String ANSI_YELLOW = "\033[0;93m"; // YELLOW
+    public static final String ANSI_PURPLE = "\033[0;95m"; // PURPLE
+    public static final String ANSI_GREEN = "\033[0;96m"; // GREEN
+    public static final String ANSI_RESET = "\u001B[0m"; //RESET
 
-        Instance.RootLogger = Logger.createRoot(
-            "Logger",
-            new Serializer.Major(
-                    Stringify.createChalk(),
-                    Output.CONSOLE()
-            )
-        );
+    public static void main(String[] args) {
 
         Instance.RootLogger = Logger.createRoot(
                 "MainLogger-123",
@@ -40,7 +37,6 @@ public class Logger_test {
                         )
                 )
         );
-
         final Logger llo = Instance.RootLogger;
 
         llo.debug.msg("Program ready");
