@@ -21,6 +21,7 @@ public class Stringify {
     public static final String ANSI_YELLOW = "\033[0;93m"; // YELLOW
     public static final String ANSI_PURPLE = "\033[0;95m"; // PURPLE
     public static final String ANSI_GREEN = "\033[0;96m"; // GREEN
+//    public static final String ANSI_GREEN = "\u001B[32m"; // ORTHER GREEN
 
     private static final int SEP = 9;
     private static final String LEADING_SPACE = "          ";

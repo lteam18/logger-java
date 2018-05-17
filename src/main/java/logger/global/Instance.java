@@ -19,8 +19,5 @@ public class Instance {
             )
     );
 
-    public static void LoggerStart(){
-        RootLogger.getClass();
-    }
 
 }

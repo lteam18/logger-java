@@ -14,8 +14,6 @@ public class Logger_test {
 
     public static void main(String[] args) {
 
-        Instance.LoggerStart();
-
         Instance.RootLogger = Logger.createRoot(
                 "MainLogger-123",
                 Serializer.combine(
@@ -31,6 +29,7 @@ public class Logger_test {
                         )
                 )
         );
+
         final Logger llo = Instance.RootLogger;
 
         llo.debug.msg("Program ready");

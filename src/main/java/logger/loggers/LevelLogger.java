@@ -14,7 +14,7 @@ import logger.types.Types;
 @SuppressWarnings("SpellCheckingInspection")
 public class LevelLogger {
     private Types.LevelType logType;
-    private static Serializer.Type s;
+    private Serializer.Type s;
     private ArrayList<String> namelist;
 
     public LevelLogger(Types.LevelType logType, Serializer.Type s, ArrayList<String> namelist) {
