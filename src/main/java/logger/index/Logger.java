@@ -35,7 +35,7 @@ public class Logger {
     public String name;
 
     public Logger(ArrayList<String> namelist, Serializer.Type s) {
-        this.name = namelist + "";
+        this.name = getNamefromArray(namelist);
         this.namelist = namelist;
         if (s == null) {
             this.s = new Serializer.Major();
@@ -66,6 +66,8 @@ public class Logger {
         ArrayList<String> nameList = new ArrayList<>();
         nameList.add(this.name);
         nameList.add(name);
+
+        System.out.println("createSub nameList ="+nameList);
         return new Logger(nameList, s);
     }
 
@@ -75,5 +77,14 @@ public class Logger {
 
     public StatusLogger defineStatusLogger(HashMap<String, Object> Schema) {
         return new StatusLogger(this.s, Schema);
+    }
+
+    private static String getNamefromArray(ArrayList<String> N){
+        String result = "";
+        for (String a:N) {
+            result +=a;
+        }
+
+        return result;
     }
 }

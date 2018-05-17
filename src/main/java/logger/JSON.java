@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -55,7 +56,6 @@ public class JSON {
                 map.put("E", data.E);
             }
             return stringify(map) + "\n";
-
         }
         return "null";
     };
@@ -75,7 +75,8 @@ public class JSON {
             default:
                 break;
         }
-
+        // return mean error
         return 100;
     }
+
 }
