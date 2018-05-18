@@ -1,6 +1,5 @@
-package logger.global;
+package logger;
 
-import logger.index.Logger;
 import logger.serialize.Output;
 import logger.serialize.Serializer;
 import logger.serialize.Stringify;
