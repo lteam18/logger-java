@@ -3,6 +3,7 @@ package logger.serialize;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
+import java.util.function.Function;
 
 import logger.JSON;
 import logger.types.Types;
@@ -26,15 +27,15 @@ public class Serializer {
 
     public static class Major implements Type {
         private Output.Type output_Major;
-        private Stringify.IChalk levelLogStringify;
+        private Function<Types.Persistant.LevelLog , String> levelLogStringify;
 
         public Major() {
-            levelLogStringify = JSON.stringify;
+            levelLogStringify = JSON::stringify;
             this.output_Major = Output.CONSOLE();
         }
 
-        public Major(Stringify.IChalk chalk, Output.Type... outputs) {
-            this.levelLogStringify = chalk;
+        public Major(Function<Types.Persistant.LevelLog , String> stringify, Output.Type... outputs) {
+            this.levelLogStringify = stringify;
             this.output_Major = Output.combine(outputs);
         }
 

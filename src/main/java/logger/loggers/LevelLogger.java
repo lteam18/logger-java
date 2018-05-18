@@ -19,11 +19,7 @@ public class LevelLogger {
 
     public LevelLogger(Types.LevelType logType, Serializer.Type s, ArrayList<String> namelist) {
         this.logType = logType;
-        if (s == null) {
-            this.s = new Serializer.Major();
-        } else {
-            this.s = s;
-        }
+        this.s = s == null ? new Serializer.Major() : s;
         this.namelist = namelist;
 
     }

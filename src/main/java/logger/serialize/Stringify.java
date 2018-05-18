@@ -27,12 +27,7 @@ public class Stringify {
     private static final String LEADING_SPACE = "          ";
     private static final String LEADING_CHARS = "_________";
 
-    private static long history;
-
-    public static IChalk createChalk() {
-        history = new Date().getTime();
-        return ichalk;
-    }
+    private static long history = new Date().getTime();
 
     private static String general_text_fun(Types.Persistant.LevelLog data, String msg) {
         switch (data.L) {
@@ -55,52 +50,42 @@ public class Stringify {
         return color + msg + ANSI_RESET;
     }
 
-    public  interface IChalk{
-        String chalk(Object msg);
-    }
+    public static String chalk(Types.Persistant.LevelLog Object_msg) {
+        Types.Persistant.LevelLog data = (Types.Persistant.LevelLog) Object_msg;
+        final long diff = data.T - history;
+        history = data.T;
 
-    public static IChalk ichalk = new IChalk() {
-        @Override
-        public String chalk(Object Object_msg) {
-            if (Object_msg instanceof Types.Persistant.LevelLog) {
-                Types.Persistant.LevelLog data = (Types.Persistant.LevelLog) Object_msg;
-                final long diff = data.T - history;
-                history = data.T;
+        String temp = LEADING_CHARS + Utils.formatDiffString(diff);
+        final String diff_time_str = temp.substring(temp.length() - SEP);
 
-                String temp = LEADING_CHARS + Utils.formatDiffString(diff);
-                final String diff_time_str = temp.substring(temp.length() - SEP);
+        String l_difftime = diff_time_str;
+        l_difftime = wrapWithColor(ANSI_BLUE, l_difftime);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        String l_time = sdf.format(data.T);
+        l_time = wrapWithColor(ANSI_WHITE, l_time);
 
-                String l_difftime = diff_time_str;
-                l_difftime = wrapWithColor(ANSI_BLUE, l_difftime);
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-                String l_time = sdf.format(data.T);
-                l_time = wrapWithColor(ANSI_WHITE, l_time);
+        final ArrayList<String> l_nameList = data.N;
 
-                final ArrayList<String> l_nameList = data.N;
-
-                String l_msg = "";
-                if (!data.M.equals("")) {
-                    l_msg = general_text_fun(data, data.M);
-                }
-
-                String msg = l_difftime + " " + l_time + " " + l_nameList + " " + l_msg;
-                if (data.D != null) {
-                    ArrayList<String> ret = new ArrayList<>();
-                    Utils.convert(data.D, ret, "");
-                    final String[] l_data = {""};
-                    ret.forEach(e -> l_data[0] += general_text_fun(data, e + " "));
-                    msg += "\n" + l_data[0];
-                }
-                if (data.E.size() > 0) {
-                    msg += "\n" + data.E.get("stack");
-                    data.E.put(
-                            "stack",
-                            wrapWithColor(ANSI_BLACK, data.E.get("stack").toString()));
-                }
-
-                return msg.replace("\n", "\n" + LEADING_SPACE);
-            }
-            return " data error";
+        String l_msg = "";
+        if (!data.M.equals("")) {
+            l_msg = general_text_fun(data, data.M);
         }
-    };
+
+        String msg = l_difftime + " " + l_time + " " + l_nameList + " " + l_msg;
+        if (data.D != null) {
+            ArrayList<String> ret = new ArrayList<>();
+            Utils.convert(data.D, ret, "");
+            final String[] l_data = {""};
+            ret.forEach(e -> l_data[0] += general_text_fun(data, e + " "));
+            msg += "\n" + l_data[0];
+        }
+        if (data.E.size() > 0) {
+            msg += "\n" + data.E.get("stack");
+            data.E.put(
+                    "stack",
+                    wrapWithColor(ANSI_BLACK, data.E.get("stack").toString()));
+        }
+
+        return msg.replace("\n", "\n" + LEADING_SPACE);
+    }
 }

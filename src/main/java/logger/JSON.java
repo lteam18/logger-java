@@ -39,25 +39,22 @@ public class JSON {
         return stringify(Utils.map(values));
     }
 
-    public static Stringify.IChalk stringify = msg -> {
-        if (msg instanceof Types.Persistant.LevelLog) {
-            Types.Persistant.LevelLog data = (Types.Persistant.LevelLog) msg;
-            HashMap<String, Object> map = new LinkedHashMap<>();
-            map.put("N", data.N);
-            if (data.T != 0) {
-                map.put("T", data.T);
-            }
-            map.put("L", getIntLogLevel(data.L));
-            map.put("M", data.M);
-            if (data.D != null) {
-                map.put("D", data.D);
-            }
-            if (data.E != null && data.E.size() > 0) {
-                map.put("E", data.E);
-            }
-            return stringify(map) + "\n";
+    public static String stringify(Types.Persistant.LevelLog msg) {
+        Types.Persistant.LevelLog data = (Types.Persistant.LevelLog) msg;
+        HashMap<String, Object> map = new LinkedHashMap<>();
+        map.put("N", data.N);
+        if (data.T != 0) {
+            map.put("T", data.T);
         }
-        return "null";
+        map.put("L", getIntLogLevel(data.L));
+        map.put("M", data.M);
+        if (data.D != null) {
+            map.put("D", data.D);
+        }
+        if (data.E != null && data.E.size() > 0) {
+            map.put("E", data.E);
+        }
+        return stringify(map) + "\n";
     };
 
     private static int getIntLogLevel(Types.LevelType level) {
@@ -77,6 +74,12 @@ public class JSON {
         }
         // return mean error
         return 100;
+    }
+
+//    main
+
+    public static void main(){
+        Types.LevelType.DEBUG.ordinal();
     }
 
 }

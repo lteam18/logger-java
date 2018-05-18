@@ -23,7 +23,9 @@ public class Logger {
     public Serializer.Type s;
 
     // Very detailed infomation
-    public LevelLogger debug;
+    public final LevelLogger debug;
+
+    // TODO: using final
     // Warning
     // Some unoccasional situation, not important
     public LevelLogger info;
@@ -34,10 +36,12 @@ public class Logger {
     // Error that resulted in exit
     public LevelLogger fatal;
 
+    // TODO: delete
     public String name;
 
     public Logger(ArrayList<String> namelist, Serializer.Type s) {
-        this.name = getNamefromArray(namelist);
+//        this.name = getNamefromArray(namelist);
+        this.name = String.join(".", namelist);
         this.namelist = namelist;
         if (s == null) {
             this.s = new Serializer.Major();
@@ -65,7 +69,7 @@ public class Logger {
 
     public Logger createSub(String name) {
         ArrayList<String> nameList = new ArrayList<>();
-        nameList.add(this.name);
+        nameList.addAll(this.namelist);
         nameList.add(name);
 
         return new Logger(nameList, s);

@@ -36,6 +36,10 @@ public class Output {
         try {
             File file = new File(filePath);
             fw = new FileWriter(file, true);
+
+            // TODO
+            fw.append(msg);
+
             PrintWriter pw = new PrintWriter(fw);
 
             pw.print(msg);
