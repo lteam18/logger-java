@@ -15,8 +15,7 @@ public class Logger_test {
                                 Stringify::chalk,
                                 Output.CONSOLE(),
                                 Output.file("./a.log")
-                        )
-                        ,
+                        ),
                         new Serializer.Major(
                                 JSON::stringify,
                                 Output.file("./a.json.log")

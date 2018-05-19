@@ -19,14 +19,17 @@ public class Serializer {
         void defineStatus(long sid, Map<String, Object> data);
 
         void rec(long sid, Map<String, Object> status);
+
     }
 
     public static class Major implements Type {
         private Output.Type output_Major;
-        private Function<Types.Persistant.LevelLog , String> levelLogStringify;
+
+
+        private Function<Types.Persistant.LevelLog , String> levelLogStringify ;
 
         public Major() {
-            levelLogStringify = JSON::stringify;
+            this.levelLogStringify = JSON::stringify;
             this.output_Major = Output.CONSOLE();
         }
 
@@ -37,7 +40,7 @@ public class Serializer {
 
         @Override
         public void log(Types.Persistant.LevelLog data) {
-//            output_Major.output(this.levelLogStringify);
+            output_Major.output(levelLogStringify.apply(data));
         }
 
         @Override

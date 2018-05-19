@@ -47,7 +47,7 @@ public class Stringify {
     }
 
     public static String chalk(Types.Persistant.LevelLog Object_msg) {
-        Types.Persistant.LevelLog data = (Types.Persistant.LevelLog) Object_msg;
+        Types.Persistant.LevelLog data = Object_msg;
         final long diff = data.T - history;
         history = data.T;
 
