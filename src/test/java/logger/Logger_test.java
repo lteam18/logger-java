@@ -31,7 +31,11 @@ public class Logger_test {
         final Logger llo = Instance.RootLogger;
 
         llo.debug.msg("Program ready");
-        Utils.sleep(1218);
+        try {
+            Utils.sleep(1218);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         llo.debug.msg("123");
 

@@ -9,21 +9,19 @@ import java.util.Map;
 
 public class Utils {
 
-    public static long trunc(double val){
-        return Math.round(val - 0.5);
-    }
 
     public static String convertToUnits(long millis) {
         String retStr;
         long rest = millis;
         final Long ms = rest % 1000;
-        rest = trunc(rest / 1000);
-        final long minute = rest % 60;
-        rest = trunc(rest / 60);
+        final Long s = (rest / 1000) % 60;
+        rest = Math.round(rest / 1000);  //second
+        final long minute = (rest / 60) % 60;
+        rest = Math.round(rest / 60 / 60);  // minute
         final long hour = rest % 24;
-        final long day = trunc(rest / 24);
+        final long day = Math.round(rest / 24);
 
-        retStr = day + "d" + hour + "h" + minute + "m" + ms;
+        retStr = day + "d" + hour + "h" + minute + "m" + s + "s" + ms;
         return retStr;
     }
 
@@ -31,37 +29,41 @@ public class Utils {
         return formatDiffString(millis, 9);
     }
 
-    // BUG
     public static String formatDiffString(long millis, int max_String) {
+
         final String result = convertToUnits(millis);
-        System.out.println("result =" + result);
         StringBuilder ret = new StringBuilder();
+        StringBuilder temp = new StringBuilder();
 
-        for (int i = 0; i < result.length(); i += 2) {
-//            StringBuilder s = new StringBuilder();
-            if (result.charAt(i) == '0') continue;
-            ret.append(result.charAt(i));
-            if(i + 1 < result.length() ) {
-                ret.append(result.charAt(i + 1));
-            }
+        getret(result, 0, result.indexOf("d") > 0 ? result.indexOf("d") : 1, temp, ret, "d");
+        getret(result, "d", "h", temp, ret, "h");
+        getret(result, "h", "m", temp, ret, "m");
+        getret(result, "m", "s", temp, ret, "s");
+        getret(result, "s", result.length(), temp, ret, "");
 
-            if (s.length() + ret.length() > max_String) {
-                if (ret.length() == 0) ret.append(s);
-                return ret.toString();
-            }
-            ret.append(s);
-        }
-        return ret.toString();
+        return ret.length() < max_String ? ret.toString() : ret.substring(0, max_String);
+
     }
 
-    public static void sleep(long millis) {
-        try {
-            Thread.currentThread();
-            Thread.sleep(millis);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+    private static void getret(String cStr, Object start, Object end, StringBuilder temp, StringBuilder ret, String flag) {
+        if (start instanceof Integer && end instanceof Integer) {
+            temp.append(cStr.subSequence((Integer) start, (Integer) end));
+        } else if (end instanceof Integer) {
+            temp.append(cStr.subSequence(cStr.indexOf((String) start) + 1, (Integer) end));
+        } else {
+            temp.append(cStr.subSequence(cStr.indexOf((String) start) + 1, cStr.indexOf((String) end)));
         }
+        if (!temp.toString().equals("0"))
+            ret.append(temp + flag);
+        temp.delete(0, temp.length());
     }
+
+    public static void sleep(long millis) throws InterruptedException {
+        Thread.currentThread();
+        Thread.sleep(millis);
+    }
+
+
 
     // { a: { b:1, c:2 }}
     // => [a.b]=1 [a.c]=2
@@ -70,22 +72,13 @@ public class Utils {
             if (entry.getValue() instanceof String || entry.getValue() instanceof Integer) {
                 ret.add(prefix + entry.getKey() + "=" + entry.getValue());
             } else if (entry.getValue() instanceof HashMap) {
-                convert(
-                        (HashMap<String, Object>) entry.getValue(), ret, prefix + entry.getKey() + ".");
+                convert((HashMap<String, Object>) entry.getValue(), ret, prefix + entry.getKey() + ".");
             }
         }
     }
 
     public static void convert(HashMap<String, Object> data, ArrayList<String> ret) {
-        String prefix = "";
-        for (Map.Entry<String, Object> entry : data.entrySet()) {
-            if (entry.getValue() instanceof String || entry.getValue() instanceof Integer) {
-                ret.add(prefix + entry.getKey() + "=" + entry.getValue());
-            } else if (entry.getValue() instanceof HashMap) {
-                convert(
-                        (HashMap<String, Object>) entry.getValue(), ret, prefix + entry.getKey() + ".");
-            }
-        }
+        convert(data, ret, "");
     }
 
     public static HashMap<String, Object> stringifyError(Error e) {
@@ -110,25 +103,4 @@ public class Utils {
         return error.toString();
     }
 
-    public static class ATTR {
-        public static String LEVEL = "L";
-        public static String TIMESTAMP = "T";
-        public static String MSG = "M";
-        public static String STACKTRACE = "S";
-        public static String NAME = "N";
-        public static String DATA = "D";
-        public static String THROWABLE = "TH";
-    }
-
-    public static class LEVEL {
-        public static String data = "DATA";
-        public static String trace = "TRACE";
-        public static String debug = "DEBUG";
-        public static String info = "INFO";
-        public static String warn = "WARN";
-        public static String error = "ERROR";
-        public static String fatal = "FATAL";
-    }
-
- 
 }
