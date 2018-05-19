@@ -11,6 +11,7 @@ import logger.loggers.HeartbeatLogger;
 import logger.loggers.LevelLogger;
 import logger.loggers.StatusLogger;
 import logger.serialize.Serializer;
+import logger.type.Types;
 
 public class Logger {
 

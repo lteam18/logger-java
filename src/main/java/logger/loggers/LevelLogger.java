@@ -6,7 +6,8 @@ import java.util.HashMap;
 
 import logger.Utils;
 import logger.serialize.Serializer;
-import logger.Types;
+import logger.type.Persistant;
+import logger.type.Types;
 
 
 public class LevelLogger {
@@ -29,7 +30,7 @@ public class LevelLogger {
             errorHashmap = null;
         }
 
-        Types.Persistant.LevelLog levelLog = new Types.Persistant.LevelLog(
+        Persistant.LevelLog levelLog = new Persistant.LevelLog(
                 this.namelist,
                 new Date().getTime(),
                 this.logType,

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import logger.Utils;
-import logger.Types;
+import logger.type.Persistant;
 
 public class Stringify {
 
@@ -25,7 +25,7 @@ public class Stringify {
 
     private static long history = new Date().getTime();
 
-    private static String general_text_fun(Types.Persistant.LevelLog data, String msg) {
+    private static String general_text_fun(Persistant.LevelLog data, String msg) {
         switch (data.L) {
             case DEBUG:
                 return ANSI_GREEN + msg + ANSI_RESET;
@@ -46,8 +46,8 @@ public class Stringify {
         return color + msg + ANSI_RESET;
     }
 
-    public static String chalk(Types.Persistant.LevelLog Object_msg) {
-        Types.Persistant.LevelLog data = Object_msg;
+    public static String chalk(Persistant.LevelLog Object_msg) {
+        Persistant.LevelLog data = Object_msg;
         final long diff = data.T - history;
         history = data.T;
 

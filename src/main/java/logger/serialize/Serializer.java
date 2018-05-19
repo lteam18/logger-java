@@ -6,11 +6,11 @@ import java.util.Map;
 import java.util.function.Function;
 
 import logger.JSON;
-import logger.Types;
+import logger.type.Persistant;
 
 public class Serializer {
     public interface Type {
-        void log(Types.Persistant.LevelLog data);
+        void log(Persistant.LevelLog data);
 
         void defineHeart(long hid, Map<String, Object> data);
 
@@ -26,20 +26,20 @@ public class Serializer {
         private Output.Type output_Major;
 
 
-        private Function<Types.Persistant.LevelLog , String> levelLogStringify ;
+        private Function<Persistant.LevelLog , String> levelLogStringify ;
 
         public Major() {
             this.levelLogStringify = JSON::stringify;
             this.output_Major = Output.CONSOLE();
         }
 
-        public Major(Function<Types.Persistant.LevelLog , String> stringify, Output.Type... outputs) {
+        public Major(Function<Persistant.LevelLog , String> stringify, Output.Type... outputs) {
             this.levelLogStringify = stringify;
             this.output_Major = Output.combine(outputs);
         }
 
         @Override
-        public void log(Types.Persistant.LevelLog data) {
+        public void log(Persistant.LevelLog data) {
             output_Major.output(levelLogStringify.apply(data));
         }
 
@@ -73,7 +73,7 @@ public class Serializer {
         }
 
         @Override
-        public void log(Types.Persistant.LevelLog data) {
+        public void log(Persistant.LevelLog data) {
             this.s.forEach((e) -> e.log(data));
         }
 

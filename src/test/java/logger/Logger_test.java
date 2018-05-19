@@ -1,11 +1,13 @@
 package logger;
 
+import org.junit.Test;
+
 import logger.serialize.Output;
 import logger.serialize.Serializer;
 import logger.serialize.Stringify;
 
 public class Logger_test {
-
+    @Test
     public static void main(String[] args) {
 
         Instance.RootLogger = Logger.createRoot(

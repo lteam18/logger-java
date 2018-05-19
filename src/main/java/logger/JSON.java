@@ -8,6 +8,9 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import logger.type.Persistant;
+import logger.type.Types;
+
 public class JSON {
 
     public static Map<String, String> parse(String json) {
@@ -35,8 +38,8 @@ public class JSON {
         return stringify(Utils.map(values));
     }
 
-    public static String stringify(Types.Persistant.LevelLog msg) {
-        Types.Persistant.LevelLog data = (Types.Persistant.LevelLog) msg;
+    public static String stringify(Persistant.LevelLog msg) {
+        Persistant.LevelLog data = msg;
         HashMap<String, Object> map = new LinkedHashMap<>();
         map.put("N", data.N);
         if (data.T != 0) {
@@ -51,7 +54,9 @@ public class JSON {
             map.put("E", data.E);
         }
         return stringify(map) + "\n";
-    };
+    }
+
+    ;
 
     private static int getIntLogLevel(Types.LevelType level) {
         switch (level) {
@@ -74,7 +79,7 @@ public class JSON {
 
 //    main
 
-    public static void main(){
+    public static void main() {
         Types.LevelType.DEBUG.ordinal();
     }
 
