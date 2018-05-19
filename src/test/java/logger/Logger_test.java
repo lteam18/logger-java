@@ -8,7 +8,7 @@ import logger.serialize.Stringify;
 
 public class Logger_test {
     @Test
-    public static void main(String[] args) {
+    public void main() {
 
         Instance.RootLogger = Logger.createRoot(
                 "MainLogger-123",

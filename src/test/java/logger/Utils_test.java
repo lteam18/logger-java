@@ -25,7 +25,6 @@ public class Utils_test {
         Utils.convert(data, list, "");
         System.out.println("convert map =" + list.toString());
 
-
         System.out.println("result 2223 =" + Utils.formatDiffString(2223));
 
     }
