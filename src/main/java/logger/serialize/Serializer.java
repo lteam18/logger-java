@@ -6,12 +6,8 @@ import java.util.Map;
 import java.util.function.Function;
 
 import logger.JSON;
-import logger.types.Types;
+import logger.Types;
 
-/**
- * Created by Lynnsion on 2018/5/12.
- */
-@SuppressWarnings("SpellCheckingInspection")
 public class Serializer {
     public interface Type {
         void log(Types.Persistant.LevelLog data);
@@ -41,7 +37,7 @@ public class Serializer {
 
         @Override
         public void log(Types.Persistant.LevelLog data) {
-            output_Major.output(this.levelLogStringify.chalk(data));
+//            output_Major.output(this.levelLogStringify);
         }
 
         @Override

@@ -4,9 +4,6 @@ import java.util.HashMap;
 
 import logger.serialize.Serializer;
 
-/**
- * Created by Lynnsion on 2018/5/10.
- */
 public class StatusLogger {
 
     private Serializer.Type s;

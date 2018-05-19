@@ -6,8 +6,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-/** Created by Lynnsion on 2018/5/6. */
-@SuppressWarnings("SpellCheckingInspection")
 public class Output {
 
     public Output() {}

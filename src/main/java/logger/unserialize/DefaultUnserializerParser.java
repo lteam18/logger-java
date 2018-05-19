@@ -5,7 +5,6 @@ import java.util.Map;
 
 import logger.JSON;
 
-/** Created by Lynnsion on 2018/5/3. */
 public class DefaultUnserializerParser {
     public Map<Long, Status> statusList = new HashMap<>();
 

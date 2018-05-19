@@ -1,4 +1,4 @@
-package logger.types;
+package logger;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -6,10 +6,6 @@ import java.util.Map;
 
 import logger.Utils;
 
-/**
- * Created by Lynnsion on 2018/5/10.
- */
-@SuppressWarnings("SpellCheckingInspection")
 public class Types {
 
     public static class LevelLoggerOption {

@@ -6,12 +6,9 @@ import java.util.HashMap;
 
 import logger.Utils;
 import logger.serialize.Serializer;
-import logger.types.Types;
+import logger.Types;
 
-/**
- * Created by Lynnsion on 2018/5/10.
- */
-@SuppressWarnings("SpellCheckingInspection")
+
 public class LevelLogger {
     private Types.LevelType logType;
     private Serializer.Type s;

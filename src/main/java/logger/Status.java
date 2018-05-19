@@ -3,7 +3,6 @@ package logger;
 import java.util.HashMap;
 import java.util.Map;
 
-/** Created by Lynnsion on 2018/5/4. */
 public class Status {
 
     //const given = { a: {b:1, c:2}, d:3 }

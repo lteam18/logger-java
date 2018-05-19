@@ -5,12 +5,8 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import logger.Utils;
-import logger.types.Types;
+import logger.Types;
 
-/**
- * Created by Lynnsion on 2018/5/8.
- */
-@SuppressWarnings("SpellCheckingInspection")
 public class Stringify {
 
     public static final String ANSI_RESET = "\u001B[0m"; //RESET

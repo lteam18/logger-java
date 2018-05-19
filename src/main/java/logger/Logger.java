@@ -11,12 +11,7 @@ import logger.loggers.HeartbeatLogger;
 import logger.loggers.LevelLogger;
 import logger.loggers.StatusLogger;
 import logger.serialize.Serializer;
-import logger.types.Types;
 
-/**
- * Created by Lynnsion on 2018/5/4.
- */
-@SuppressWarnings("SpellCheckingInspection")
 public class Logger {
 
     public ArrayList<String> namelist = new ArrayList<>();

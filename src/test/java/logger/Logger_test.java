@@ -4,10 +4,6 @@ import logger.serialize.Output;
 import logger.serialize.Serializer;
 import logger.serialize.Stringify;
 
-/**
- * Created by Lynnsion on 2018/5/2.
- */
-@SuppressWarnings("SpellCheckingInspection")
 public class Logger_test {
 
     public static void main(String[] args) {
@@ -16,13 +12,13 @@ public class Logger_test {
                 "MainLogger-123",
                 Serializer.combine(
                         new Serializer.Major(
-                                Stringify.ichalk,
+                                Stringify::chalk,
                                 Output.CONSOLE(),
                                 Output.file("./a.log")
                         )
                         ,
                         new Serializer.Major(
-                                JSON.stringify,
+                                JSON::stringify,
                                 Output.file("./a.json.log")
                         )
                 )

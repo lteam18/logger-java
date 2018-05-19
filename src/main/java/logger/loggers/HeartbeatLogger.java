@@ -3,9 +3,6 @@ package logger.loggers;
 import java.util.HashMap;
 import logger.serialize.Serializer;
 
-/**
- * Created by Lynnsion on 2018/5/4.
- */
 public class HeartbeatLogger {
 
     private Serializer.Type s;
