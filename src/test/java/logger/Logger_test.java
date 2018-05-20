@@ -1,20 +1,18 @@
 package logger;
 
-import org.junit.Test;
 
 import logger.serialize.Output;
 import logger.serialize.Serializer;
 import logger.serialize.Stringify;
 
 public class Logger_test {
-    @Test
-    public void main() {
+    public static void main(String[] args) {
 
         Instance.RootLogger = Logger.createRoot(
                 "MainLogger-123",
                 Serializer.combine(
                         new Serializer.Major(
-                                Stringify::chalk,
+                                Stringify::stringifyLevelLog,
                                 Output.CONSOLE(),
                                 Output.file("./a.log")
                         ),

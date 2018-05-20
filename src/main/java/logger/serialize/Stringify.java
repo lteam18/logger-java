@@ -9,15 +9,14 @@ import logger.type.Persistant;
 
 public class Stringify {
 
-    public static final String ANSI_RESET = "\u001B[0m"; //RESET
-    public static final String ANSI_WHITE = "\u001B[30m"; //WhITE
-    public static final String ANSI_RED = "\u001B[31m"; //RED
-    public static final String ANSI_BLUE = "\u001B[34m"; //BLUE
-    public static final String ANSI_BLACK = "\u001B[37m"; //BLACK
-    public static final String ANSI_YELLOW = "\033[0;93m"; // YELLOW
-    public static final String ANSI_PURPLE = "\033[0;95m"; // PURPLE
-    public static final String ANSI_GREEN = "\033[0;96m"; // GREEN
-//    public static final String ANSI_GREEN = "\u001B[32m"; // ORTHER GREEN
+    private static final String ANSI_RESET = "\u001B[0m";
+    private static final String ANSI_WHITE = "\u001B[30m";
+    private static final String ANSI_RED = "\u001B[31m";
+    private static final String ANSI_BLUE = "\u001B[34m";
+    private static final String ANSI_BLACK = "\u001B[37m";
+    private static final String ANSI_YELLOW = "\u001B[33m";
+    private static final String ANSI_PURPLE = "\033[0;95m";
+    private static final String ANSI_GREEN = "\u001B[32m";
 
     private static final int SEP = 9;
     private static final String LEADING_SPACE = "          ";
@@ -46,7 +45,7 @@ public class Stringify {
         return color + msg + ANSI_RESET;
     }
 
-    public static String chalk(Persistant.LevelLog Object_msg) {
+    public static String stringifyLevelLog(Persistant.LevelLog Object_msg) {
         Persistant.LevelLog data = Object_msg;
         final long diff = data.T - history;
         history = data.T;

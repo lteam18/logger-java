@@ -10,9 +10,9 @@ public class Persistant {
 
     public static class LevelLog {
         public ArrayList<String> N;
-        public long T;          //timeStamp
+        public long T;                //timeStamp
         public Types.LevelType L;     //LogLevel
-        public String M = "";   //Message
+        public String M = "";         //Message
         //Data
         public HashMap<String, Object> D = new HashMap<>();
         /*
@@ -34,15 +34,14 @@ public class Persistant {
             this.L = L;
             this.M = M;
             this.D = D;
+
+
             if (E == null) {
                 return;
-            } else {
-                if (E instanceof Error)
-                    this.E = new Utils().stringifyError((Error) E);
-                else if (E instanceof HashMap) {
-                    this.E = (HashMap<String, Object>) E;
-                }
             }
+
+            this.E = E instanceof HashMap ? (HashMap<String, Object>) E : Utils.stringifyError((Error) E);
+
         }
 
     }

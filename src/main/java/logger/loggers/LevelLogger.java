@@ -24,11 +24,8 @@ public class LevelLogger {
 
     public void o(Types.LevelLoggerOption o) {
         HashMap<String, Object> errorHashmap;
-        if (o.error != null) {
-            errorHashmap = Utils.stringifyError(o.error);
-        } else {
-            errorHashmap = null;
-        }
+
+        errorHashmap = o.error != null ? Utils.stringifyError(o.error) : null;
 
         Persistant.LevelLog levelLog = new Persistant.LevelLog(
                 this.namelist,

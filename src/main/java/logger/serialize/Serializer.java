@@ -25,7 +25,6 @@ public class Serializer {
     public static class Major implements Type {
         private Output.Type output_Major;
 
-
         private Function<Persistant.LevelLog , String> levelLogStringify ;
 
         public Major() {

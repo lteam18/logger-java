@@ -9,7 +9,6 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import logger.type.Persistant;
-import logger.type.Types;
 
 public class JSON {
 
@@ -25,10 +24,6 @@ public class JSON {
         return gson.toJson(map);
     }
 
-    public static String stringify_Object(Object obj) {
-        Gson gson = new Gson();
-        return gson.toJson(obj);
-    }
 
     public static String createMapAndStringify(String... values) {
         return stringify(Utils.map(values));
@@ -53,6 +48,7 @@ public class JSON {
         if (data.E != null && data.E.size() > 0) {
             map.put("E", data.E);
         }
+
         return stringify(map) + "\n";
     }
 

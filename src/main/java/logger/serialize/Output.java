@@ -3,7 +3,6 @@ package logger.serialize;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class Output {
@@ -35,16 +34,8 @@ public class Output {
             File file = new File(filePath);
             fw = new FileWriter(file, true);
 
-            // TODO
             fw.append(msg);
-
-            PrintWriter pw = new PrintWriter(fw);
-
-            pw.print(msg);
-
-            pw.flush();
             fw.flush();
-            pw.close();
             fw.close();
 
         } catch (IOException e) {

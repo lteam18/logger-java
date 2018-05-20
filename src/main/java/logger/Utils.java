@@ -11,18 +11,16 @@ public class Utils {
 
 
     public static String convertToUnits(long millis) {
-        String retStr;
         long rest = millis;
         final Long ms = rest % 1000;
         final Long s = (rest / 1000) % 60;
-        rest = Math.round(rest / 1000);  //second
+        rest = Math.round(rest / 1000);     //second
         final long minute = (rest / 60) % 60;
         rest = Math.round(rest / 60 / 60);  // minute
         final long hour = rest % 24;
         final long day = Math.round(rest / 24);
 
-        retStr = day + "d" + hour + "h" + minute + "m" + s + "s" + ms;
-        return retStr;
+        return day + "d" + hour + "h" + minute + "m" + s + "s" + ms;
     }
 
     public static String formatDiffString(long millis) {
@@ -30,7 +28,6 @@ public class Utils {
     }
 
     public static String formatDiffString(long millis, int max_String) {
-
         final String result = convertToUnits(millis);
         StringBuilder ret = new StringBuilder();
         StringBuilder temp = new StringBuilder();
@@ -64,9 +61,7 @@ public class Utils {
     }
 
 
-
-    // { a: { b:1, c:2 }}
-    // => [a.b]=1 [a.c]=2
+    // { a: { b:1, c:2 }}  => [a.b]=1 [a.c]=2
     public static void convert(HashMap<String, Object> data, ArrayList<String> ret, String prefix) {
         for (Map.Entry<String, Object> entry : data.entrySet()) {
             if (entry.getValue() instanceof String || entry.getValue() instanceof Integer) {
@@ -83,7 +78,8 @@ public class Utils {
 
     public static HashMap<String, Object> stringifyError(Error e) {
         return map(
-                "message", e.getMessage(), "name", e.getClass().toString(), "stack", getStacks(e));
+                "message", e.getMessage(), "name", e.getClass().toString(), "stack", getStacks(e)
+        );
     }
 
     public static HashMap<String, Object> map(Object... values) {

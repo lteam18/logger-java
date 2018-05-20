@@ -9,7 +9,7 @@ public class Instance {
     public static Logger RootLogger = Logger.createRoot(
             "Logger",
             new Serializer.Major(
-                    Stringify::chalk,
+                    Stringify::stringifyLevelLog,
                     Output.CONSOLE()
             )
     );

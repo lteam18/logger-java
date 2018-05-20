@@ -1,6 +1,3 @@
-
-
-
 package logger;
 
 import java.util.ArrayList;
@@ -18,26 +15,14 @@ public class Logger {
     public ArrayList<String> namelist = new ArrayList<>();
     public Serializer.Type s;
 
-    // Very detailed infomation
     public final LevelLogger debug;
+    public final LevelLogger info;
+    public final LevelLogger warn;
+    public final LevelLogger error;
+    public final LevelLogger fatal;
 
-    // TODO: using final
-    // Warning
-    // Some unoccasional situation, not important
-    public LevelLogger info;
-    public LevelLogger warn;
-    // Unexepected situation, handled or not
-    // To do:Issue established, explantion or solution MUST GIVEN
-    public LevelLogger error;
-    // Error that resulted in exit
-    public LevelLogger fatal;
-
-    // TODO: delete
-    public String name;
 
     public Logger(ArrayList<String> namelist, Serializer.Type s) {
-//        this.name = getNamefromArray(namelist);
-        this.name = String.join(".", namelist);
         this.namelist = namelist;
         if (s == null) {
             this.s = new Serializer.Major();
@@ -79,12 +64,4 @@ public class Logger {
         return new StatusLogger(this.s, Schema);
     }
 
-    private static String getNamefromArray(ArrayList<String> N) {
-        String result = "";
-        for (String a : N) {
-            result += a;
-        }
-
-        return result;
-    }
 }
