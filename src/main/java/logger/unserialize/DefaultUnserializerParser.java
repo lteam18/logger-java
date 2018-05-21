@@ -2,7 +2,6 @@ package logger.unserialize;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import logger.JSON;
 
 public class DefaultUnserializerParser {

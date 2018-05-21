@@ -2,20 +2,17 @@ package logger;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
-
 import logger.type.Persistant;
 
 public class JSON {
 
     public static Map<String, String> parse(String json) {
         Gson gson = new Gson();
-        Type type = new TypeToken<Map<String, String>>() {
-        }.getType();
+        Type type = new TypeToken<Map<String, String>>() {}.getType();
         return gson.fromJson(json, type);
     }
 
@@ -42,5 +39,4 @@ public class JSON {
 
         return stringify(map) + "\n";
     }
-
 }

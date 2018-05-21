@@ -3,16 +3,15 @@ package logger.type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
 import logger.Utils;
 
 public class Persistant {
 
     public static class LevelLog {
         public ArrayList<String> N;
-        public long T;                //timeStamp
-        public Types.LevelType L;     //LogLevel
-        public String M = "";         //Message
+        public long T; //timeStamp
+        public Types.LevelType L; //LogLevel
+        public String M = ""; //Message
         //Data
         public HashMap<String, Object> D = new HashMap<>();
         /*
@@ -23,12 +22,13 @@ public class Persistant {
         */
         public HashMap<String, Object> E = new HashMap<>();
 
-        public LevelLog(ArrayList<String> N,
-                        long T,
-                        Types.LevelType L,
-                        String M,
-                        HashMap<String, Object> D,
-                        Object E) {
+        public LevelLog(
+                ArrayList<String> N,
+                long T,
+                Types.LevelType L,
+                String M,
+                HashMap<String, Object> D,
+                Object E) {
             this.N = N;
             this.T = T;
             this.L = L;
@@ -39,7 +39,10 @@ public class Persistant {
                 return;
             }
 
-            this.E = E instanceof HashMap ? (HashMap<String, Object>) E : Utils.stringifyError((Error) E);
+            this.E =
+                    E instanceof HashMap
+                            ? (HashMap<String, Object>) E
+                            : Utils.stringifyError((Error) E);
         }
     }
 

@@ -3,12 +3,10 @@ package logger.loggers;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-
 import logger.Utils;
 import logger.serialize.Serializer;
 import logger.type.Persistant;
 import logger.type.Types;
-
 
 public class LevelLogger {
     private Types.LevelType logType;
@@ -26,14 +24,14 @@ public class LevelLogger {
 
         errorHashmap = o.error != null ? Utils.stringifyError(o.error) : null;
 
-        Persistant.LevelLog levelLog = new Persistant.LevelLog(
-                this.namelist,
-                new Date().getTime(),
-                this.logType,
-                o.msg,
-                o.data,
-                errorHashmap
-        );
+        Persistant.LevelLog levelLog =
+                new Persistant.LevelLog(
+                        this.namelist,
+                        new Date().getTime(),
+                        this.logType,
+                        o.msg,
+                        o.data,
+                        errorHashmap);
         this.s.log(levelLog);
     }
 

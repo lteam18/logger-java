@@ -11,7 +11,7 @@ public class HeartbeatLogger {
 
     public HeartbeatLogger(Serializer.Type s, String msg, HashMap<String, Object> data) {
         if (s == null) {
-            this.s =  new Serializer.Major();
+            this.s = new Serializer.Major();
         } else {
             this.s = s;
         }
@@ -19,8 +19,7 @@ public class HeartbeatLogger {
         def(msg, data);
     }
 
-    public static void def(String msg, HashMap<String, Object> data) {
-    }
+    public static void def(String msg, HashMap<String, Object> data) {}
 
     public void beat(String msg, HashMap<String, Object> status) {
         this.s.beat(this.hid);
@@ -30,5 +29,3 @@ public class HeartbeatLogger {
         return this.hid;
     }
 }
-
-

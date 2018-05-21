@@ -1,13 +1,9 @@
 package logger;
 
-import org.junit.Test;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
-/**
- * Created by Lynnsion on 2018/5/2.
- */
+/** Created by Lynnsion on 2018/5/2. */
 public class Utils_test {
 
     public static void main(String[] args) {
@@ -28,7 +24,5 @@ public class Utils_test {
         System.out.println("convert map =" + list.toString());
 
         System.out.println("result 2223 =" + Utils.formatDiffString(2223));
-
     }
-
 }

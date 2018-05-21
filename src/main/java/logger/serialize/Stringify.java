@@ -3,8 +3,6 @@ package logger.serialize;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-
-
 import logger.Utils;
 import logger.type.Persistant;
 
@@ -78,9 +76,7 @@ public class Stringify {
         }
         if (data.E.size() > 0) {
             msg += "\n" + data.E.get("stack");
-            data.E.put(
-                    "stack",
-                    wrapWithColor(ANSI_BLACK, data.E.get("stack").toString()));
+            data.E.put("stack", wrapWithColor(ANSI_BLACK, data.E.get("stack").toString()));
         }
 
         return msg.replace("\n", "\n" + LEADING_SPACE);

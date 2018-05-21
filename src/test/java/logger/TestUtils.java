@@ -22,7 +22,5 @@ public class TestUtils {
         final long elapsed = System.currentTimeMillis() - t;
 
         Assert.assertEquals("Nearly 3 second", elapsed, 3000, 100);
-
-
     }
 }

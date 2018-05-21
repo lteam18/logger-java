@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
 import java.util.function.Function;
-
 import logger.JSON;
 import logger.type.Persistant;
 
@@ -19,7 +18,6 @@ public class Serializer {
         void defineStatus(long sid, Map<String, Object> data);
 
         void rec(long sid, Map<String, Object> status);
-
     }
 
     public static class Major implements Type {
@@ -35,7 +33,6 @@ public class Serializer {
             this.levelLogStringify = stringify;
             this.output_Major = Output.combine(outputs);
         }
-
 
         @Override
         public void log(Persistant.LevelLog data) {
@@ -104,5 +101,4 @@ public class Serializer {
         }
         return new Combination(arrayList);
     }
-
 }
