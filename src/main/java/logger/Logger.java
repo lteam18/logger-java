@@ -39,6 +39,13 @@ public class Logger {
                 : new Logger(arrayList, sType);
     }
 
+    public static Logger createRoot(String name, Serializer.Type... sType) {
+        ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(name));
+        return null == sType
+                ? new Logger(arrayList, new Serializer.Major())
+                : new Logger(arrayList, Serializer.combine(sType));
+    }
+
     public Logger createSub(String name) {
         ArrayList<String> nameList = new ArrayList<>();
         nameList.addAll(this.namelist);

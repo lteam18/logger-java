@@ -10,13 +10,11 @@ public class Logger_test {
         Instance.RootLogger =
                 Logger.createRoot(
                         "MainLogger-123",
-                        Serializer.combine(
-                                new Serializer.Major(
-                                        Stringify::stringifyLevelLog,
-                                        Output.CONSOLE(),
-                                        Output.file("./a.log")),
-                                new Serializer.Major(
-                                        JSON::stringify, Output.file("./a.json.log"))));
+                        new Serializer.Major(
+                                Stringify::stringifyLevelLog,
+                                Output.CONSOLE(),
+                                Output.file("./a.log")),
+                        new Serializer.Major(JSON::stringify, Output.file("./a.json.log")));
 
         final Logger llo = Instance.RootLogger;
 
