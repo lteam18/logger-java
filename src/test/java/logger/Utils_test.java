@@ -1,5 +1,7 @@
 package logger;
 
+import org.junit.Test;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -19,7 +21,7 @@ public class Utils_test {
 
         HashMap<String, Object> data2 = Utils.map("b", "1", "c", 2);
         HashMap<String, Object> data = Utils.map("st", "ss", "a", data2);
-        System.out.println("map =: " + data.toString());
+        System.out.println("map = " + data.toString());
 
         ArrayList list = new ArrayList();
         Utils.convert(data, list, "");
@@ -28,4 +30,5 @@ public class Utils_test {
         System.out.println("result 2223 =" + Utils.formatDiffString(2223));
 
     }
+
 }
