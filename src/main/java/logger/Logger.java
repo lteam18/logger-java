@@ -1,5 +1,6 @@
 package logger;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -12,8 +13,8 @@ import logger.type.Types;
 
 public class Logger {
 
-    public ArrayList<String> namelist = new ArrayList<>();
-    public Serializer.Type s;
+    private ArrayList<String> namelist = new ArrayList<>();
+    private Serializer.Type s;
 
     public final LevelLogger debug;
     public final LevelLogger info;
@@ -21,14 +22,10 @@ public class Logger {
     public final LevelLogger error;
     public final LevelLogger fatal;
 
-
     public Logger(ArrayList<String> namelist, Serializer.Type s) {
         this.namelist = namelist;
-        if (s == null) {
-            this.s = new Serializer.Major();
-        } else {
-            this.s = s;
-        }
+
+        this.s = null != s ? s : new Serializer.Major();
 
         this.debug = new LevelLogger(Types.LevelType.DEBUG, this.s, this.namelist);
         this.info = new LevelLogger(Types.LevelType.INFO, this.s, this.namelist);
@@ -38,14 +35,8 @@ public class Logger {
     }
 
     public static Logger createRoot(String name, Serializer.Type sType) {
-        String[] a = {name};
-        ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(a));
-
-        if (sType == null) {
-            return new Logger(arrayList, new Serializer.Major());
-        } else {
-            return new Logger(arrayList, sType);
-        }
+        ArrayList<String> arrayList =  new ArrayList<>(Arrays.asList(name));
+        return null == sType ? new Logger(arrayList, new Serializer.Major()) : new Logger(arrayList, sType);
     }
 
     public Logger createSub(String name) {

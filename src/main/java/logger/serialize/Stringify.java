@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+
 import logger.Utils;
 import logger.type.Persistant;
 
@@ -45,9 +46,9 @@ public class Stringify {
         return color + msg + ANSI_RESET;
     }
 
-    public static String stringifyLevelLog(Persistant.LevelLog Object_msg) {
-        Persistant.LevelLog data = Object_msg;
-        final long diff = data.T - history > 0 ?data.T - history:0;
+    public static String stringifyLevelLog(Persistant.LevelLog data) {
+
+        final long diff = data.T - history > 0 ? data.T - history : 0;
         history = data.T;
 
         String temp = LEADING_CHARS + Utils.formatDiffString(diff);

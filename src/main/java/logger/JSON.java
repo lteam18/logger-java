@@ -24,15 +24,6 @@ public class JSON {
         return gson.toJson(map);
     }
 
-
-    public static String createMapAndStringify(String... values) {
-        return stringify(Utils.map(values));
-    }
-
-    public static String createMapJson(Object... values) {
-        return stringify(Utils.map(values));
-    }
-
     public static String stringify(Persistant.LevelLog msg) {
         Persistant.LevelLog data = msg;
         HashMap<String, Object> map = new LinkedHashMap<>();
@@ -51,7 +42,5 @@ public class JSON {
 
         return stringify(map) + "\n";
     }
-
-
 
 }

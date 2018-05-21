@@ -44,5 +44,26 @@ public class Logger_test {
 
         llo.error.msg_data("Error", Utils.map("status", "off", "work", Utils.map("a", "3", "b", 4)));
 
+        final Logger logger2 = Logger.createRoot(
+                "Logger2",
+                new Serializer.Major(
+                        Stringify::stringifyLevelLog,
+                        Output.CONSOLE()
+                )
+        );
+        logger2.debug.msg("logger");
+
+        final Logger logger3 = Logger.createRoot(
+                "Logger3",
+                new Serializer.Major(
+                        JSON::stringify,
+                        Output.file("./b.json.log")
+                )
+        );
+
+        logger3.fatal.msg("logger3:1213");
+        logger2.fatal.msg("1213");
+        logger2.info.msg("Logger2 info");
+
     }
 }

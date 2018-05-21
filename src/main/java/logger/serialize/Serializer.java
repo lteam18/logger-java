@@ -24,18 +24,18 @@ public class Serializer {
 
     public static class Major implements Type {
         private Output.Type output_Major;
-
-        private Function<Persistant.LevelLog , String> levelLogStringify ;
+        private Function<Persistant.LevelLog, String> levelLogStringify;
 
         public Major() {
             this.levelLogStringify = JSON::stringify;
             this.output_Major = Output.CONSOLE();
         }
 
-        public Major(Function<Persistant.LevelLog , String> stringify, Output.Type... outputs) {
+        public Major(Function<Persistant.LevelLog, String> stringify, Output.Type... outputs) {
             this.levelLogStringify = stringify;
             this.output_Major = Output.combine(outputs);
         }
+
 
         @Override
         public void log(Persistant.LevelLog data) {
@@ -73,27 +73,27 @@ public class Serializer {
 
         @Override
         public void log(Persistant.LevelLog data) {
-            this.s.forEach((e) -> e.log(data));
+            this.s.forEach(type -> type.log(data));
         }
 
         @Override
         public void defineHeart(long hid, Map<String, Object> data) {
-            this.s.forEach((e) -> e.defineHeart(hid, data));
+            this.s.forEach(type -> type.defineHeart(hid, data));
         }
 
         @Override
         public void beat(long hid) {
-            this.s.forEach((e) -> e.beat(hid));
+            this.s.forEach(type -> type.beat(hid));
         }
 
         @Override
         public void defineStatus(long sid, Map<String, Object> data) {
-            this.s.forEach((e) -> e.defineStatus(sid, data));
+            this.s.forEach(type -> type.defineStatus(sid, data));
         }
 
         @Override
         public void rec(long sid, Map<String, Object> status) {
-            this.s.forEach((e) -> e.rec(sid, status));
+            this.s.forEach(type -> type.rec(sid, status));
         }
     }
 

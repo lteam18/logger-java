@@ -37,7 +37,6 @@ public class Output {
             fw.append(msg);
             fw.flush();
             fw.close();
-
         } catch (IOException e) {
             e.printStackTrace();
         }

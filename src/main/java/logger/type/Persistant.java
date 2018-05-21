@@ -35,15 +35,12 @@ public class Persistant {
             this.M = M;
             this.D = D;
 
-
             if (E == null) {
                 return;
             }
 
             this.E = E instanceof HashMap ? (HashMap<String, Object>) E : Utils.stringifyError((Error) E);
-
         }
-
     }
 
     public static class HeatLog {
