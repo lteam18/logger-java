@@ -47,13 +47,14 @@ public class Stringify {
 
     public static String stringifyLevelLog(Persistant.LevelLog Object_msg) {
         Persistant.LevelLog data = Object_msg;
-        final long diff = data.T - history;
+        final long diff = data.T - history > 0 ?data.T - history:0;
         history = data.T;
 
         String temp = LEADING_CHARS + Utils.formatDiffString(diff);
         final String diff_time_str = temp.substring(temp.length() - SEP);
 
         String l_difftime = diff_time_str;
+
         l_difftime = wrapWithColor(ANSI_BLUE, l_difftime);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
         String l_time = sdf.format(data.T);

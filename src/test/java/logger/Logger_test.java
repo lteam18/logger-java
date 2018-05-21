@@ -35,7 +35,6 @@ public class Logger_test {
         llo.debug.msg("123");
 
         llo.debug.msg_data("123", Utils.map("status", "on", "work", Utils.map("a", 1, "b", 2)));
-        llo.debug.msg_data("123", Utils.map("aaaaaa"));
 
         llo.info.msg_data("12321", Utils.map("status", "off", "work", Utils.map("a", "3", "b", 4)));
 
