@@ -83,12 +83,17 @@ public class Utils {
     }
 
     public static HashMap<String, Object> map(Object... values) {
-        HashMap<String, Object> map = new LinkedHashMap<>();
-        for (int i = 0; i < values.length; i += 2) {
-            if (i + 1 < values.length)
-                map.put(values[i].toString(), values[i + 1]);
+        if(values.length < 2){
+            return LoggerMap.h(values[0].toString(),"null").data;
         }
-        return map;
+
+        LoggerMap map = LoggerMap.h(values[0].toString(), values[1]);
+        for (int i = 2; i < values.length; i += 2) {
+            if (i + 1 < values.length)
+                map.o(values[i].toString(), values[i + 1]);
+        }
+
+        return map.data;
     }
 
     public static String getStacks(Throwable throwable) {
@@ -97,6 +102,23 @@ public class Utils {
         throwable.printStackTrace(pw);
         StringBuffer error = sw.getBuffer();
         return error.toString();
+    }
+
+    private static class LoggerMap {
+        private HashMap<String, Object> data = new LinkedHashMap<>();
+
+        public LoggerMap(String key, Object value) {
+            this.data.put(key, value);
+        }
+
+        public LoggerMap o(String key, Object value) {
+            this.data.put(key, value);
+            return this;
+        }
+
+        public static LoggerMap h(String key, Object value) {
+            return new LoggerMap(key, value);
+        }
     }
 
 }

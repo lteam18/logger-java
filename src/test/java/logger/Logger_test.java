@@ -34,15 +34,16 @@ public class Logger_test {
 
         llo.debug.msg("123");
 
-        llo.debug.msg_data("123", Utils.map("static", "on", "work", Utils.map("a", 1, "b", 2)));
+        llo.debug.msg_data("123", Utils.map("status", "on", "work", Utils.map("a", 1, "b", 2)));
+        llo.debug.msg_data("123", Utils.map("aaaaaa"));
 
-        llo.info.msg_data("12321", Utils.map("static", "off", "work", Utils.map("a", "3", "b", 4)));
+        llo.info.msg_data("12321", Utils.map("status", "off", "work", Utils.map("a", "3", "b", 4)));
 
         final Logger slog = llo.createSub("sublogger");
         slog.warn.trace(new Error("Here"));
-        slog.fatal.msg_data("Fatal", Utils.map("static", "off", "work", Utils.map("a", "3", "b", 4)));
+        slog.fatal.msg_data("Fatal", Utils.map("status", "off", "work", Utils.map("a", "3", "b", 4)));
 
-        llo.error.msg_data("Error", Utils.map("static", "off", "work", Utils.map("a", "3", "b", 4)));
+        llo.error.msg_data("Error", Utils.map("status", "off", "work", Utils.map("a", "3", "b", 4)));
 
     }
 }
