@@ -4,7 +4,6 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
-
 import java.util.Map;
 
 public class Utils {
@@ -12,14 +11,18 @@ public class Utils {
     public static String convertToUnits(long millis) {
         long rest = millis;
         final Long ms = rest % 1000;
-        final Long s = (rest / 1000) % 60;
+        final Long second = (rest / 1000) % 60;
         rest = Math.round(rest / 1000); //second
         final long minute = (rest / 60) % 60;
         rest = Math.round(rest / 60 / 60); // minute
         final long hour = rest % 24;
         final long day = Math.round(rest / 24);
 
-        return day + "d" + hour + "h" + minute + "m" + s + "s" + ms;
+        return (day > 0 ? day + "d" : "")
+                + (hour > 0 ? hour + "h" : "")
+                + (minute > 0 ? minute + "m" : "")
+                + (second > 0 ? second + "s" : "")
+                + (ms > 0 ? ms : "");
     }
 
     public static String formatDiffString(long millis) {
@@ -27,36 +30,26 @@ public class Utils {
     }
 
     public static String formatDiffString(long millis, int max_String) {
-        final String result = convertToUnits(millis);
-        StringBuilder ret = new StringBuilder();
-        StringBuilder temp = new StringBuilder();
 
-        getret(result, 0, result.indexOf("d") > 0 ? result.indexOf("d") : 1, temp, ret, "d");
-        getret(result, "d", "h", temp, ret, "h");
-        getret(result, "h", "m", temp, ret, "m");
-        getret(result, "m", "s", temp, ret, "s");
-        getret(result, "s", result.length(), temp, ret, "");
+        String resStr = convertToUnits(millis);
 
-        return ret.length() < max_String ? ret.toString() : ret.substring(0, max_String);
-    }
-
-    private static void getret(
-            String cStr,
-            Object start,
-            Object end,
-            StringBuilder temp,
-            StringBuilder ret,
-            String flag) {
-        if (start instanceof Integer && end instanceof Integer) {
-            temp.append(cStr.subSequence((Integer) start, (Integer) end));
-        } else if (end instanceof Integer) {
-            temp.append(cStr.subSequence(cStr.indexOf((String) start) + 1, (Integer) end));
-        } else {
-            temp.append(
-                    cStr.subSequence(cStr.indexOf((String) start) + 1, cStr.indexOf((String) end)));
+        if (max_String < 0) {
+            return "maxLength must be a positive number";
         }
-        if (!temp.toString().equals("0")) ret.append(temp + flag);
-        temp.delete(0, temp.length());
+
+        if (max_String < resStr.length()) {
+            for (int i = max_String - 1; i > 0; i--) {
+                if (resStr.charAt(i) == 's'
+                        || resStr.charAt(i) == 'm'
+                        || resStr.charAt(i) == 'h'
+                        || resStr.charAt(i) == 'd') {
+                    return resStr.substring(0, i + 1);
+                }
+            }
+            return "maxLength is less than result.length()";
+        }
+
+        return resStr;
     }
 
     public static void sleep(long millis) throws InterruptedException {

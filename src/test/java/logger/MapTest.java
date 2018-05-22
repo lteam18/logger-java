@@ -3,7 +3,6 @@ package logger;
 import java.util.HashMap;
 import org.junit.Test;
 
-/** Created by Lynnsion on 2018/5/20. */
 public class MapTest {
 
     public static class MapInit {

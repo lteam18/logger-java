@@ -63,7 +63,7 @@ public class Stringify {
             ArrayList<String> ret = new ArrayList<>();
             StringBuilder l_data = new StringBuilder();
 
-            Utils.convert(data.D, ret, "");
+            Utils.convert(data.D, ret);
             ret.forEach(e -> l_data.append(general_text_fun(data.L, e + " ")));
             msg += "\n" + l_data;
         }
