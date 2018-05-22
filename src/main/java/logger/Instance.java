@@ -8,5 +8,5 @@ public class Instance {
 
     public static Logger RootLogger =
             Logger.createRoot(
-                    "Logger", new Serializer.Major(Stringify::stringifyLevelLog, Output.CONSOLE()));
+                    "Logger", new Serializer.Major(Stringify::chalkDataStr, Output.CONSOLE()));
 }

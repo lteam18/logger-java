@@ -4,7 +4,7 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
+
 import java.util.Map;
 
 public class Utils {
@@ -88,16 +88,12 @@ public class Utils {
     }
 
     public static HashMap<String, Object> map(Object... values) {
-        if (values.length < 2) {
-            return LoggerMap.h(values[0].toString(), "null").data;
+        HashMap<String, Object> resMap = new HashMap<>();
+        for (int i = 0; i < values.length; i += 2) {
+            resMap.put(values[i].toString(), i + 1 < values.length ? values[i + 1] : "");
         }
 
-        LoggerMap map = LoggerMap.h(values[0].toString(), values[1]);
-        for (int i = 2; i < values.length; i += 2) {
-            if (i + 1 < values.length) map.o(values[i].toString(), values[i + 1]);
-        }
-
-        return map.data;
+        return resMap;
     }
 
     public static String getStacks(Throwable throwable) {
@@ -106,22 +102,5 @@ public class Utils {
         throwable.printStackTrace(pw);
         StringBuffer error = sw.getBuffer();
         return error.toString();
-    }
-
-    private static class LoggerMap {
-        private HashMap<String, Object> data = new LinkedHashMap<>();
-
-        public LoggerMap(String key, Object value) {
-            this.data.put(key, value);
-        }
-
-        public LoggerMap o(String key, Object value) {
-            this.data.put(key, value);
-            return this;
-        }
-
-        public static LoggerMap h(String key, Object value) {
-            return new LoggerMap(key, value);
-        }
     }
 }

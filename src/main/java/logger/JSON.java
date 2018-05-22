@@ -33,7 +33,7 @@ public class JSON {
         if (data.D != null) {
             map.put("D", data.D);
         }
-        if (data.E != null && data.E.size() > 0) {
+        if (data.E.size() > 0) {
             map.put("E", data.E);
         }
 

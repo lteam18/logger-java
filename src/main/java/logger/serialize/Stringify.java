@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import logger.Utils;
 import logger.type.Persistant;
+import logger.type.Types;
 
 public class Stringify {
 
@@ -23,8 +24,8 @@ public class Stringify {
 
     private static long history = new Date().getTime();
 
-    private static String general_text_fun(Persistant.LevelLog data, String msg) {
-        switch (data.L) {
+    private static String general_text_fun(Types.LevelType dataLevel, String msg) {
+        switch (dataLevel) {
             case DEBUG:
                 return ANSI_GREEN + msg + ANSI_RESET;
             case INFO:
@@ -44,40 +45,33 @@ public class Stringify {
         return color + msg + ANSI_RESET;
     }
 
-    public static String stringifyLevelLog(Persistant.LevelLog data) {
+    public static String chalkDataStr(Persistant.LevelLog data) {
 
         final long diff = data.T - history > 0 ? data.T - history : 0;
         history = data.T;
 
         String temp = LEADING_CHARS + Utils.formatDiffString(diff);
-        final String diff_time_str = temp.substring(temp.length() - SEP);
+        String l_difftime = wrapWithColor(ANSI_BLUE, temp.substring(temp.length() - SEP));
 
-        String l_difftime = diff_time_str;
-
-        l_difftime = wrapWithColor(ANSI_BLUE, l_difftime);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-        String l_time = sdf.format(data.T);
-        l_time = wrapWithColor(ANSI_WHITE, l_time);
+        String l_time = wrapWithColor(ANSI_WHITE, sdf.format(data.T));
 
-        final ArrayList<String> l_nameList = data.N;
+        String l_msg = !data.M.equals("") ? general_text_fun(data.L, data.M) : "";
+        String msg = l_difftime + " " + l_time + " " + data.N + " " + l_msg;
 
-        String l_msg = "";
-        if (!data.M.equals("")) {
-            l_msg = general_text_fun(data, data.M);
-        }
-
-        String msg = l_difftime + " " + l_time + " " + l_nameList + " " + l_msg;
         if (data.D != null) {
             ArrayList<String> ret = new ArrayList<>();
+            StringBuilder l_data = new StringBuilder();
+
             Utils.convert(data.D, ret, "");
-            final String[] l_data = {""};
-            ret.forEach(e -> l_data[0] += general_text_fun(data, e + " "));
-            msg += "\n" + l_data[0];
+            ret.forEach(e -> l_data.append(general_text_fun(data.L, e + " ")));
+            msg += "\n" + l_data;
         }
-        if (data.E.size() > 0) {
-            msg += "\n" + data.E.get("stack");
-            data.E.put("stack", wrapWithColor(ANSI_BLACK, data.E.get("stack").toString()));
-        }
+
+        msg +=
+                data.E.size() > 0
+                        ? wrapWithColor(ANSI_BLACK, "\n" + data.E.get("stack").toString())
+                        : "";
 
         return msg.replace("\n", "\n" + LEADING_SPACE);
     }

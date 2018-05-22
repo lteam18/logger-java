@@ -11,9 +11,7 @@ public class Logger_test {
                 Logger.createRoot(
                         "MainLogger-123",
                         new Serializer.Major(
-                                Stringify::stringifyLevelLog,
-                                Output.CONSOLE(),
-                                Output.file("./a.log")),
+                                Stringify::chalkDataStr, Output.CONSOLE(), Output.file("./a.log")),
                         new Serializer.Major(JSON::stringify, Output.file("./a.json.log")));
 
         final Logger llo = Instance.RootLogger;
@@ -34,15 +32,14 @@ public class Logger_test {
         final Logger slog = llo.createSub("sublogger");
         slog.warn.trace(new Error("Here"));
         slog.fatal.msg_data(
-                "Fatal", Utils.map("status", "off", "work", Utils.map("a", "3", "b", 4)));
+                "Fatal data", Utils.map("status", "off", "work", Utils.map("a", "3", "b", 4)));
 
         llo.error.msg_data(
                 "Error", Utils.map("status", "off", "work", Utils.map("a", "3", "b", 4)));
 
         final Logger logger2 =
                 Logger.createRoot(
-                        "Logger2",
-                        new Serializer.Major(Stringify::stringifyLevelLog, Output.CONSOLE()));
+                        "Logger2", new Serializer.Major(Stringify::chalkDataStr, Output.CONSOLE()));
         logger2.debug.msg("logger");
 
         final Logger logger3 =

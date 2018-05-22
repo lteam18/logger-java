@@ -16,9 +16,9 @@ public class Persistant {
         public HashMap<String, Object> D = new HashMap<>();
         /*
         ErrorStack
-           msg?: string,
-           name?: string,
-           stack?: string
+           msg: string,
+           name: string,
+           stack: string
         */
         public HashMap<String, Object> E = new HashMap<>();
 
