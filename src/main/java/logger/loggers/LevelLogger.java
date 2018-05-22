@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import logger.Utils;
+import logger.serialize.Major;
 import logger.serialize.Serializer;
 import logger.type.Persistant;
 import logger.type.Types;
@@ -15,7 +16,7 @@ public class LevelLogger {
 
     public LevelLogger(Types.LevelType logType, Serializer.Type s, ArrayList<String> namelist) {
         this.logType = logType;
-        this.s = s == null ? new Serializer.Major() : s;
+        this.s = s == null ? new Major() : s;
         this.namelist = namelist;
     }
 

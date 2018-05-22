@@ -1,6 +1,7 @@
 package logger.loggers;
 
 import java.util.HashMap;
+import logger.serialize.Major;
 import logger.serialize.Serializer;
 
 public class StatusLogger {
@@ -11,7 +12,7 @@ public class StatusLogger {
 
     public StatusLogger(Serializer.Type s, HashMap<String, Object> data) {
         if (s == null) {
-            this.s = new Serializer.Major();
+            this.s = new Major();
         } else {
             this.s = s;
         }

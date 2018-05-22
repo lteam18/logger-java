@@ -1,7 +1,7 @@
 package logger;
 
+import logger.serialize.Major;
 import logger.serialize.Output;
-import logger.serialize.Serializer;
 import logger.serialize.Stringify;
 
 public class Logger_test {
@@ -10,9 +10,8 @@ public class Logger_test {
         Instance.RootLogger =
                 Logger.createRoot(
                         "MainLogger-123",
-                        new Serializer.Major(
-                                Stringify::chalkDataStr, Output.CONSOLE(), Output.file("./a.log")),
-                        new Serializer.Major(JSON::stringify, Output.file("./a.json.log")));
+                        new Major(Stringify::chalkDataStr, Output.CONSOLE(), Output.file("./a.log")),
+                        new Major(JSON::stringify, Output.file("./a.json.log")));
 
         final Logger llo = Instance.RootLogger;
 
@@ -38,14 +37,12 @@ public class Logger_test {
                 "Error", Utils.map("status", "off", "work", Utils.map("a", "3", "b", 4)));
 
         final Logger logger2 =
-                Logger.createRoot(
-                        "Logger2", new Serializer.Major(Stringify::chalkDataStr, Output.CONSOLE()));
+                Logger.createRoot("Logger2", new Major(Stringify::chalkDataStr, Output.CONSOLE()));
         logger2.debug.msg("logger");
 
         final Logger logger3 =
                 Logger.createRoot(
-                        "Logger3",
-                        new Serializer.Major(JSON::stringify, Output.file("./b.json.log")));
+                        "Logger3", new Major(JSON::stringify, Output.file("./b.json.log")));
 
         logger3.fatal.msg("logger3:1213");
         logger2.fatal.msg("1213");

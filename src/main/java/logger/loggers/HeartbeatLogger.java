@@ -1,6 +1,7 @@
 package logger.loggers;
 
 import java.util.HashMap;
+import logger.serialize.Major;
 import logger.serialize.Serializer;
 
 public class HeartbeatLogger {
@@ -11,7 +12,7 @@ public class HeartbeatLogger {
 
     public HeartbeatLogger(Serializer.Type s, String msg, HashMap<String, Object> data) {
         if (s == null) {
-            this.s = new Serializer.Major();
+            this.s = new Major();
         } else {
             this.s = s;
         }

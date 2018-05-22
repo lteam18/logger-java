@@ -6,6 +6,7 @@ import java.util.HashMap;
 import logger.loggers.HeartbeatLogger;
 import logger.loggers.LevelLogger;
 import logger.loggers.StatusLogger;
+import logger.serialize.Major;
 import logger.serialize.Serializer;
 import logger.type.Types;
 
@@ -23,7 +24,7 @@ public class Logger {
     public Logger(ArrayList<String> namelist, Serializer.Type s) {
         this.namelist = namelist;
 
-        this.s = null != s ? s : new Serializer.Major();
+        this.s = null != s ? s : new Major();
 
         this.debug = new LevelLogger(Types.LevelType.DEBUG, this.s, this.namelist);
         this.info = new LevelLogger(Types.LevelType.INFO, this.s, this.namelist);
@@ -34,15 +35,13 @@ public class Logger {
 
     public static Logger createRoot(String name, Serializer.Type sType) {
         ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(name));
-        return null == sType
-                ? new Logger(arrayList, new Serializer.Major())
-                : new Logger(arrayList, sType);
+        return null == sType ? new Logger(arrayList, new Major()) : new Logger(arrayList, sType);
     }
 
     public static Logger createRoot(String name, Serializer.Type... sType) {
         ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(name));
         return null == sType
-                ? new Logger(arrayList, new Serializer.Major())
+                ? new Logger(arrayList, new Major())
                 : new Logger(arrayList, Serializer.combine(sType));
     }
 
