@@ -3,6 +3,7 @@ package logger;
 import logger.loggers.Logger;
 import logger.serialize.Major;
 import logger.serialize.Output;
+import logger.serialize.Serializer;
 import logger.serialize.Stringify;
 
 public class Logger_test {
@@ -10,10 +11,18 @@ public class Logger_test {
 
         final Logger llo =
                 Logger.builder()
-                        .addName("MainLogger-123")
-                        .addMajor(Major.Stringify(Output.CONSOLE(), Output.file("./a.log")))
-                        .addMajor(Major.JSON(Output.file("./a.json.log")))
+                        .setName("MainLogger-123")
+                        .addMajor(Major.toChalk(Output.CONSOLE(), Output.file("./a.log")))
+                        .addMajor(Major.toJSON(Output.file("./a.json.log")))
                         .build();
+
+        final Logger llo4 =
+                Logger.create(
+                        "MainLogger-789",
+                        Serializer.toChalk(Output.CONSOLE(), Output.file("./a.log")),
+                        Serializer.toJSON(Output.file("./a.json.log")));
+
+        llo4.debug.msg("llo4");
 
         llo.debug.msg("Program ready");
         try {
@@ -38,7 +47,7 @@ public class Logger_test {
 
         final Logger logger2 =
                 Logger.builder()
-                        .addName("Logger2")
+                        .setName("Logger2")
                         .addMajor(new Major(Stringify::chalkDataStr, Output.CONSOLE()))
                         .build();
 
@@ -46,7 +55,7 @@ public class Logger_test {
 
         final Logger logger3 =
                 Logger.builder()
-                        .addName("Logger3")
+                        .setName("Logger3")
                         .addMajor(new Major(JSON::stringify, Output.file("./b.json.log")))
                         .build();
 

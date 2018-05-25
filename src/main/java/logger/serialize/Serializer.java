@@ -2,6 +2,7 @@ package logger.serialize;
 
 import java.util.ArrayList;
 import java.util.Map;
+import logger.JSON;
 import logger.type.Persistant;
 
 public class Serializer {
@@ -51,7 +52,21 @@ public class Serializer {
         }
     }
 
+    public static Combination combine(Type... types) {
+        ArrayList<Type> arrayList = new ArrayList<>();
+        for (int i = 0; i < types.length; i++) arrayList.add(types[i]);
+        return new Combination(arrayList);
+    }
+
     public static Combination combine(ArrayList<Type> types) {
         return new Combination(types);
+    }
+
+    public static Major toJSON(Output.Type... outputs) {
+        return new Major(JSON::stringify, outputs);
+    }
+
+    public static Major toChalk(Output.Type... outputs) {
+        return new Major(Stringify::chalkDataStr, outputs);
     }
 }

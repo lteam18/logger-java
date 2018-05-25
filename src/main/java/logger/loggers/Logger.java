@@ -1,6 +1,7 @@
 package logger.loggers;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import logger.serialize.Major;
 import logger.serialize.Serializer;
@@ -27,6 +28,18 @@ public class Logger {
         this.warn = new LevelLogger(Types.LevelType.WARN, this.s, this.namelist);
         this.error = new LevelLogger(Types.LevelType.ERROR, this.s, this.namelist);
         this.fatal = new LevelLogger(Types.LevelType.FATAL, this.s, this.namelist);
+    }
+
+    public static Logger create(String name, Serializer.Type sType) {
+        ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(name));
+        return null == sType ? new Logger(arrayList, new Major()) : new Logger(arrayList, sType);
+    }
+
+    public static Logger create(String name, Serializer.Type... sType) {
+        ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(name));
+        return null == sType
+                ? new Logger(arrayList, new Major())
+                : new Logger(arrayList, Serializer.combine(sType));
     }
 
     public Logger createSub(String name) {

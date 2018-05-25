@@ -13,7 +13,7 @@ public class LoggerBuilder {
         majorlist = new ArrayList<>();
     }
 
-    public final LoggerBuilder addName(String name) {
+    public final LoggerBuilder setName(String name) {
         this.name = name;
         return this;
     }
