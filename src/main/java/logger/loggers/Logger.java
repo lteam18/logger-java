@@ -1,11 +1,7 @@
-package logger;
+package logger.loggers;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import logger.loggers.HeartbeatLogger;
-import logger.loggers.LevelLogger;
-import logger.loggers.StatusLogger;
 import logger.serialize.Major;
 import logger.serialize.Serializer;
 import logger.type.Types;
@@ -33,18 +29,6 @@ public class Logger {
         this.fatal = new LevelLogger(Types.LevelType.FATAL, this.s, this.namelist);
     }
 
-    public static Logger createRoot(String name, Serializer.Type sType) {
-        ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(name));
-        return null == sType ? new Logger(arrayList, new Major()) : new Logger(arrayList, sType);
-    }
-
-    public static Logger createRoot(String name, Serializer.Type... sType) {
-        ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(name));
-        return null == sType
-                ? new Logger(arrayList, new Major())
-                : new Logger(arrayList, Serializer.combine(sType));
-    }
-
     public Logger createSub(String name) {
         ArrayList<String> nameList = new ArrayList<>();
         nameList.addAll(this.namelist);
@@ -59,5 +43,9 @@ public class Logger {
 
     public StatusLogger defineStatusLogger(HashMap<String, Object> Schema) {
         return new StatusLogger(this.s, Schema);
+    }
+
+    public static LoggerBuilder builder() {
+        return new LoggerBuilder();
     }
 }

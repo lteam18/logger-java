@@ -51,11 +51,7 @@ public class Serializer {
         }
     }
 
-    public static Combination combine(Type... s) {
-        ArrayList<Type> arrayList = new ArrayList<>();
-        for (int i = 0; i < s.length; i++) {
-            arrayList.add(s[i]);
-        }
-        return new Combination(arrayList);
+    public static Combination combine(ArrayList<Type> types) {
+        return new Combination(types);
     }
 }
