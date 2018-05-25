@@ -20,14 +20,6 @@ public class Major implements Serializer.Type {
         this.output_Major = Output.combine(outputs);
     }
 
-    public static Major toJSON(Output.Type... outputs) {
-        return new Major(JSON::stringify, outputs);
-    }
-
-    public static Major toChalk(Output.Type... outputs) {
-        return new Major(Stringify::chalkDataStr, outputs);
-    }
-
     @Override
     public void log(Persistant.LevelLog data) {
         output_Major.output(levelLogStringify.apply(data));

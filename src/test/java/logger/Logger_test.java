@@ -12,8 +12,8 @@ public class Logger_test {
         final Logger llo =
                 Logger.builder()
                         .setName("MainLogger-123")
-                        .addMajor(Major.toChalk(Output.CONSOLE(), Output.file("./a.log")))
-                        .addMajor(Major.toJSON(Output.file("./a.json.log")))
+                        .addOutputType(Serializer.toChalk(Output.CONSOLE(), Output.file("./a.log")))
+                        .addOutputType(Serializer.toJSON(Output.file("./a.json.log")))
                         .build();
 
         final Logger llo4 =
@@ -48,7 +48,7 @@ public class Logger_test {
         final Logger logger2 =
                 Logger.builder()
                         .setName("Logger2")
-                        .addMajor(new Major(Stringify::chalkDataStr, Output.CONSOLE()))
+                        .addOutputType(new Major(Stringify::chalkDataStr, Output.CONSOLE()))
                         .build();
 
         logger2.debug.msg("logger");
@@ -56,7 +56,7 @@ public class Logger_test {
         final Logger logger3 =
                 Logger.builder()
                         .setName("Logger3")
-                        .addMajor(new Major(JSON::stringify, Output.file("./b.json.log")))
+                        .addOutputType(new Major(JSON::stringify, Output.file("./b.json.log")))
                         .build();
 
         logger3.fatal.msg("logger3:1213");

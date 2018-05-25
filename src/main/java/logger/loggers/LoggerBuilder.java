@@ -18,7 +18,7 @@ public class LoggerBuilder {
         return this;
     }
 
-    public final LoggerBuilder addMajor(Major major) {
+    public final LoggerBuilder addOutputType(Major major) {
         this.majorlist.add(major);
         return this;
     }
