@@ -45,22 +45,5 @@ public class Logger_test {
         llo.error.msg_data(
                 "Error", Utils.map("status", "off", "work", Utils.map("a", "3", "b", 4)));
 
-        final Logger logger2 =
-                Logger.builder()
-                        .setName("Logger2")
-                        .addOutputType(new Major(Stringify::chalkDataStr, Output.CONSOLE()))
-                        .build();
-
-        logger2.debug.msg("logger");
-
-        final Logger logger3 =
-                Logger.builder()
-                        .setName("Logger3")
-                        .addOutputType(new Major(JSON::stringify, Output.file("./b.json.log")))
-                        .build();
-
-        logger3.fatal.msg("logger3:1213");
-        logger2.fatal.msg("1213");
-        logger2.info.msg("Logger2 info");
     }
 }

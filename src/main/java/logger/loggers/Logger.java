@@ -1,9 +1,13 @@
 package logger.loggers;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
+
 import logger.serialize.Major;
+import logger.serialize.Output;
 import logger.serialize.Serializer;
 import logger.type.Types;
 
@@ -28,6 +32,20 @@ public class Logger {
         this.warn = new LevelLogger(Types.LevelType.WARN, this.s, this.namelist);
         this.error = new LevelLogger(Types.LevelType.ERROR, this.s, this.namelist);
         this.fatal = new LevelLogger(Types.LevelType.FATAL, this.s, this.namelist);
+    }
+
+    public static Logger createDefault(String loggerName) {
+        final String dateString = generateDateString();
+        return create(
+                loggerName,
+                Serializer.toChalk(
+                        Output.CONSOLE(),
+                        Output.file(loggerName + "." + dateString + ".chalk.log")
+                ),
+                Serializer.toJSON(
+                        Output.file(loggerName + "." + dateString + ".json.log")
+                )
+        );
     }
 
     public static Logger create(String name, Serializer.Type sType) {
@@ -60,5 +78,13 @@ public class Logger {
 
     public static LoggerBuilder builder() {
         return new LoggerBuilder();
+    }
+
+    public static String generateDateString() {
+        String dateNow = "";
+        Date dt = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        dateNow = sdf.format(dt);
+        return dateNow;
     }
 }
