@@ -49,10 +49,19 @@ public class StatusLogEntry {
         }
 
         HashMap<String, Object> ret = new HashMap<>();
-        for(HashMap.Entry<String, Object> entry: current.entrySet()){
-            final p = previous[entry]
+        for (HashMap.Entry<String, Object> entry : current.entrySet()) {
+            final Object p = previous.get(entry);
+            final Object c = current.get(entry);
+            if (p == c) continue;
+
+            if ((c instanceof Object) && (p instanceof Object)) {
+                final Object d = diff(c, p);
+            } else {
+
+            }
         }
 
+        return ret;
     }
 
 
