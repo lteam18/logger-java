@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import logger.Utils;
+import logger.serialize.Serializer;
 
 public class Persistant {
 
@@ -21,6 +22,9 @@ public class Persistant {
            stack: string
         */
         public HashMap<String, Object> E = new HashMap<>();
+
+
+        public Serializer.Type s = Serializer.toJSON();
 
         public LevelLog(
                 ArrayList<String> N,

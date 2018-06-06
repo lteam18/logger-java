@@ -1,7 +1,9 @@
 package logger.serialize;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
+
 import logger.JSON;
 import logger.stringify.Stringify;
 import logger.type.Persistant;
@@ -17,6 +19,8 @@ public class Serializer {
         void defineStatus(long sid, Map<String, Object> data);
 
         void rec(long sid, Map<String, Object> status);
+
+        String logStatus(long id, HashMap<String, Object> data);
     }
 
     public static class Combination implements Type {
@@ -50,6 +54,11 @@ public class Serializer {
         @Override
         public void rec(long sid, Map<String, Object> status) {
             this.s.forEach(type -> type.rec(sid, status));
+        }
+
+        @Override
+        public String logStatus(long id, HashMap<String, Object> data) {
+            return null;
         }
     }
 

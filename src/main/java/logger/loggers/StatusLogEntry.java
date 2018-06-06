@@ -1,5 +1,6 @@
 package logger.loggers;
 
+import java.util.Date;
 import java.util.HashMap;
 
 import logger.serialize.Serializer;
@@ -18,16 +19,19 @@ public class StatusLogEntry {
         this.s = s;
     }
 
-    public void record(RECORD redord) {
-        this.s.logStatus(this.sleid, {});
+    public void record(HashMap<String, Object> record) {
+        HashMap<String, Object> msg = new HashMap<>();
+        msg.put("T", new Date().getTime());
+        msg.put("R", record);
+        this.s.logStatus(this.sleid, msg);
     }
 
-    static createDiff(Serializer.Type s) {
+    public static Diff createDiff(Serializer.Type s) {
         return new Diff(s);
     }
 
 
-    public class Diff {
+    public static class Diff {
         public long sleid = StatusLogEntry.SLEID++;
 
         public HashMap<String, Object> history = new HashMap<>();
@@ -38,7 +42,10 @@ public class StatusLogEntry {
         }
 
         public void record(HashMap<String, Object> record) {
-            this.s.logStatus(this.sleid, {});
+            HashMap<String, Object> msg = new HashMap<>();
+            msg.put("T", new Date().getTime());
+            msg.put("R", record);
+            this.s.logStatus(this.sleid, msg);
             this.history = record;
         }
     }
@@ -55,9 +62,10 @@ public class StatusLogEntry {
             if (p == c) continue;
 
             if ((c instanceof Object) && (p instanceof Object)) {
-                final Object d = diff(c, p);
+//                final Object d = diff(c, p);
+//                d && ret.put(entry,d);
             } else {
-
+//                ret.put(entry,c);
             }
         }
 

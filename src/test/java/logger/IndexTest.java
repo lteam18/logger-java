@@ -9,9 +9,10 @@ public class IndexTest {
         Instances.RootLogger = Logger.createDefault("MainLogger-123");
         final Logger llo = Instances.RootLogger;
 
-        //        final heart = llo.INFO.createPatternLogEntry({
-        //
-        //        });
+        llo.debug.msg("sssds");
+//                final heart = llo.INFO.createPatternLogEntry({
+//
+//                });
 
     }
 }

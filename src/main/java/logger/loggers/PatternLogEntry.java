@@ -1,7 +1,7 @@
 package logger.loggers;
 
 
-import java.util.Map;
+import java.util.HashMap;
 
 import logger.type.Persistant;
 import logger.type.Types;
@@ -19,7 +19,8 @@ public class PatternLogEntry {
         this.o = o;
     }
 
-    public void beat(Map<String, Object> data){
+    public void beat(HashMap<String, Object> data){
+
         this.l.s.logInPattern(this,)
     }
 }
