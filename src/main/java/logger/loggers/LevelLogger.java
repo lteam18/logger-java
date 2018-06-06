@@ -10,9 +10,22 @@ import logger.type.Persistant;
 import logger.type.Types;
 
 public class LevelLogger {
+    private long lid;
     private Types.LevelType logType;
     private Serializer.Type s;
     private ArrayList<String> namelist;
+
+    public LevelLogger(
+            long llid,
+            Types.LevelType logType,
+            Serializer.Type s,
+            Logger logger
+    ){
+        this.lid = llid;
+        this.logType = logType;
+        this.s = s;
+//        this.s.defineLevelLogger(this);
+    }
 
     public LevelLogger(Types.LevelType logType, Serializer.Type s, ArrayList<String> namelist) {
         this.logType = logType;

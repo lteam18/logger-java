@@ -3,6 +3,7 @@ package logger.serialize;
 import java.util.ArrayList;
 import java.util.Map;
 import logger.JSON;
+import logger.stringify.Stringify;
 import logger.type.Persistant;
 
 public class Serializer {

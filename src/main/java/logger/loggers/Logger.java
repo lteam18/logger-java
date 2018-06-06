@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
-
 import logger.serialize.Major;
 import logger.serialize.Output;
 import logger.serialize.Serializer;
@@ -36,21 +35,13 @@ public class Logger {
 
     public static Logger createDefault(String loggerName) {
         final String dateString = generateDateString();
+
         return create(
                 loggerName,
                 Serializer.toChalk(
                         Output.CONSOLE(),
-                        Output.file(loggerName + "." + dateString + ".chalk.log")
-                ),
-                Serializer.toJSON(
-                        Output.file(loggerName + "." + dateString + ".json.log")
-                )
-        );
-    }
-
-    public static Logger create(String name, Serializer.Type sType) {
-        ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(name));
-        return null == sType ? new Logger(arrayList, new Major()) : new Logger(arrayList, sType);
+                        Output.file("./" + loggerName + "." + dateString + ".chalk.log")),
+                Serializer.toJSON(Output.file("./" + loggerName + "." + dateString + ".json.log")));
     }
 
     public static Logger create(String name, Serializer.Type... sType) {
@@ -60,13 +51,16 @@ public class Logger {
                 : new Logger(arrayList, Serializer.combine(sType));
     }
 
-    public Logger createSub(String name) {
+    public Logger createChildLogger(String name) {
         ArrayList<String> nameList = new ArrayList<>();
         nameList.addAll(this.namelist);
         nameList.add(name);
 
         return new Logger(nameList, s);
     }
+
+//    public static LevelLogger DEBUG = new LevelLogger(this.lid +1, Types.LevelType.DEBUG,this.s)
+
 
     public HeartbeatLogger defineHeartbeatLogger(String msg, HashMap<String, Object> data) {
         return new HeartbeatLogger(this.s, msg, data);
@@ -81,9 +75,9 @@ public class Logger {
     }
 
     public static String generateDateString() {
-        String dateNow = "";
+        String dateNow;
         Date dt = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
         dateNow = sdf.format(dt);
         return dateNow;
     }

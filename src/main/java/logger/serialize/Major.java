@@ -3,7 +3,10 @@ package logger.serialize;
 import java.util.Date;
 import java.util.Map;
 import java.util.function.Function;
+
 import logger.JSON;
+import logger.loggers.LevelLogger;
+import logger.loggers.Logger;
 import logger.type.Persistant;
 
 public class Major implements Serializer.Type {
@@ -44,4 +47,5 @@ public class Major implements Serializer.Type {
     public void rec(long sid, Map<String, Object> status) {
         output_Major.output(sid + " " + new Date().getTime() + " " + JSON.stringify(status));
     }
+
 }

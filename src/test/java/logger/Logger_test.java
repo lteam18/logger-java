@@ -1,10 +1,8 @@
 package logger;
 
 import logger.loggers.Logger;
-import logger.serialize.Major;
 import logger.serialize.Output;
 import logger.serialize.Serializer;
-import logger.serialize.Stringify;
 
 public class Logger_test {
     public static void main(String[] args) {
@@ -16,13 +14,11 @@ public class Logger_test {
                         .addOutputType(Serializer.toJSON(Output.file("./a.json.log")))
                         .build();
 
-        final Logger llo4 =
+        final Logger llo2 =
                 Logger.create(
                         "MainLogger-789",
                         Serializer.toChalk(Output.CONSOLE(), Output.file("./a.log")),
                         Serializer.toJSON(Output.file("./a.json.log")));
-
-        llo4.debug.msg("llo4");
 
         llo.debug.msg("Program ready");
         try {
@@ -37,13 +33,12 @@ public class Logger_test {
 
         llo.info.msg_data("12321", Utils.map("status", "off", "work", Utils.map("a", "3", "b", 4)));
 
-        final Logger slog = llo.createSub("sublogger");
+        final Logger slog = llo.createChildLogger("sublogger");
         slog.warn.trace(new Error("Here"));
         slog.fatal.msg_data(
                 "Fatal data", Utils.map("status", "off", "work", Utils.map("a", "3", "b", 4)));
 
         llo.error.msg_data(
                 "Error", Utils.map("status", "off", "work", Utils.map("a", "3", "b", 4)));
-
     }
 }

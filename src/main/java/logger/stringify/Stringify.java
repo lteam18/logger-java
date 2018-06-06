@@ -1,4 +1,4 @@
-package logger.serialize;
+package logger.stringify;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
