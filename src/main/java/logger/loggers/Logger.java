@@ -4,33 +4,29 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.HashMap;
+
 import logger.serialize.Major;
 import logger.serialize.Output;
 import logger.serialize.Serializer;
 import logger.type.Types;
 
 public class Logger {
+    private static long LID = 0;
+    private long lid = Logger.LID += 10;
 
-    private ArrayList<String> namelist = new ArrayList<>();
+    private ArrayList<String> nameList = new ArrayList<>();
     private Serializer.Type s;
 
-    public final LevelLogger debug;
-    public final LevelLogger info;
-    public final LevelLogger warn;
-    public final LevelLogger error;
-    public final LevelLogger fatal;
+    public Logger(ArrayList<String> nameList, Serializer.Type s) {
+        this.nameList = nameList;
+        this.s = s != null ? s : Serializer.toJSON();
+    }
 
-    public Logger(ArrayList<String> namelist, Serializer.Type s) {
-        this.namelist = namelist;
-
-        this.s = null != s ? s : new Major();
-
-        this.debug = new LevelLogger(Types.LevelType.DEBUG, this.s, this.namelist);
-        this.info = new LevelLogger(Types.LevelType.INFO, this.s, this.namelist);
-        this.warn = new LevelLogger(Types.LevelType.WARN, this.s, this.namelist);
-        this.error = new LevelLogger(Types.LevelType.ERROR, this.s, this.namelist);
-        this.fatal = new LevelLogger(Types.LevelType.FATAL, this.s, this.namelist);
+    public static Logger create(String name, Serializer.Type... sType) {
+        ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(name));
+        return null == sType
+                ? new Logger(arrayList, new Major())
+                : new Logger(arrayList, Serializer.combine(sType));
     }
 
     public static Logger createDefault(String loggerName) {
@@ -44,41 +40,51 @@ public class Logger {
                 Serializer.toJSON(Output.file("./" + loggerName + "." + dateString + ".json.log")));
     }
 
-    public static Logger create(String name, Serializer.Type... sType) {
-        ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(name));
-        return null == sType
-                ? new Logger(arrayList, new Major())
-                : new Logger(arrayList, Serializer.combine(sType));
-    }
-
     public Logger createChildLogger(String name) {
         ArrayList<String> nameList = new ArrayList<>();
-        nameList.addAll(this.namelist);
+        nameList.addAll(this.nameList);
         nameList.add(name);
 
-        return new Logger(nameList, s);
+        return new Logger(nameList, this.s);
     }
 
-//    public static LevelLogger DEBUG = new LevelLogger(this.lid +1, Types.LevelType.DEBUG,this.s)
+    public LevelLogger DEBUG = new LevelLogger(this.lid + 1, Types.LevelType.DEBUG, this.s, this);
 
-
-    public HeartbeatLogger defineHeartbeatLogger(String msg, HashMap<String, Object> data) {
-        return new HeartbeatLogger(this.s, msg, data);
+    public String debug(Types.LevelLoggerOption o) {
+        return this.DEBUG.o(o);
     }
 
-    public StatusLogger defineStatusLogger(HashMap<String, Object> Schema) {
-        return new StatusLogger(this.s, Schema);
+    public LevelLogger INFO = new LevelLogger(this.lid + 2, Types.LevelType.INFO, this.s, this);
+
+    public String info(Types.LevelLoggerOption o) {
+        return this.INFO.o(o);
+    }
+
+    public LevelLogger WARN = new LevelLogger(this.lid + 3, Types.LevelType.WARN, this.s, this);
+
+    public String warn(Types.LevelLoggerOption o) {
+        return this.WARN.o(o);
+    }
+
+    public LevelLogger ERROR = new LevelLogger(this.lid + 4, Types.LevelType.ERROR, this.s, this);
+
+    public String error(Types.LevelLoggerOption o) {
+        return this.ERROR.o(o);
+    }
+
+    public LevelLogger FATAL = new LevelLogger(this.lid + 5, Types.LevelType.FATAL, this.s, this);
+
+    public String fatal(Types.LevelLoggerOption o) {
+        return this.FATAL.o(o);
+    }
+
+    public static String generateDateString() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
+        String dateNow = sdf.format(new Date());
+        return dateNow;
     }
 
     public static LoggerBuilder builder() {
         return new LoggerBuilder();
-    }
-
-    public static String generateDateString() {
-        String dateNow;
-        Date dt = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
-        dateNow = sdf.format(dt);
-        return dateNow;
     }
 }

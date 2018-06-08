@@ -12,19 +12,16 @@ import logger.type.Types;
 public class LevelLogger {
     private long lid;
     private Types.LevelType logType;
-    private Serializer.Type s;
+    public Serializer.Type s;
     private ArrayList<String> namelist;
+    private Logger logger;
 
-    public LevelLogger(
-            long llid,
-            Types.LevelType logType,
-            Serializer.Type s,
-            Logger logger
-    ){
+    public LevelLogger(long llid, Types.LevelType logType, Serializer.Type s, Logger logger) {
         this.lid = llid;
         this.logType = logType;
-        this.s = s;
-//        this.s.defineLevelLogger(this);
+        this.s = s != null ? s : Serializer.toJSON();
+        this.logger = logger;
+        this.s.defineLevelLogger(this);
     }
 
     public LevelLogger(Types.LevelType logType, Serializer.Type s, ArrayList<String> namelist) {
@@ -33,7 +30,19 @@ public class LevelLogger {
         this.namelist = namelist;
     }
 
-    public void o(Types.LevelLoggerOption o) {
+    public PatternLogEntry createPatternLogEntry(Types.LevelLoggerOption o) {
+        return new PatternLogEntry(this, o);
+    }
+
+    public StatusLogEntry createStatusLogger() {
+        return new StatusLogEntry(this.s);
+    }
+
+    public StatusLogEntry.Diff createDiffStatusLogger() {
+        return StatusLogEntry.createDiff(this.s);
+    }
+
+    public String o(Types.LevelLoggerOption o) {
         HashMap<String, Object> errorHashmap;
 
         errorHashmap = o.error != null ? Utils.stringifyError(o.error) : null;
@@ -46,7 +55,7 @@ public class LevelLogger {
                         o.msg,
                         o.data,
                         errorHashmap);
-        this.s.log(levelLog);
+        return this.s.log(this, levelLog);
     }
 
     public void msg(String msg) {

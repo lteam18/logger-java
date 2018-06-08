@@ -2,16 +2,14 @@ package logger.loggers;
 
 import java.util.Date;
 import java.util.HashMap;
-
 import logger.serialize.Serializer;
 
 public class StatusLogEntry {
 
-    private HashMap<String, Object> RECORD = new HashMap<>();
+    //    private HashMap<String, Object> RECORD = new HashMap<>();
 
     public static long SLEID = 0;
     public long sleid = StatusLogEntry.SLEID++;
-
 
     private Serializer.Type s;
 
@@ -20,16 +18,15 @@ public class StatusLogEntry {
     }
 
     public void record(HashMap<String, Object> record) {
-        HashMap<String, Object> msg = new HashMap<>();
-        msg.put("T", new Date().getTime());
-        msg.put("R", record);
-        this.s.logStatus(this.sleid, msg);
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("T", new Date().getTime());
+        hashMap.put("R", record);
+        this.s.logStatus(this.sleid, hashMap);
     }
 
     public static Diff createDiff(Serializer.Type s) {
         return new Diff(s);
     }
-
 
     public static class Diff {
         public long sleid = StatusLogEntry.SLEID++;
@@ -42,36 +39,33 @@ public class StatusLogEntry {
         }
 
         public void record(HashMap<String, Object> record) {
-            HashMap<String, Object> msg = new HashMap<>();
-            msg.put("T", new Date().getTime());
-            msg.put("R", record);
-            this.s.logStatus(this.sleid, msg);
+            HashMap<String, Object> hashMap = new HashMap<>();
+            hashMap.put("T", new Date().getTime());
+            hashMap.put("R", diff(this.history, record));
             this.history = record;
         }
     }
 
-    public HashMap<String, Object> diff(HashMap<String, Object> previous, HashMap<String, Object> current) {
+    public static HashMap<String, Object> diff(
+            HashMap<String, Object> previous, HashMap<String, Object> current) {
         if (previous == current) {
             return null;
         }
 
         HashMap<String, Object> ret = new HashMap<>();
         for (HashMap.Entry<String, Object> entry : current.entrySet()) {
-            final Object p = previous.get(entry);
-            final Object c = current.get(entry);
+            final HashMap<String, Object> p = (HashMap<String, Object>) current.get(entry);
+            final HashMap<String, Object> c = (HashMap<String, Object>) current.get(entry);
             if (p == c) continue;
 
-            if ((c instanceof Object) && (p instanceof Object)) {
-//                final Object d = diff(c, p);
-//                d && ret.put(entry,d);
+            if ((c instanceof HashMap) && (p instanceof HashMap)) {
+                final HashMap<String, Object> d = diff(c, p);
+                if (d != null) ret.put(entry.getValue().toString(), d);
             } else {
-//                ret.put(entry,c);
+                ret.put(entry.getValue().toString(), c);
             }
         }
 
         return ret;
     }
-
-
 }
-

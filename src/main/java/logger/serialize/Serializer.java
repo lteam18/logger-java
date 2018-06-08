@@ -2,23 +2,26 @@ package logger.serialize;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
-
 import logger.JSON;
+import logger.loggers.LevelLogger;
+import logger.loggers.Logger;
+import logger.loggers.PatternLogEntry;
 import logger.stringify.Stringify;
 import logger.type.Persistant;
 
 public class Serializer {
     public interface Type {
-        void log(Persistant.LevelLog data);
+        String getVersionName();
 
-        void defineHeart(long hid, Map<String, Object> data);
+        String log(LevelLogger levelLogger, Persistant.LevelLog data);
 
-        void beat(long hid);
+        String defineLogger(Logger logger);
 
-        void defineStatus(long sid, Map<String, Object> data);
+        String defineLevelLogger(LevelLogger levelLogger);
 
-        void rec(long sid, Map<String, Object> status);
+        String definePatternLogEntry(PatternLogEntry data);
+
+        String logInPattern(PatternLogEntry ple, Object data);
 
         String logStatus(long id, HashMap<String, Object> data);
     }
@@ -30,34 +33,65 @@ public class Serializer {
         public Combination(ArrayList<Type> s) {
             this.s = s;
         }
-
-        @Override
-        public void log(Persistant.LevelLog data) {
-            this.s.forEach(type -> type.log(data));
-        }
-
-        @Override
-        public void defineHeart(long hid, Map<String, Object> data) {
-            this.s.forEach(type -> type.defineHeart(hid, data));
-        }
-
-        @Override
-        public void beat(long hid) {
-            this.s.forEach(type -> type.beat(hid));
-        }
-
-        @Override
-        public void defineStatus(long sid, Map<String, Object> data) {
-            this.s.forEach(type -> type.defineStatus(sid, data));
-        }
-
-        @Override
-        public void rec(long sid, Map<String, Object> status) {
-            this.s.forEach(type -> type.rec(sid, status));
-        }
+        //        @Override
+        //        public void log(Persistant.LevelLog data) {
+        //            this.s.forEach(type -> type.log(data));
+        //        }
+        //
+        //        @Override
+        //        public void defineHeart(long hid, Map<String, Object> data) {
+        //            this.s.forEach(type -> type.defineHeart(hid, data));
+        //        }
+        //
+        //        @Override
+        //        public void beat(long hid) {
+        //            this.s.forEach(type -> type.beat(hid));
+        //        }
+        //
+        //        @Override
+        //        public void defineStatus(long sid, Map<String, Object> data) {
+        //            this.s.forEach(type -> type.defineStatus(sid, data));
+        //        }
+        //
+        //        @Override
+        //        public void rec(long sid, Map<String, Object> status) {
+        //            this.s.forEach(type -> type.rec(sid, status));
+        //        }
 
         @Override
         public String logStatus(long id, HashMap<String, Object> data) {
+            return null;
+        }
+
+        @Override
+        public String getVersionName() {
+            return null;
+        }
+
+        @Override
+        public String log(LevelLogger levelLogger, Persistant.LevelLog data) {
+            StringBuilder ret = null;
+            this.s.forEach((e) -> ret.append(e.log(levelLogger, data)));
+            return ret.toString();
+        }
+
+        @Override
+        public String defineLogger(Logger logger) {
+            return null;
+        }
+
+        @Override
+        public String defineLevelLogger(LevelLogger levelLogger) {
+            return null;
+        }
+
+        @Override
+        public String definePatternLogEntry(PatternLogEntry data) {
+            return null;
+        }
+
+        @Override
+        public String logInPattern(PatternLogEntry ple, Object data) {
             return null;
         }
     }

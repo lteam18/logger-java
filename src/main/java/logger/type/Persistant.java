@@ -23,7 +23,6 @@ public class Persistant {
         */
         public HashMap<String, Object> E = new HashMap<>();
 
-
         public Serializer.Type s = Serializer.toJSON();
 
         public LevelLog(
