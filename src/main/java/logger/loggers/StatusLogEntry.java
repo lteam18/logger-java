@@ -6,8 +6,6 @@ import logger.serialize.Serializer;
 
 public class StatusLogEntry {
 
-    //    private HashMap<String, Object> RECORD = new HashMap<>();
-
     public static long SLEID = 0;
     public long sleid = StatusLogEntry.SLEID++;
 
