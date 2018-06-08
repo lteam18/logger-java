@@ -1,10 +1,14 @@
 package logger.serialize;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 import logger.JSON;
 
+import logger.loggers.LevelLogger;
+import logger.loggers.Logger;
+import logger.loggers.PatternLogEntry;
 import logger.type.Persistant;
 
 public class Major implements Serializer.Type {
@@ -21,28 +25,63 @@ public class Major implements Serializer.Type {
         this.output_Major = Output.combine(outputs);
     }
 
+//    @Override
+//    public void log(Persistant.LevelLog data) {
+//        output_Major.output(levelLogStringify.apply(data));
+//    }
+//
+//    @Override
+//    public void defineHeart(long hid, Map<String, Object> data) {
+//        output_Major.output(hid + " " + JSON.stringify(data));
+//    }
+//
+//    @Override
+//    public void beat(long hid) {
+//        output_Major.output(hid + " " + new Date().getTime());
+//    }
+//
+//    @Override
+//    public void defineStatus(long sid, Map<String, Object> data) {
+//        output_Major.output(sid + " " + JSON.stringify(data));
+//    }
+//
+//    @Override
+//    public void rec(long sid, Map<String, Object> status) {
+//        output_Major.output(sid + " " + new Date().getTime() + " " + JSON.stringify(status));
+//    }
+
     @Override
-    public void log(Persistant.LevelLog data) {
-        output_Major.output(levelLogStringify.apply(data));
+    public String getVersionName() {
+        return null;
     }
 
     @Override
-    public void defineHeart(long hid, Map<String, Object> data) {
-        output_Major.output(hid + " " + JSON.stringify(data));
+    public String log(LevelLogger levelLogger, Persistant.LevelLog data) {
+        return null;
     }
 
     @Override
-    public void beat(long hid) {
-        output_Major.output(hid + " " + new Date().getTime());
+    public String defineLogger(Logger logger) {
+        return null;
     }
 
     @Override
-    public void defineStatus(long sid, Map<String, Object> data) {
-        output_Major.output(sid + " " + JSON.stringify(data));
+    public String defineLevelLogger(LevelLogger levelLogger) {
+        return null;
     }
 
     @Override
-    public void rec(long sid, Map<String, Object> status) {
-        output_Major.output(sid + " " + new Date().getTime() + " " + JSON.stringify(status));
+    public String definePatternLogEntry(PatternLogEntry data) {
+        return null;
+    }
+
+    @Override
+    public String logInPattern(PatternLogEntry ple, Object data) {
+        return null;
+    }
+
+    @Override
+    public String logStatus(long id, HashMap<String, Object> data) {
+        return null;
     }
 }
