@@ -21,7 +21,7 @@ public class Serializer {
 
         String definePatternLogEntry(PatternLogEntry data);
 
-        String logInPattern(PatternLogEntry ple, Object data);
+        String logInPattern(PatternLogEntry log, Object data);
 
         String logStatus(long id, HashMap<String, Object> data);
     }
