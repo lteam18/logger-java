@@ -4,29 +4,23 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import logger.Utils;
-import logger.serialize.Major;
+import logger.serialize.Serialize;
 import logger.type.Persistant;
 import logger.type.Types;
 
 public class LevelLogger {
-    private long lid;
-    private Types.LevelType logType;
-    public Serializer.Type s;
-    private ArrayList<String> namelist;
-    private Logger logger;
+    public long lid;
+    public Types.LevelType logType;
+    public Serialize.Type s;
+    public ArrayList<String> namelist;
+    public Logger logger;
 
-    public LevelLogger(long llid, Types.LevelType logType, Serializer.Type s, Logger logger) {
+    public LevelLogger(long llid, Types.LevelType logType, Serialize.Type s, Logger logger) {
         this.lid = llid;
         this.logType = logType;
-        this.s = s != null ? s : Serializer.toJSON();
+        this.s = s != null ? s : Serialize.toJSON();
         this.logger = logger;
         this.s.defineLevelLogger(this);
-    }
-
-    public LevelLogger(Types.LevelType logType, Serializer.Type s, ArrayList<String> namelist) {
-        this.logType = logType;
-        this.s = s == null ? new Major() : s;
-        this.namelist = namelist;
     }
 
     public PatternLogEntry createPatternLogEntry(Types.LevelLoggerOption o) {
@@ -47,13 +41,7 @@ public class LevelLogger {
         errorHashmap = o.error != null ? Utils.stringifyError(o.error) : null;
 
         Persistant.LevelLog levelLog =
-                new Persistant.LevelLog(
-                        this.namelist,
-                        new Date().getTime(),
-                        this.logType,
-                        o.msg,
-                        o.data,
-                        errorHashmap);
+                new Persistant.LevelLog(new Date().getTime(), o.msg, o.data, errorHashmap);
         return this.s.log(this, levelLog);
     }
 

@@ -9,8 +9,8 @@ public class PatternLogEntry {
     public static long PIEID = 0;
     public long pieid = PatternLogEntry.PIEID++;
 
-    private LevelLogger l;
-    private Types.LevelLoggerOption o;
+    public LevelLogger l;
+    public Types.LevelLoggerOption o;
 
     public PatternLogEntry(LevelLogger l, Types.LevelLoggerOption o) {
         this.l = l;

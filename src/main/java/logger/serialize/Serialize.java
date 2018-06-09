@@ -1,14 +1,15 @@
 package logger.serialize;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-
 import logger.loggers.LevelLogger;
 import logger.loggers.Logger;
 import logger.loggers.PatternLogEntry;
+import logger.output.Output;
+import logger.stringify.Chalk;
+import logger.stringify.Nomal;
 import logger.type.Persistant;
 
-public class Index {
+public class Serialize {
 
     public interface Type {
         String getVersionName();
@@ -16,9 +17,11 @@ public class Index {
         String log(LevelLogger levelLogger, Persistant.LevelLog data);
 
         String defineLogger(Logger logger);
+
         String defineLevelLogger(LevelLogger levelLogger);
 
         String definePatternLogEntry(PatternLogEntry data);
+
         String logInPattern(PatternLogEntry log, HashMap<String, Object> data);
 
         String logStatus(long id, HashMap<String, Object> data);
@@ -29,10 +32,10 @@ public class Index {
     }
 
     public static Major toJSON(Output.Type... output) {
-        return  new Major(new Nomal(), output);
+        return new Major(new Nomal(), output);
     }
 
-    public static Combination combine(ArrayList<Type> s) {
-    return  new Combination(s);
+    public static Combination combine(Type... s) {
+        return new Combination(s);
     }
 }

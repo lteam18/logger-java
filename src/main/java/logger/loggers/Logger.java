@@ -4,27 +4,29 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
-
-import logger.serialize.Major;
+import logger.output.Output;
+import logger.serialize.Serialize;
 import logger.type.Types;
 
 public class Logger {
-    private static long LID = 0;
-    private long lid = Logger.LID += 10;
+    public static long LID = 0;
+    public long lid = Logger.LID += 10;
 
-    private ArrayList<String> nameList = new ArrayList<>();
-    private Serializer.Type s;
+    public ArrayList<String> nameList = new ArrayList<>();
+    public Serialize.Type s;
 
-    public Logger(ArrayList<String> nameList, Serializer.Type s) {
+    public Logger(ArrayList<String> nameList, Serialize.Type s) {
         this.nameList = nameList;
-        this.s = s != null ? s : Serializer.toJSON();
+        this.s = s != null ? s : Serialize.toJSON();
     }
 
-    public static Logger create(String name, Serializer.Type... sType) {
-        ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(name));
-        return null == sType
-                ? new Logger(arrayList, new Major())
-                : new Logger(arrayList, Serializer.combine(sType));
+    public static Logger create(String name, Serialize.Type... s) {
+        ArrayList<String> nameList = new ArrayList<>(Arrays.asList(name));
+
+        Serialize.Type ss =
+                s.length > 1 ? Serialize.combine(s) : s.length == 1 ? s[0] : Serialize.toChalk();
+
+        return new Logger(nameList, ss);
     }
 
     public static Logger createDefault(String loggerName) {
@@ -32,10 +34,10 @@ public class Logger {
 
         return create(
                 loggerName,
-                Serializer.toChalk(
+                Serialize.toChalk(
                         Output.CONSOLE(),
                         Output.file("./" + loggerName + "." + dateString + ".chalk.log")),
-                Serializer.toJSON(Output.file("./" + loggerName + "." + dateString + ".json.log")));
+                Serialize.toJSON(Output.file("./" + loggerName + "." + dateString + ".json.log")));
     }
 
     public Logger createChildLogger(String name) {

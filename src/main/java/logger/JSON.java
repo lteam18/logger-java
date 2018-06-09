@@ -24,11 +24,9 @@ public class JSON {
     public static String stringify(Persistant.LevelLog msg) {
         Persistant.LevelLog data = msg;
         HashMap<String, Object> map = new LinkedHashMap<>();
-        map.put("N", data.N);
         if (data.T != 0) {
             map.put("T", data.T);
         }
-        map.put("L", data.L.ordinal());
         map.put("M", data.M);
         if (data.D != null) {
             map.put("D", data.D);

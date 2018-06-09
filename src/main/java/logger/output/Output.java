@@ -1,41 +1,39 @@
 package logger.output;
 
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Index {
+public class Output {
 
     public interface Type {
         void output(String msg);
     }
 
-    public static Output.Type CONSOLE() {
-        Output.Type t = msg -> System.out.println(msg);
-        return t;
+    public static Type CONSOLE() {
+        return msg -> System.out.println(msg);
     }
 
-    public static Output.Type file(String filePath) {
-        Output.Type t = msg -> appendFile(msg + "\n", filePath);
-        return t;
+    public static Type file(String filePath) {
+        return msg -> appendFile(msg + "\n", filePath);
     }
 
-    public static Output.Type combine(Output.Type... outputs) {
-        ArrayList<Output.Type> output = new ArrayList<>();
+    public static Type combine(Type... outputs) {
+        ArrayList<Type> output = new ArrayList<>();
         for (int i = 0; i < outputs.length; i++) {
             output.add(outputs[i]);
         }
 
-        return (String message) -> output.forEach((e) -> {
-            try {
-                e.output(message);
-            } catch (Exception err) {
-                err.printStackTrace();
-            }
-        });
-
+        return (String message) ->
+                output.forEach(
+                        (e) -> {
+                            try {
+                                e.output(message);
+                            } catch (Exception err) {
+                                err.printStackTrace();
+                            }
+                        });
     }
 
     private static void appendFile(String msg, String filePath) {

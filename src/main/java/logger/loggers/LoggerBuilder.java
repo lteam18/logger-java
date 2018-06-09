@@ -1,12 +1,12 @@
 package logger.loggers;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import logger.serialize.Major;
+import logger.serialize.Serialize;
 
 public class LoggerBuilder {
     private String name;
-    private ArrayList<Serializer.Type> majorlist;
+    private ArrayList<Serialize.Type> majorlist;
 
     public LoggerBuilder() {
         majorlist = new ArrayList<>();
@@ -22,8 +22,8 @@ public class LoggerBuilder {
         return this;
     }
 
-    public final Logger build() {
-        ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(name));
-        return new Logger(arrayList, Serializer.combine(majorlist));
-    }
+    //    public final Logger build() {
+    //        ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(name));
+    //       ? return new Logger(arrayList, Index.combine(majorlist));
+    //    }
 }

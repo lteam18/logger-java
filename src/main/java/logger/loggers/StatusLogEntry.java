@@ -2,15 +2,16 @@ package logger.loggers;
 
 import java.util.Date;
 import java.util.HashMap;
+import logger.serialize.Serialize;
 
 public class StatusLogEntry {
 
     public static long SLEID = 0;
     public long sleid = StatusLogEntry.SLEID++;
 
-    private Serializer.Type s;
+    private Serialize.Type s;
 
-    public StatusLogEntry(Serializer.Type s) {
+    public StatusLogEntry(Serialize.Type s) {
         this.s = s;
     }
 
@@ -21,7 +22,7 @@ public class StatusLogEntry {
         this.s.logStatus(this.sleid, hashMap);
     }
 
-    public static Diff createDiff(Serializer.Type s) {
+    public static Diff createDiff(Serialize.Type s) {
         return new Diff(s);
     }
 
@@ -29,9 +30,9 @@ public class StatusLogEntry {
         public long sleid = StatusLogEntry.SLEID++;
 
         public HashMap<String, Object> history = new HashMap<>();
-        private Serializer.Type s;
+        private Serialize.Type s;
 
-        public Diff(Serializer.Type s) {
+        public Diff(Serialize.Type s) {
             this.s = s;
         }
 

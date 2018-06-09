@@ -1,6 +1,5 @@
 package logger.type;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import logger.Utils;
@@ -8,9 +7,7 @@ import logger.Utils;
 public class Persistant {
 
     public static class LevelLog {
-        public ArrayList<String> N;
         public long T; //timeStamp
-        public Types.LevelType L; //LogLevel
         public String M = ""; //Message
         //Data
         public HashMap<String, Object> D = new HashMap<>();
@@ -22,18 +19,8 @@ public class Persistant {
         */
         public HashMap<String, Object> E = new HashMap<>();
 
-        public Serializer.Type s = Serializer.toJSON();
-
-        public LevelLog(
-                ArrayList<String> N,
-                long T,
-                Types.LevelType L,
-                String M,
-                HashMap<String, Object> D,
-                Object E) {
-            this.N = N;
+        public LevelLog(long T, String M, HashMap<String, Object> D, Object E) {
             this.T = T;
-            this.L = L;
             this.M = M;
             this.D = D;
 
