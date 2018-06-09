@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import logger.Utils;
-import logger.serialize.Serializer;
 
 public class Persistant {
 

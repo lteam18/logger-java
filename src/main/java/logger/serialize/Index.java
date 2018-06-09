@@ -1,6 +1,8 @@
 package logger.serialize;
 
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import logger.loggers.LevelLogger;
 import logger.loggers.Logger;
 import logger.loggers.PatternLogEntry;
@@ -14,21 +16,23 @@ public class Index {
         String log(LevelLogger levelLogger, Persistant.LevelLog data);
 
         String defineLogger(Logger logger);
-
         String defineLevelLogger(LevelLogger levelLogger);
 
         String definePatternLogEntry(PatternLogEntry data);
+        String logInPattern(PatternLogEntry log, HashMap<String, Object> data);
 
-        String logInPattern(PatternLogEntry log);
-
-        String logInPattern(PatternLogEntry log, Map<String, Object> data);
-
-        String logStatus(long id, Map<String, Object> data);
+        String logStatus(long id, HashMap<String, Object> data);
     }
 
-    public static void toChalk(Output.Type... output) {}
+    public static Major toChalk(Output.Type... output) {
+        return new Major(new Chalk(), output);
+    }
 
-    public static void toJSON() {}
+    public static Major toJSON(Output.Type... output) {
+        return  new Major(new Nomal(), output);
+    }
 
-    public static void combine() {}
+    public static Combination combine(ArrayList<Type> s) {
+    return  new Combination(s);
+    }
 }

@@ -6,8 +6,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import logger.serialize.Output;
-
 public class Index {
 
     public interface Type {

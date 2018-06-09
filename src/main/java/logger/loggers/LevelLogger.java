@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.HashMap;
 import logger.Utils;
 import logger.serialize.Major;
-import logger.serialize.Serializer;
 import logger.type.Persistant;
 import logger.type.Types;
 

@@ -6,8 +6,6 @@ import java.util.Arrays;
 import java.util.Date;
 
 import logger.serialize.Major;
-import logger.serialize.Output;
-import logger.serialize.Serializer;
 import logger.type.Types;
 
 public class Logger {

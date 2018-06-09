@@ -3,7 +3,6 @@ package logger.loggers;
 import java.util.ArrayList;
 import java.util.Arrays;
 import logger.serialize.Major;
-import logger.serialize.Serializer;
 
 public class LoggerBuilder {
     private String name;

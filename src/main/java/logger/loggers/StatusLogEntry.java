@@ -2,7 +2,6 @@ package logger.loggers;
 
 import java.util.Date;
 import java.util.HashMap;
-import logger.serialize.Serializer;
 
 public class StatusLogEntry {
 

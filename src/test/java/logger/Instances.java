@@ -1,8 +1,6 @@
 package logger;
 
 import logger.loggers.Logger;
-import logger.serialize.Output;
-import logger.serialize.Serializer;
 
 public class Instances {
 
