@@ -1,12 +1,13 @@
 package logger.serialize;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import logger.loggers.LevelLogger;
 import logger.loggers.Logger;
 import logger.loggers.PatternLogEntry;
 import logger.output.Output;
 import logger.stringify.Chalk;
-import logger.stringify.Nomal;
+import logger.stringify.Normal;
 import logger.type.Persistant;
 
 public class Serialize {
@@ -32,10 +33,15 @@ public class Serialize {
     }
 
     public static Major toJSON(Output.Type... output) {
-        return new Major(new Nomal(), output);
+        return new Major(new Normal(), output);
     }
 
     public static Combination combine(Type... s) {
         return new Combination(s);
     }
+
+    public static Combination combine(ArrayList<Type> types) {
+        return new Combination(types);
+    }
+
 }

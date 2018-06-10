@@ -9,14 +9,14 @@ import logger.type.Persistant;
 import logger.type.Types;
 
 public class LevelLogger {
-    public long lid;
+    public long llid;
     public Types.LevelType logType;
     public Serialize.Type s;
     public ArrayList<String> namelist;
     public Logger logger;
 
     public LevelLogger(long llid, Types.LevelType logType, Serialize.Type s, Logger logger) {
-        this.lid = llid;
+        this.llid = llid;
         this.logType = logType;
         this.s = s != null ? s : Serialize.toJSON();
         this.logger = logger;

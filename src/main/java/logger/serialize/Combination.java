@@ -9,7 +9,7 @@ import logger.type.Persistant;
 
 public class Combination implements Serialize.Type {
 
-    public ArrayList<Serialize.Type> s;
+    public ArrayList<Serialize.Type> s = new ArrayList<>();
 
     public Combination(Serialize.Type... s) {
         if (s.length > 0) {
@@ -17,6 +17,10 @@ public class Combination implements Serialize.Type {
                 this.s.add(type);
             }
         }
+    }
+
+    public Combination(ArrayList<Serialize.Type> s){
+        this.s =s;
     }
 
     @Override
