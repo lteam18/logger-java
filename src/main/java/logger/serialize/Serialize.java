@@ -43,5 +43,4 @@ public class Serialize {
     public static Combination combine(ArrayList<Type> types) {
         return new Combination(types);
     }
-
 }

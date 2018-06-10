@@ -1,7 +1,6 @@
 package logger.stringify;
 
 import java.util.HashMap;
-
 import logger.JSON;
 import logger.loggers.LevelLogger;
 import logger.loggers.Logger;
@@ -46,8 +45,7 @@ public class Normal implements Serialize.Type {
     @Override
     public String logInPattern(PatternLogEntry log, HashMap<String, Object> data) {
 
-        return !data.isEmpty() ? "P" + log.pieid + " " + JSON.stringify(data)
-                : "P" + log.pieid;
+        return !data.isEmpty() ? "P" + log.pieid + " " + JSON.stringify(data) : "P" + log.pieid;
     }
 
     @Override

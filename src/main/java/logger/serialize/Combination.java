@@ -19,8 +19,8 @@ public class Combination implements Serialize.Type {
         }
     }
 
-    public Combination(ArrayList<Serialize.Type> s){
-        this.s =s;
+    public Combination(ArrayList<Serialize.Type> s) {
+        this.s = s;
     }
 
     @Override
