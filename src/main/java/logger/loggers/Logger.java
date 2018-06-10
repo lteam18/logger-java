@@ -1,11 +1,9 @@
 package logger.loggers;
 
-import java.lang.invoke.SwitchPoint;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
-
 import logger.output.Output;
 import logger.serialize.Major;
 import logger.serialize.Serialize;
@@ -18,13 +16,11 @@ public class Logger {
     public ArrayList<String> nameList = new ArrayList<>();
     public Serialize.Type s;
 
-
     public LevelLogger DEBUG;
     public LevelLogger INFO;
     public LevelLogger WARN;
     public LevelLogger ERROR;
     public LevelLogger FATAL;
-
 
     public Logger(ArrayList<String> nameList, Serialize.Type s) {
         this.nameList = nameList;
@@ -69,6 +65,7 @@ public class Logger {
     public String debug(Types.LevelLoggerOption o) {
         return this.DEBUG.o(o);
     }
+
     public String info(Types.LevelLoggerOption o) {
         return this.INFO.o(o);
     }

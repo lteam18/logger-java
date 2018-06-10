@@ -1,7 +1,6 @@
 package logger.serialize;
 
 import java.util.HashMap;
-
 import logger.loggers.LevelLogger;
 import logger.loggers.Logger;
 import logger.loggers.PatternLogEntry;
@@ -30,8 +29,8 @@ public class Major implements Serialize.Type {
     @Override
     public String log(LevelLogger levelLogger, Persistant.LevelLog data) {
         String r = this.stringifier.log(levelLogger, data);
-        if (r!=null) this.outputType.output(r);
-        return r!=null?r:null;
+        if (r != null) this.outputType.output(r);
+        return r != null ? r : null;
     }
 
     @Override
@@ -50,8 +49,6 @@ public class Major implements Serialize.Type {
         String r = this.stringifier.defineLevelLogger(levelLogger);
         if (r != null) this.outputType.output(r);
         return r == null ? null : r;
-
-
     }
 
     @Override

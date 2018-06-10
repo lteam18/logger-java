@@ -1,7 +1,5 @@
 package logger;
 
-import java.util.HashMap;
-
 import logger.loggers.Logger;
 import logger.output.Output;
 import logger.serialize.Serialize;
@@ -10,18 +8,18 @@ import logger.type.Types;
 public class Logger_test {
     public static void main(String[] args) {
 
-        Instances.RootLogger = Logger.create(
-                "MainLogger-123",
-                Serialize.toChalk(Output.CONSOLE(), Output.file("./a.log")),
-                Serialize.toJSON(Output.file("./a.json.log"))
-        );
+        Instances.RootLogger =
+                Logger.create(
+                        "MainLogger-123",
+                        Serialize.toChalk(Output.CONSOLE(), Output.file("./a.log")),
+                        Serialize.toJSON(Output.file("./a.json.log")));
 
-//                final Logger llo =
-//                        Logger.builder()
-//                                .setName("MainLogger-123")
-//                                .addOutputType(Serialize.toChalk(Output.CONSOLE(), Output.file("./a.log")))
-//                                .addOutputType(Serialize.toJSON(Output.file("./a.json.log")))
-//                                .build();
+        //                final Logger llo =
+        //                        Logger.builder()
+        //                                .setName("MainLogger-123")
+        //                                .addOutputType(Serialize.toChalk(Output.CONSOLE(), Output.file("./a.log")))
+        //                                .addOutputType(Serialize.toJSON(Output.file("./a.json.log")))
+        //                                .build();
 
         //        final Logger llo2 =
         //                Logger.create(
@@ -33,10 +31,8 @@ public class Logger_test {
 
         Logger llo = Instances.RootLogger;
 
-        HashMap<String, Object> hashMap = new HashMap<>();
-        hashMap.put("msg", "Program ready");
         Types.LevelLoggerOption levelLoggerOption = new Types.LevelLoggerOption();
-        levelLoggerOption.data = hashMap;
+        levelLoggerOption.msg = "Program ready";
         llo.debug(levelLoggerOption);
 
         try {
