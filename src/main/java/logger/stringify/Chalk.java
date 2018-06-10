@@ -4,6 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+
+import logger.JSON;
 import logger.Utils;
 import logger.loggers.LevelLogger;
 import logger.loggers.Logger;
@@ -69,7 +71,6 @@ public class Chalk implements Serialize.Type {
     }
 
     public static String chalkData(Persistant.LevelLog data, LevelLogger logger) {
-
         final long diff = data.T - history > 0 ? data.T - history : 0;
         history = data.T;
 
@@ -79,7 +80,7 @@ public class Chalk implements Serialize.Type {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
         String l_time = wrapWithColor(ANSI_WHITE, sdf.format(data.T));
 
-        String l_msg = !data.M.equals("") ? general_text_fun(logger.logType, data.M) : "";
+        String l_msg = data.M!=null? general_text_fun(logger.logType, data.M) : "";
         String msg = l_difftime + " " + l_time + " " + logger.logger.nameList + " " + l_msg;
 
         if (data.D != null) {

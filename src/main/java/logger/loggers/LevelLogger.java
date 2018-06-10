@@ -1,6 +1,5 @@
 package logger.loggers;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import logger.Utils;
@@ -11,8 +10,7 @@ import logger.type.Types;
 public class LevelLogger {
     public long llid;
     public Types.LevelType logType;
-    public Serialize.Type s;
-    public ArrayList<String> namelist;
+    public Serialize.Type s = Serialize.toJSON();
     public Logger logger;
 
     public LevelLogger(long llid, Types.LevelType logType, Serialize.Type s, Logger logger) {

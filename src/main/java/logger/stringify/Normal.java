@@ -44,7 +44,6 @@ public class Normal implements Serialize.Type {
 
     @Override
     public String logInPattern(PatternLogEntry log, HashMap<String, Object> data) {
-
         return !data.isEmpty() ? "P" + log.pieid + " " + JSON.stringify(data) : "P" + log.pieid;
     }
 
