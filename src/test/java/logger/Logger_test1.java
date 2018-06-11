@@ -8,7 +8,6 @@ import logger.type.Types;
 public class Logger_test1 {
 
     public static void main(String[] args) {
-
         Instances.RootLogger = Logger.createDefault("MainLogger-123");
         final Logger llo = Instances.RootLogger;
 
