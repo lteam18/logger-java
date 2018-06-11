@@ -17,10 +17,12 @@ public class PatternLogEntry {
         this.o = o;
     }
 
-    public void beat(HashMap<String, Object> data) {
+    public void beat(HashMap<String, Object>... data) {
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("T", new Date().getTime());
-        hashMap.put("data", data);
+        if(data.length>0){
+            hashMap.put("data", data[0]);
+        }
         this.l.s.logInPattern(this, hashMap);
     }
 }

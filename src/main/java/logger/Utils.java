@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Utils {
@@ -81,7 +82,7 @@ public class Utils {
     }
 
     public static HashMap<String, Object> map(Object... values) {
-        HashMap<String, Object> resMap = new HashMap<>();
+        HashMap<String, Object> resMap = new LinkedHashMap<>();
         for (int i = 0; i < values.length; i += 2) {
             resMap.put(values[i].toString(), i + 1 < values.length ? values[i + 1] : "");
         }

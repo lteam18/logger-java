@@ -1,6 +1,7 @@
 package logger.serialize;
 
 import java.util.HashMap;
+
 import logger.loggers.LevelLogger;
 import logger.loggers.Logger;
 import logger.loggers.PatternLogEntry;
@@ -68,7 +69,7 @@ public class Major implements Serialize.Type {
     @Override
     public String logStatus(long id, HashMap<String, Object> data) {
         String r = this.stringifier.logStatus(id, data);
-        if (!r.isEmpty()) this.outputType.output(r);
+        if (r != null) this.outputType.output(r);
         return r;
     }
 }
