@@ -15,7 +15,8 @@ public class Logger_test1 {
         levelLoggerOption.msg = "Heatbeat";
         final PatternLogEntry heart = llo.INFO.createPatternLogEntry(levelLoggerOption);
 
-        final StatusLogEntry statusLogger = llo.INFO.createStatusLogger();
+        final StatusLogEntry.Diff statusLogger = llo.INFO.createDiffStatusLogger();
+        final StatusLogEntry statusLogEntry = llo.FATAL.createStatusLogger();
 
         Types.LevelLoggerOption levelLoggerOption2 = new Types.LevelLoggerOption();
         levelLoggerOption2.msg = "Program ready";
@@ -33,20 +34,22 @@ public class Logger_test1 {
         llo.DEBUG.msg_data("123", Utils.map("status", "on", "work", Utils.map("a", 1, "b", 2)));
 
         statusLogger.record(Utils.map("a", 1, "b", 2));
+        statusLogEntry.record(Utils.map("a", 1, "b", 2));
 
         llo.INFO.msg_data("12312", Utils.map("status", "off", "work", Utils.map("a", 3, "b", 4)));
 
         heart.beat();
         final Logger slog = llo.createChildLogger("sublogger");
         slog.WARN.trace(new Error("Here"));
-        slog.FATAL.msg_data("Fatal",Utils.map("status","off","work",Utils.map("a","3","b",4)));
+        slog.FATAL.msg_data(
+                "Fatal", Utils.map("status", "off", "work", Utils.map("a", "3", "b", 4)));
 
-        statusLogger.record(Utils.map("a", 3, "b", 4));
+        statusLogger.record(Utils.map("a", 3, "b", 4, "map", Utils.map("c", true, "d", 6)));
 
-        llo.ERROR.msg_data("Error",Utils.map("status", "off", "work", Utils.map("a", 3, "b", 4)));
+        llo.ERROR.msg_data("Error", Utils.map("status", "off", "work", Utils.map("a", 3, "b", 4)));
 
         heart.beat();
 
-        statusLogger.record(Utils.map("a", 8, "b", 4));
+        statusLogger.record(Utils.map("a", 3, "b", 4, "map", Utils.map("c", true, "d", 6)));
     }
 }

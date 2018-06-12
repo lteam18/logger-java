@@ -11,7 +11,7 @@ import logger.type.Types;
 
 public class Logger {
     public static long LID = 0;
-    public long lid = Logger.LID += 10;;
+    public long lid = Logger.LID += 10;
 
     public ArrayList<String> nameList = new ArrayList<>();
     public Serialize.Type s;

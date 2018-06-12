@@ -1,7 +1,6 @@
 package logger.serialize;
 
 import java.util.HashMap;
-
 import logger.loggers.LevelLogger;
 import logger.loggers.Logger;
 import logger.loggers.PatternLogEntry;
