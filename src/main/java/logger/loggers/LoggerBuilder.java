@@ -7,10 +7,10 @@ import logger.serialize.Serialize;
 
 public class LoggerBuilder {
     private String name;
-    private ArrayList<Serialize.Type> majorlist;
+    private Serialize.Type[] types;
+    private static int typeCount = 0;
 
     public LoggerBuilder() {
-        majorlist = new ArrayList<>();
     }
 
     public final LoggerBuilder setName(String name) {
@@ -19,12 +19,13 @@ public class LoggerBuilder {
     }
 
     public final LoggerBuilder addOutputType(Major major) {
-        this.majorlist.add(major);
+        types[typeCount] = major;
+        typeCount++;
         return this;
     }
 
     public final Logger build() {
         ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(name));
-        return new Logger(arrayList, Serialize.combine(majorlist));
+        return new Logger(arrayList, Serialize.combine(types));
     }
 }

@@ -1,6 +1,5 @@
 package logger.serialize;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import logger.loggers.LevelLogger;
 import logger.loggers.Logger;
@@ -40,7 +39,4 @@ public class Serialize {
         return new Combination(s);
     }
 
-    public static Combination combine(ArrayList<Type> types) {
-        return new Combination(types);
-    }
 }
