@@ -38,5 +38,4 @@ public class Serialize {
     public static Combination combine(Type... s) {
         return new Combination(s);
     }
-
 }

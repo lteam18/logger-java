@@ -45,7 +45,6 @@ public class Output {
                         });
     }
 
-
     private static void appendFile(String msg) {
         try {
             fw.append(msg);
@@ -54,10 +53,9 @@ public class Output {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
-    public static void closeFile(){
+    public static void closeFile() {
         try {
             fw.close();
         } catch (IOException e) {

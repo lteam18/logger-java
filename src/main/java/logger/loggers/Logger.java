@@ -93,7 +93,7 @@ public class Logger {
         return new LoggerBuilder();
     }
 
-    public void finishLogger(){
+    public void finishLogger() {
         Output.closeFile();
     }
 }

@@ -2,8 +2,8 @@ package logger.stringify;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
+
 import logger.Utils;
 import logger.loggers.LevelLogger;
 import logger.loggers.Logger;
@@ -69,7 +69,7 @@ public class Chalk implements Serialize.Type {
     }
 
     public static String chalkData(Persistant.LevelLog data, LevelLogger logger) {
-        history = history==0?data.T:history;
+        if (history == 0) history = data.T;
         final long diff = data.T - history > 0 ? data.T - history : 0;
         history = data.T;
 

@@ -10,8 +10,7 @@ public class LoggerBuilder {
     private Serialize.Type[] types;
     private static int typeCount = 0;
 
-    public LoggerBuilder() {
-    }
+    public LoggerBuilder() {}
 
     public final LoggerBuilder setName(String name) {
         this.name = name;
