@@ -3,7 +3,6 @@ package logger.stringify;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
-
 import logger.Utils;
 import logger.loggers.LevelLogger;
 import logger.loggers.Logger;
