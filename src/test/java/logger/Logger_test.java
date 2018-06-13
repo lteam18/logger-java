@@ -55,5 +55,7 @@ public class Logger_test {
 
         llo.ERROR.msg_data(
                 "Error", Utils.map("status", "off", "work", Utils.map("a", "3", "b", 4)));
+
+        llo.finishLogger();
     }
 }

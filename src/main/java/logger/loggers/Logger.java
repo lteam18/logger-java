@@ -92,4 +92,8 @@ public class Logger {
     public static LoggerBuilder builder() {
         return new LoggerBuilder();
     }
+
+    public void finishLogger(){
+        Output.closeFile();
+    }
 }

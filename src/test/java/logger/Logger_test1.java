@@ -50,6 +50,6 @@ public class Logger_test1 {
 
         heart.beat();
 
-        statusLogger.record(Utils.map("a", 3, "b", 4, "map", Utils.map("c", true, "d", 6)));
+        statusLogger.record(Utils.map("a", 3, "b", 4, "map", Utils.map("c", false, "d", 16)));
     }
 }

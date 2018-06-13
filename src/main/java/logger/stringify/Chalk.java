@@ -27,7 +27,7 @@ public class Chalk implements Serialize.Type {
     private static final String LEADING_SPACE = "          ";
     private static final String LEADING_CHARS = "_________";
 
-    private static long history = new Date().getTime();
+    private static long history = 0;
 
     @Override
     public String getVersionName() {
@@ -69,6 +69,7 @@ public class Chalk implements Serialize.Type {
     }
 
     public static String chalkData(Persistant.LevelLog data, LevelLogger logger) {
+        history = history==0?data.T:history;
         final long diff = data.T - history > 0 ? data.T - history : 0;
         history = data.T;
 
